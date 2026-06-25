@@ -1,0 +1,899 @@
+{
+  "benchmark": "Sugidanon",
+  "version": "1.0.0",
+  "frozen_on": "2026-06-26",
+  "task": "code-switch automatic speech recognition (Hiligaynon matrix)",
+  "primary_metric": "switch-region word error rate",
+  "splits": {
+    "train": null,
+    "test": "headline",
+    "development": "scripted_native_spk2",
+    "robustness": "non_native_eval"
+  },
+  "inclusion_rules": [
+    "Headline (test) = scripted_native, Speaker 1 (spk01) only.",
+    "Cohorts are speaker-disjoint; spk02 is development, never blended into the headline WER.",
+    "non_native_eval is robustness only and never counts toward the native headline.",
+    "A clip is eligible only with a gold reference annotation and a matching prediction file.",
+    "Hiligaynon references stay seed_unverified until a native speaker confirms; AI output is never treated as gold."
+  ],
+  "scorer": {
+    "script": "score.py",
+    "metric": "word error rate (Levenshtein, word-level)",
+    "normalization": "lowercase; strip punctuation except apostrophe and hyphen",
+    "switch_region_window": 1,
+    "language_forcing": "tl",
+    "sha256": "ef3ed91ca47bea2cd4337d393364a1fd60a339f984a3d2b10391f419c7404a41"
+  },
+  "cohorts": {
+    "headline": {
+      "role": "test",
+      "speaker": "spk01",
+      "annotations": "data/annotations",
+      "audio": "data/audio",
+      "predictions": "data/predictions",
+      "status": "frozen",
+      "n_clips": 40,
+      "total_duration_sec": 182.7,
+      "by_domain": {
+        "market": 5,
+        "transport": 5,
+        "school_work": 5,
+        "family": 5,
+        "health": 5,
+        "culture": 5,
+        "everyday": 5,
+        "oral_tradition": 5
+      },
+      "by_switch_type": {
+        "HIL+EN": 17,
+        "HIL+TL": 7,
+        "HIL": 11,
+        "HIL+TL+EN": 5
+      },
+      "clips": [
+        {
+          "clip_id": "hil_cs_001",
+          "annotation_sha256": "5f12287a5b3326a288dfcec746e4eda847328570a19df69b610d525975d4446c",
+          "audio_sha256": "2dd038a37036e6137264ff0283aa0afacc3b1f9a4bd65d13849d02353ffc188c",
+          "duration_sec": 3.39,
+          "domain": "market",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_002",
+          "annotation_sha256": "3f44adcc5a9e8c770c82fd9f662bcf85918da6f21a86da0341d4df6220d6c006",
+          "audio_sha256": "edeb149612d0beea666ee146127f4e2cf793687b48f37cb86da8b61964c3fb66",
+          "duration_sec": 4.47,
+          "domain": "market",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_003",
+          "annotation_sha256": "d54962b271ff848e5dfd1884ed817537bd54baea9b25c161e419c4c9498a5c99",
+          "audio_sha256": "b0dff190a9cfa181ad66e113575ae01608cbad05a6ebe03e13f82b2b8f71348e",
+          "duration_sec": 4.86,
+          "domain": "market",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_004",
+          "annotation_sha256": "7d810b9c4cdd5db785d7b56d97cfda9aad9b1aa686217f1241751fcb9a6ab8d8",
+          "audio_sha256": "74c2d0ec242a069f3f4bb05fb7f0188555b7794252060b8e424f0df79cabd65e",
+          "duration_sec": 3.51,
+          "domain": "market",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_005",
+          "annotation_sha256": "bf37021896834e1383364139609fc2f6192df00c7fb629b64d8efff3d804863a",
+          "audio_sha256": "d0cf19a2d53fec2a5eb6fb4e79972b7e02631141bf42a9cc01ed9a41999dbfd2",
+          "duration_sec": 5.1,
+          "domain": "market",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_006",
+          "annotation_sha256": "74bd65ffc215935351c53291a612296d96c04937c9d766416700406a17dc6558",
+          "audio_sha256": "aba56070596ca4736fe9a03719da053295ee68bd00a003dc53ce9e047994a7b3",
+          "duration_sec": 3.15,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_007",
+          "annotation_sha256": "202c8f878b46f52b45bb8c748a7a87c6541178c60a299f2b8c67ddacf0e2cf6a",
+          "audio_sha256": "0bb526ddc67f92fc67dac05afbf42f9767293f5da0dea0b7534ee16d8781c4eb",
+          "duration_sec": 2.58,
+          "domain": "transport",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_008",
+          "annotation_sha256": "03d276ab8be406b5c44e54637ef3b10a2d37fbafa2d21e6ea69c1dd55e058ebc",
+          "audio_sha256": "1ae781c59e1bcea96413d7d9fdac61f981b7b36a625973e3ff77212bc40aeac0",
+          "duration_sec": 5.49,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_009",
+          "annotation_sha256": "09ba4a00be4d11e22a049333b6dc01115a7009eb7350dab2ff0a33f1af1ad060",
+          "audio_sha256": "c56d4eb9c82c0d9d034aa65bece48bc30f0faf97351f2193ea29996f93632430",
+          "duration_sec": 4.41,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_010",
+          "annotation_sha256": "cb179efd703748fb77fd4d2cf6c2c6eeea77dafdec29839bf5f878063eef5f94",
+          "audio_sha256": "8c8991596912f8e54b5e4c05d09127be3d16faecbca65e2f39dbd8cd5fee4ce4",
+          "duration_sec": 5.683,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_011",
+          "annotation_sha256": "51e358b2d4246957d5aebea961e2584545e79e6108c93986c37895867b9443fc",
+          "audio_sha256": "18ceba282bad2c7b5037000141ab19651920224d57029891f926d12e1cc3f988",
+          "duration_sec": 3.93,
+          "domain": "school_work",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_012",
+          "annotation_sha256": "37e6d52255f7d02e7bf51a21be542a34f1deb1e9c12a09f3b6ec15163bc9cecc",
+          "audio_sha256": "1fd523d74a75bbffad90e2dc5f43ab28897eb7e3bbd8bacc1b5458faab1cdb7d",
+          "duration_sec": 4.71,
+          "domain": "school_work",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_013",
+          "annotation_sha256": "6c8d4e23391e811ca393c1b1d68074160630a608a9a710d8533086fe243a4ccd",
+          "audio_sha256": "547d9e29d0efbf5b6d52c4d43c38093ccf9f0eabed9e918e5e5e56971ce88fad",
+          "duration_sec": 10.44,
+          "domain": "school_work",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_014",
+          "annotation_sha256": "00e46908d9388cf3c28790aa5dc84c0a6a72c961b2c7a132cc01c47ec5813502",
+          "audio_sha256": "1039c76fe6d1bb018ca55ecef80e1bf15f21dceb7c7def48eef04a52b2f1d8cf",
+          "duration_sec": 4.47,
+          "domain": "school_work",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_015",
+          "annotation_sha256": "dd0c9633fef776b110b9dd4a75ec7e22216b715bb0f777f855b25115f90b93c4",
+          "audio_sha256": "d449f962e652254ed1dde89f5565ef808e75abb27554ddb8c2e210947f0ec76a",
+          "duration_sec": 4.74,
+          "domain": "school_work",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_016",
+          "annotation_sha256": "c799086d9f0ade97f3e417a999aaa073da303a57ae17931ebbd302dd3b931e4c",
+          "audio_sha256": "558c6038b562993d7ec090e775c53d04e46ffccc922b905ec06ef629b7ed47be",
+          "duration_sec": 3.18,
+          "domain": "family",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_017",
+          "annotation_sha256": "c34f53a6675714be5901a34ad94c436ee1116311db3f05a419989e814d45ecdd",
+          "audio_sha256": "c5b8ee86f2c8f54aaabb76c1048f49625afbae7ec477f6725cfc1a6300a211f9",
+          "duration_sec": 3.54,
+          "domain": "family",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_018",
+          "annotation_sha256": "d5195d496e21f63d2a3575bf261186815525e8d8a6ecbc8dae6c7b48c58209d5",
+          "audio_sha256": "f886c33260f4c0a30cb43e4f6256223b71ee4c730b66764f37cc6f4407dab491",
+          "duration_sec": 5.31,
+          "domain": "family",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_019",
+          "annotation_sha256": "956ec010d7b8d3af8a66da35915a6c7198b810e34f206d2bb1357ee2d3323318",
+          "audio_sha256": "2f7e7174449d1fb24c24933ad9713d6b037d97746330c2b89c347e0e1138e383",
+          "duration_sec": 4.59,
+          "domain": "family",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_020",
+          "annotation_sha256": "7a702307ea0fdb6ca2ea86f3b56b0f326daa72ac94ca5346c555aedb8fc5af90",
+          "audio_sha256": "07e750074943879064fd295d3bc35d21dbbba5a87162643bfc58f89a02547516",
+          "duration_sec": 4.23,
+          "domain": "family",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_021",
+          "annotation_sha256": "149e7833467d131f8f8078df90a55d69e69f4f6fc7f4113949a8fdfb8f341c9c",
+          "audio_sha256": "ea8c8bfca62812a5e2b1de9dada5d4401aa9459c6281c6d860410c2c63d19b0d",
+          "duration_sec": 3.42,
+          "domain": "health",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_022",
+          "annotation_sha256": "5a79b4843197f95d5e73db5375c24f43383009edbb1813b1861114c2742964f3",
+          "audio_sha256": "e329a81283e41cc9bb7a6c1f4c1f8ef392f35cbd5a047c7c81ac990d598e7293",
+          "duration_sec": 4.23,
+          "domain": "health",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_023",
+          "annotation_sha256": "ac24d8e4d18f018453712aa3a23b3ba30196731ab3ad87f3a76ab62ed870fd3c",
+          "audio_sha256": "ce1f17a04426645611a62743c01ade37e5b46034ac30fe11d3f02e355ea67d1b",
+          "duration_sec": 4.74,
+          "domain": "health",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_024",
+          "annotation_sha256": "6f2aabdba55c9219aba535aba979933828673c4f14e4d8811ccfa4a02897f408",
+          "audio_sha256": "fa0385f462738d6d9d8a845ce480645ddcae2996cecde54a1880755c423654b3",
+          "duration_sec": 5.31,
+          "domain": "health",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_025",
+          "annotation_sha256": "f9b07a0bed3b07b3b99057384e32fe6fd60eade8c6d133e005c9b3cd0f442d7c",
+          "audio_sha256": "ced8625e82bf05c0b4d0420df17240eec604aa3d27500be4a3e023a97dd2a208",
+          "duration_sec": 3.9,
+          "domain": "health",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_026",
+          "annotation_sha256": "43e4a9ee253a78ee94ec1bf0bb0e4d677aa4a953a37982493977cd19a696b210",
+          "audio_sha256": "3bb487f5114f0fa038d81e9e119e3cebbd0f64288f89406d20f3a9bd8842eb56",
+          "duration_sec": 3.78,
+          "domain": "culture",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_027",
+          "annotation_sha256": "fca1ff690641312f82796e463ed7913593c39c5806a435775157d0d85d673288",
+          "audio_sha256": "31170e97b3e937a25e253fc0cbebd55765510454fb25f91069dbfde35731d232",
+          "duration_sec": 3.87,
+          "domain": "culture",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_028",
+          "annotation_sha256": "81e4b0ac8e85f0baa28b220ba5e32859096b2d27f47d782e18072a4f8b68a60e",
+          "audio_sha256": "b8d5090257f4b785bb6c7db36546761542713a4f639dbaf97f37a4733f30d333",
+          "duration_sec": 4.62,
+          "domain": "culture",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_029",
+          "annotation_sha256": "09392a5ffeecbec08d2571426125e46dd45a2a9f6665c3f7a55df5ef465c2101",
+          "audio_sha256": "5582d219fe7604aa368cc4b67042c661d3324461ce4701744ba5fba221c7a996",
+          "duration_sec": 4.92,
+          "domain": "culture",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_030",
+          "annotation_sha256": "e48b4edf4be3f46844f3abce76e2b1f8964ceb7c3c9d695c4d3add5e77e26827",
+          "audio_sha256": "a6775c9d36fec440f7d0e818b84ccc6a40edef44ea00776f876f7098028ed9b1",
+          "duration_sec": 3.81,
+          "domain": "culture",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_031",
+          "annotation_sha256": "587fd4093791d8965b2ebf8ee2e75de0d4986638d1776d61dbe1673047fee4f2",
+          "audio_sha256": "a0fc108a8a99c00e0034a63c1063ef544ad7b4ea7cb2e9633ad0d8e10e66f29b",
+          "duration_sec": 3.24,
+          "domain": "everyday",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_032",
+          "annotation_sha256": "28299d6d3ab50454231208381d44a23d7cae585a753bb36cfc9f78feb3e80dd5",
+          "audio_sha256": "b6d470be8391dd365188c35ebe90d453ba9122aed910ae4c1de6282e9f2d34bd",
+          "duration_sec": 3.96,
+          "domain": "everyday",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_033",
+          "annotation_sha256": "207f6453ba86f595576658ddb276774523b1698bd2c7b79abbdd96f67c0545e2",
+          "audio_sha256": "5948b7a99f5e08a5a5cd49b84059598c780556d96aa97b0125a1f3a8d3b60b64",
+          "duration_sec": 4.26,
+          "domain": "everyday",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_034",
+          "annotation_sha256": "b466cfd7d9a3b18773e787ebd2201f6596cb7989fef7fae7cf472ffaf41fedc9",
+          "audio_sha256": "fe2433d5af35ba1f689f3b7db97251fdb7e5e46cd40a7e1c5d98d06cc1b8d036",
+          "duration_sec": 6.03,
+          "domain": "everyday",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_035",
+          "annotation_sha256": "1e60ec56a8f32549e715e8f5e3810c9dae31925273e0352ec3698687b71234f5",
+          "audio_sha256": "11d5055599dcb305a23e6dd8e56682c26938d4245ab19b6231ec20fe1362d1ac",
+          "duration_sec": 4.17,
+          "domain": "everyday",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_036",
+          "annotation_sha256": "237af67ec526eff8e1e37a65d8be5a5a5722520d09ff8d6d31aacfb7a2b19ed3",
+          "audio_sha256": "fb9d49175f6b7368b007f78a4387fb453253847d5b4cc7e3acf4939d949f2d5e",
+          "duration_sec": 5.4,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_037",
+          "annotation_sha256": "1d2faac54319ae5708dc82e9d66caa40c0dddee298c20269fc7d383510a9879a",
+          "audio_sha256": "ee2deaafa81da0bde93a06426e9e209ad5807ba7e5c450abfce8807240eb7d60",
+          "duration_sec": 5.73,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_038",
+          "annotation_sha256": "8947327db8d89a54e8e32e319ee2ebe0a4446902c7b5d6292a20cfa6cdf1598f",
+          "audio_sha256": "d9c50abf0b80902fcd27f88b342093ddab9605fb5ecdf2b5347a29410fba7001",
+          "duration_sec": 4.56,
+          "domain": "oral_tradition",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_039",
+          "annotation_sha256": "57feb629321b81035fd3214b7121a85ceab5bc81b3e6e81e3544ea5b5e477efa",
+          "audio_sha256": "991452de9d889d856381b3faf3a7bc8c169ba5e3c48a0b4844c8f9edce29c3d4",
+          "duration_sec": 6.03,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "hil_cs_040",
+          "annotation_sha256": "c4dba628c092bc2e3a40d0629e6caecaac294798ac7943aa7c339c4c695a4aac",
+          "audio_sha256": "32b371c90a5e87a727a8a0a11796faf4defedc7a32524fa656d083db8a7a3123",
+          "duration_sec": 4.98,
+          "domain": "oral_tradition",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        }
+      ]
+    },
+    "scripted_native_spk2": {
+      "role": "development",
+      "speaker": "spk02",
+      "annotations": "data/extensions/scripted_native_spk2/annotations",
+      "audio": "data/extensions/scripted_native_spk2/audio",
+      "predictions": "data/extensions/scripted_native_spk2/predictions",
+      "status": "frozen",
+      "n_clips": 40,
+      "total_duration_sec": 206.7,
+      "by_domain": {
+        "market": 5,
+        "transport": 5,
+        "school_work": 5,
+        "family": 5,
+        "health": 5,
+        "culture": 5,
+        "everyday": 5,
+        "oral_tradition": 5
+      },
+      "by_switch_type": {
+        "HIL+EN": 15,
+        "HIL+TL": 8,
+        "HIL+TL+EN": 7,
+        "HIL": 10
+      },
+      "clips": [
+        {
+          "clip_id": "spk2_001",
+          "annotation_sha256": "89abae023409a86ce32ca99c2a1285be9eaebe5cb7c6fcff7f1e940dd4cfcfe3",
+          "audio_sha256": "5551291601fd7d638f95bc83edeecc8fb2ab1ecc3980325a7a05c78ea546e027",
+          "duration_sec": 4.33,
+          "domain": "market",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_002",
+          "annotation_sha256": "4ddf9103a491cbd500c26fbd53b28a3d812ef2b9c5fb647a988b047b9ab3a53f",
+          "audio_sha256": "a8c5eed3c91385c603a961b7c4236c77fb9aea3b1722892c3f8ae63f7a7664a7",
+          "duration_sec": 3.63,
+          "domain": "market",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_003",
+          "annotation_sha256": "d0b06357c7776e40f285117a874828df64936809f20f827c0f5680e7a74ba81b",
+          "audio_sha256": "7d92a1d9e2843833a4e45dd6f910a8ab795582eedeffdb6781fdc859b41051e1",
+          "duration_sec": 5.979,
+          "domain": "market",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_004",
+          "annotation_sha256": "1ecd25859a26147c89c3a63c6abaa75162ee8b9ce74487ebf34c9823fb0e0d58",
+          "audio_sha256": "837ad10f7ff34e9668d4512f99be2bc34e2b4573d9eed8aec39df9c1634dc48e",
+          "duration_sec": 6.021,
+          "domain": "market",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_005",
+          "annotation_sha256": "e8878a91f21272f15d45278accc17864b877806c1da98063afa0af204e4b05fe",
+          "audio_sha256": "d85e8ad5d4fce5df9629f6a03b03bf8d52c132a97a7096d154a7fb9ac415cada",
+          "duration_sec": 3.13,
+          "domain": "market",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_006",
+          "annotation_sha256": "9c43fca45656734d44de6a8a9e123badf638a665b0451bf31df28eb09d3d8609",
+          "audio_sha256": "b9e60ef17a0c6429513c1495689ad6802e62286579bdb8055fa059d2eee97123",
+          "duration_sec": 3.84,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_007",
+          "annotation_sha256": "e8f56b0b5fd41496844720b70182e8e1e29605265eccdb8ec4c51108c0eb7594",
+          "audio_sha256": "3228a54c66987c00e6c9cd9a7bc903033c40f7d21f5c5111ee70275bdb8925e4",
+          "duration_sec": 3.71,
+          "domain": "transport",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_008",
+          "annotation_sha256": "ee26d20a12a390b69a99c3bdec82472f82d3690d56f25bcc0caeaf4b856a7732",
+          "audio_sha256": "e1faf4959f466ceecd53f2bb45d27c00c111bd14450ae06f9eee0b6422032200",
+          "duration_sec": 7.89,
+          "domain": "transport",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_009",
+          "annotation_sha256": "736802c593a8dd99219405c045855a7dcadf23eb972a49db4c427ecd184573e8",
+          "audio_sha256": "2a44e0f2d1c8790fced626757cabc02772281c7aaa9a016f9eec422e7fec39b7",
+          "duration_sec": 4.93,
+          "domain": "transport",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_010",
+          "annotation_sha256": "5e2df15319ecf52f261b92168f52ffd013bad1c4c751c527da50487973fb4686",
+          "audio_sha256": "5367769f38376022166c1e27f7059e46ae89e583b66e84ae8f7d8e22a98f154a",
+          "duration_sec": 2.67,
+          "domain": "transport",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_011",
+          "annotation_sha256": "937ef64411dadb9f4d655135c6405b28ebc8fa320ff49ff6da663a0e89355033",
+          "audio_sha256": "08f1a63b86285aebb347f4de3e3ccc8b6ec12c8512048e31e555748f9f06384d",
+          "duration_sec": 5.07,
+          "domain": "school_work",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_012",
+          "annotation_sha256": "2b2ac84e0272952aae409b951b6e062b1dc031e16eef079f6eaf84ff21c3a83c",
+          "audio_sha256": "7f655b35e9b279f35310154ff2b2e13af1594d9ffd638f3fe0a9144cc1adb70c",
+          "duration_sec": 5.76,
+          "domain": "school_work",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_013",
+          "annotation_sha256": "65c19b69d7fb44b9154a15248d6f0fa3faa034c1277bd60c6de57dd8f6c5d78c",
+          "audio_sha256": "2db499cafff39a991d1bfc8f9b7cd997bf7e7fa188a4f2fb9d03eff3fb64a2fb",
+          "duration_sec": 5.52,
+          "domain": "school_work",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_014",
+          "annotation_sha256": "dddfefd794e4e05d9583c13d15511d9d92020f792155b9f40a4c5a9fb45978dd",
+          "audio_sha256": "5eaa487e9af209248a2bc68a3b513965032ce36b3b9b8780218a92eec90b3f78",
+          "duration_sec": 5.43,
+          "domain": "school_work",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_015",
+          "annotation_sha256": "64abb4e4e41ed9f6d1bea40f8162740b6b7dff1dcfd5587d6f16fb401a875799",
+          "audio_sha256": "8c7b5776b1a385b724922875f0dc2f26c4da9a716bb2db812bffffde04ed28dd",
+          "duration_sec": 4.83,
+          "domain": "school_work",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_016",
+          "annotation_sha256": "40365ea93a29405ea2c3a5397b423da18331e80a9c91857bd399e62df0af306b",
+          "audio_sha256": "9bbce83032c1da747bc48d0428d2c086a9bf2feb27e9e744922b7040f58eb99c",
+          "duration_sec": 4.29,
+          "domain": "family",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_017",
+          "annotation_sha256": "df3bf6584d2037710035a0b956908b841c77c7dd7a75fe24e2f218f432552646",
+          "audio_sha256": "2c5f4994f1de1e6304bde23a0622dbbaa54507b034feda3f86c818c495bd2644",
+          "duration_sec": 4.65,
+          "domain": "family",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_018",
+          "annotation_sha256": "040f175dcbe75d85ce2fd1a4bd98eda581e8da0f712a3edc532c3a2fa54c8931",
+          "audio_sha256": "edf68335ce2e9f57f88a5c4f731d9e8c156d24693c5e4d806e25d3973d896c3c",
+          "duration_sec": 5.88,
+          "domain": "family",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_019",
+          "annotation_sha256": "fc0ec008d9aa4ebffcfaed2e2d0167e16b0f5ca4bc6326cc6b253ab760ba7cb3",
+          "audio_sha256": "efc156d9c0c9d0b6e662095bf0f7767fb765c3b9e0d587002a167465074e3d82",
+          "duration_sec": 5.28,
+          "domain": "family",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_020",
+          "annotation_sha256": "97a9bad411fcd3ad6f2f99244a8e7eb5d18160f175ff9593636a5e7b3414c694",
+          "audio_sha256": "3a88f534c64c288b4f04c72b0a6a2504d56d0a68dd39b625ffd5d5b1948b009f",
+          "duration_sec": 5.971,
+          "domain": "family",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_021",
+          "annotation_sha256": "b1f2a323294d562441943214b51033f5cb37767ee7b9c11864116b9cfa64a600",
+          "audio_sha256": "1f2fa642e839a61143026884a381a9724da4df9bf7942a7ce0aeaf884fff068e",
+          "duration_sec": 5.52,
+          "domain": "health",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_022",
+          "annotation_sha256": "027a588b1c567ef706c499f1b4d5bc9067720251defeb0886307b44d13f90d32",
+          "audio_sha256": "fd1e52a0fd9981c809569786204314cdad5ac2e1e33f4045a7e588b2caeb5906",
+          "duration_sec": 5.25,
+          "domain": "health",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_023",
+          "annotation_sha256": "81d8d6489f32649e42aa2933568e58036bdeff7af04b301c4ab7af3206d55453",
+          "audio_sha256": "8bded0bb3c7cef7e07bcc4cfa352e81ca136fe4abb3f3614e030cb454f6d048d",
+          "duration_sec": 6.3,
+          "domain": "health",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_024",
+          "annotation_sha256": "f94187d274a8161cec9abfccaa73dd030bf073d502b133126334cc664ac9bfcb",
+          "audio_sha256": "7c39cfafcc46c8b07cf5f3596cdfb64759714eaedce2f83b70b1543595f898ff",
+          "duration_sec": 5.16,
+          "domain": "health",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_025",
+          "annotation_sha256": "e52f8acecc3af3d7c8bf5cb550bd419d11fd07cb7261debe2c833f09819a5c4b",
+          "audio_sha256": "685703a4660ad80877a9f4fc19dde7387c1d04dbfcee22eefd073e23b3e46eb8",
+          "duration_sec": 5.13,
+          "domain": "health",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_026",
+          "annotation_sha256": "1b00ea8af1f021513ae9e4f123ee7ad5966c00df282ff402a2bae4a49eccd64f",
+          "audio_sha256": "ec408fae9c505468d5403c3cc0769368a9a3bae9a1b71ceecc3363cdd5895259",
+          "duration_sec": 4.15,
+          "domain": "culture",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_027",
+          "annotation_sha256": "1f1e5eec1d817629b59c2053faff25bd165712b15c8d8e613475987d31917975",
+          "audio_sha256": "acba6d47a0b885a847361b5ba70afadc256fad773d67c0e49ea98f8fb801da77",
+          "duration_sec": 4.31,
+          "domain": "culture",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_028",
+          "annotation_sha256": "e66957e204b2d7ed0711d68d23021e1d61f3771977c88e8a3ebd859ecffe5471",
+          "audio_sha256": "f2505481dbf06b0606e726d386ff407a0ad04da1b3281515c9bd06e16525b184",
+          "duration_sec": 8.49,
+          "domain": "culture",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_029",
+          "annotation_sha256": "4c79ed38a230e09f56f6202044ea3a3dd57d21436ea2883d51a06f8a84e4e629",
+          "audio_sha256": "90aaf9f44c44006828f02a1317b32602535ff37574256b2b27dddbe520470284",
+          "duration_sec": 6.19,
+          "domain": "culture",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_030",
+          "annotation_sha256": "65ae0ca231dd86c1620a912c7fd168cd9b7aae8288f7d7447fdf41a0dcd4473f",
+          "audio_sha256": "ecb1522ff229a342eb9abf4e5cc169023af301b90fbee05c5e8cf89110035d7d",
+          "duration_sec": 2.33,
+          "domain": "culture",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_031",
+          "annotation_sha256": "7a58881ddd24731be764a65252706b12cb22ef00b3079fa2c43b47997843171c",
+          "audio_sha256": "38cf1ac1ea68ed835eb28ddf37bfcb0034bc4d9fe1ef716f70cb3e119fa62b65",
+          "duration_sec": 3.87,
+          "domain": "everyday",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_032",
+          "annotation_sha256": "2de500340ff1e20032c76ba9eded63bdca4da73644d4696a83958d3074a976c0",
+          "audio_sha256": "47ed832420685d045bdb7ea44040c363bbbeaab3feb1dd222a47a4c9cf36d2ea",
+          "duration_sec": 4.95,
+          "domain": "everyday",
+          "switch_type": "HIL+TL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_033",
+          "annotation_sha256": "9c5e31a3a81028db01b21977304b6c74b0bfad5a3c0f332dd1b6c7dc7a17141a",
+          "audio_sha256": "52e5daa8aa8a8d4b69a816d02a0fd555510d2a998ca68a2394170868a0f2144b",
+          "duration_sec": 5.67,
+          "domain": "everyday",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_034",
+          "annotation_sha256": "c62fa150506f5eb882dd95e1647577a752fb24c883aac958eb6166d056513465",
+          "audio_sha256": "2ad4c85e6977213c3ba72787235baf224f02d2b889873950f73b55de3e7cb57f",
+          "duration_sec": 5.37,
+          "domain": "everyday",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_035",
+          "annotation_sha256": "b2f406a9380efc814cfac3b9c41a2a574118e852709e6eace8d71761cd084b92",
+          "audio_sha256": "8976485449917ec99a9afd6240b15f66b3e060be25139737f9996893a3703902",
+          "duration_sec": 5.25,
+          "domain": "everyday",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_036",
+          "annotation_sha256": "72cef2b9a8e3262c140e7badecb00c48a5528434426e7f6eda64f612faf32590",
+          "audio_sha256": "096275f0f5a06edb3d373ee5c006bc56b54197c15cdda97e07884f18e5248acb",
+          "duration_sec": 5.52,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_037",
+          "annotation_sha256": "bb9f1eeb1fd49a027badd3c283d7ae379e6419e7faed148cda39811de128758f",
+          "audio_sha256": "0b4db7690939d270cba13aca154467a81aa9c1fea9e6c0f91429d53217e08503",
+          "duration_sec": 6.21,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_038",
+          "annotation_sha256": "0d98857018fa16e2b13fdaebb70f461ef0d323031fcde12876df09c11c948425",
+          "audio_sha256": "68e8947d76f8dc45b60f4ca6a4c51ce8bad61cde0df0f9034c30429e7fba6cd3",
+          "duration_sec": 5.85,
+          "domain": "oral_tradition",
+          "switch_type": "HIL+EN",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_039",
+          "annotation_sha256": "2a5495b1c4b93084ad33ada9af589b2a228928b198126b143f019bccd0719859",
+          "audio_sha256": "488841cc0e8c89649853f707896256767486bfae02fe172f1e7d42e027b4e906",
+          "duration_sec": 6.27,
+          "domain": "oral_tradition",
+          "switch_type": "HIL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        },
+        {
+          "clip_id": "spk2_040",
+          "annotation_sha256": "2c9c45d30107eb8fe2d7aed9c7b6721be1bf015d8999e6ec34f6a9a43b2d8967",
+          "audio_sha256": "448bcd1e62d77ff61eaaac149452881e840571cd64f3570d88108336a64eb4ec",
+          "duration_sec": 6.09,
+          "domain": "oral_tradition",
+          "switch_type": "HIL+TL",
+          "gold_status": "native_gold",
+          "has_prediction": true
+        }
+      ]
+    },
+    "non_native_eval": {
+      "role": "robustness",
+      "speaker": "mixed",
+      "annotations": "data/extensions/non_native_eval/annotations",
+      "audio": "data/extensions/non_native_eval/audio",
+      "predictions": "data/extensions/non_native_eval/predictions",
+      "status": "pending",
+      "n_clips": 0,
+      "total_duration_sec": 0.0,
+      "by_domain": {},
+      "by_switch_type": {},
+      "clips": []
+    }
+  }
+}
