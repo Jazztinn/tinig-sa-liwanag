@@ -13,16 +13,13 @@ unchanged; merge into the headline only after a multi-speaker decision.
   reviewer must confirm wording and tag tokens before scoring.
 - Clip IDs `spk2_001..040` map 1:1 to Script 3 lines 1–40.
 
-## Clips needing a manual cut
+## Cut quality
 
-Clap loudness was inconsistent in three category files, so the detector merged
-two adjacent lines and emitted a short junk tail. Re-cut these by hand:
+All **40** clips are `clip_quality: ok`.
 
-| Domain | Clips | Issue |
-|--------|-------|-------|
-| market | `spk2_002` (11.5s), `spk2_005` (0.6s) | lines 2–3 merged; line 5 lost |
-| transport | `spk2_006` (10.3s), `spk2_010` (0.5s) | lines 6–7 merged; line 10 lost |
-| culture | `spk2_027` (11.3s), `spk2_028` (1.3s) | lines 27–28 merged; tail junk |
-
-Flagged in each annotation as `clip_quality: needs_manual_cut`. The other 34
-clips are `clip_quality: ok`.
+Clap loudness was inconsistent in market/transport/culture, so amplitude
+clap-splitting first merged lines and left junk tails. Those files were re-cut
+with Whisper word-timestamp alignment to the known script lines, which recovered
+clean boundaries for all but market lines 3–4 (Whisper mistranscribed line 4, so
+its words bucketed into line 3). The speaker re-recorded lines 3 and 4 as
+standalone clips, which replaced `spk2_003` / `spk2_004`.
