@@ -21,10 +21,10 @@ Use these everywhere; never invent or copy stale variants:
 
 | Metric | Value |
 |--------|-------|
-| Overall WER | 59.5% |
-| Monolingual (Hiligaynon) WER | 66.3% |
+| Overall WER | 57.4% |
+| Monolingual (Hiligaynon) WER | 65.9% |
 | Switch-region WER | 35.8% |
-| Switch penalty | −30.6% |
+| Switch penalty | −30.1% |
 | `hil↔en` | 40.0% |
 | `hil↔tl` | 24.4% |
 | `tl↔en` | 6.2% |
@@ -48,7 +48,7 @@ A second comparison baseline (`whisper-small-auto`) lives in
   is the optional translation extension. Build data: `public/benchmark.json`.
 - `notebooks/sugidanon_colab.ipynb` — one-click judge-facing reproduction.
 - `BENCHMARK.md` — benchmark card: protocol, frozen split, cohorts, reproducibility.
-- `data/benchmark/MANIFEST.json` — frozen, content-addressed benchmark version (v1.0.0).
+- `data/benchmark/MANIFEST.json` — frozen, content-addressed benchmark version (v1.0.1).
 - `docs/` — `evaluation_report.md`, `source_ledger.md`, `improvement_plan.md`.
 - `SCHEMA.md` — annotation + subset schema.
 

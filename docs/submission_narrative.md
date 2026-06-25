@@ -42,10 +42,10 @@ on monolingual Hiligaynon words:
 
 | Region | WER |
 |--------|-----|
-| Overall | 59.5% |
-| Monolingual Hiligaynon | 66.3% |
+| Overall | 57.4% |
+| Monolingual Hiligaynon | 65.9% |
 | Switch-region | 35.8% |
-| Switch penalty | -30.6% |
+| Switch penalty | -30.1% |
 
 The negative switch penalty is the point: the model is not mainly breaking on
 borrowed English or Tagalog words. It is breaking on the Hiligaynon matrix

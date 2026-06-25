@@ -51,10 +51,10 @@ Whisper small (`--language tl`) over the 40 clips:
 
 | Metric | WER | 95% CI |
 |--------|-----|--------|
-| Overall | 59.5% | [50.7%, 68.7%] |
-| Monolingual (Hiligaynon) | 66.3% | [59.2%, 72.8%] |
+| Overall | 57.4% | [49.3%, 65.8%] |
+| Monolingual (Hiligaynon) | 65.9% | [58.6%, 72.3%] |
 | Switch-region | 35.8% | [26.1%, 46.4%] |
-| **Switch penalty** | **−30.6%** | switch − mono |
+| **Switch penalty** | **−30.1%** | switch − mono |
 
 (Brackets = 95% clip-level bootstrap CIs from `score.py --ci`. Switch and
 monolingual intervals do not overlap, so the negative penalty is statistically
@@ -67,7 +67,7 @@ Hiligaynon — precisely what this dataset exists to expose.
 
 ## What's inside
 
-40 code-switch utterances (~3.1 min) recorded by **Aziel Faith Agustin**, a Hiligaynon
+40 code-switch utterances (~3.0 min) recorded by **Aziel Faith Agustin**, a Hiligaynon
 (Ilonggo) speaker who also reviewed the sentences, across
 **8 everyday domains** (market, transport, school/work, family, health, culture,
 everyday, oral tradition / heritage) and **4 switch types** (`HIL`, `HIL+EN`,
@@ -186,7 +186,7 @@ The scorer reports:
 - 95% clip-level bootstrap confidence intervals (`--ci`)
 
 The benchmark is frozen and content-addressed (`data/benchmark/MANIFEST.json`,
-v1.0.0). Reproduce exactly or fail loudly:
+v1.0.1). Reproduce exactly or fail loudly:
 
 ```bash
 python3 scripts/freeze_benchmark.py --verify
@@ -284,10 +284,10 @@ Whisper small (`--language tl`) over the 40 clips:
 
 | Metric | WER |
 |--------|-----|
-| Overall | 59.5% |
-| Monolingual (Hiligaynon) | 66.3% |
+| Overall | 57.4% |
+| Monolingual (Hiligaynon) | 65.9% |
 | Switch-region | 35.8% |
-| Switch penalty | −30.6% |
+| Switch penalty | −30.1% |
 
 The negative penalty is the finding: an off-the-shelf Tagalog model handles the
 borrowed English/Tagalog switch words but fails on the Hiligaynon matrix. See

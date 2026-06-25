@@ -2,7 +2,7 @@
 
 ## Code-switch ASR benchmark (speech MVP)
 
-The speech deliverable: **40 native-recorded code-switch clips** (3.1 min total),
+The speech deliverable: **40 native-recorded code-switch clips** (3.0 min total),
 one Hiligaynon speaker, 8 domains (market, transport, school/work, family,
 health, culture, everyday, oral tradition), 4 switch types (`HIL`=11, `HIL+EN`=17,
 `HIL+TL`=7, `HIL+TL+EN`=5). Reference text and per-word language tags were
@@ -12,10 +12,10 @@ reviewed by a Hiligaynon speaker.
 
 | Metric | WER |
 |--------|-----|
-| Overall | 59.5% |
-| Monolingual (pure Hiligaynon) | 66.3% |
+| Overall | 57.4% |
+| Monolingual (pure Hiligaynon) | 65.9% |
 | Switch-region (next to a language switch) | 35.8% |
-| **Switch penalty** (switch − mono) | **−30.6%** |
+| **Switch penalty** (switch − mono) | **−30.1%** |
 
 Switch-region WER by language pair: `hil↔en` 40.0%, `hil↔tl` 24.4%, `tl↔en` 6.2%.
 
@@ -37,12 +37,12 @@ it has no scored audio yet and is excluded from all WER tables.
 
 | Dataset | Clips | Overall | Switch-region | Monolingual | Switch penalty |
 |---------|------:|--------:|--------------:|------------:|---------------:|
-| headline `spk01` | 40 | 59.5% | 35.8% | 66.3% | -30.6% |
+| headline `spk01` | 40 | 57.4% | 35.8% | 65.9% | -30.1% |
 | extension `spk02` | 40 | 34.4% | 28.6% | 38.8% | -10.2% |
-| combined diagnostic | 80 | 47.2% | 32.0% | 53.6% | -21.6% |
+| combined diagnostic | 80 | 46.1% | 32.0% | 53.4% | -21.4% |
 
-Combined token-language WER: Hiligaynon 49.6%, Tagalog 27.3%, English 30.6%.
-Combined domain WER ranges from 38.0% (`everyday`) to 55.8% (`health`).
+Combined token-language WER: Hiligaynon 49.4%, Tagalog 27.3%, English 30.6%.
+Combined domain WER ranges from 33.7% (`school_work`) to 55.8% (`health`).
 Pure Hiligaynon (`HIL`) remains the hardest switch type at 63.3% combined WER.
 
 ### Interpretation — the negative penalty is the finding

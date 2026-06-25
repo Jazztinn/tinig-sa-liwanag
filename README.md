@@ -550,7 +550,7 @@ The ASR evaluator reports:
 - 95% clip-level bootstrap confidence intervals (`score.py --ci`)
 
 The benchmark is **frozen and content-addressed**: `data/benchmark/MANIFEST.json`
-(version 1.0.0) hashes every annotation and audio file and pins the scorer, so
+(version 1.0.1) hashes every annotation and audio file and pins the scorer, so
 results reproduce exactly or fail loudly:
 
 ```bash
