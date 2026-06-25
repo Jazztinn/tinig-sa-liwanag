@@ -78,6 +78,9 @@ No installs are required for the core benchmark tooling.
 # validate the translation benchmark
 python3 scripts/validate.py --kind translation --dir data/benchmark
 
+# regenerate the dictionary baseline predictions
+python3 scripts/generate_baseline_predictions.py
+
 # evaluate the included dictionary baseline
 python3 scripts/evaluate_translation.py \
   --refs data/benchmark/hil_translation_v1.jsonl \
@@ -89,7 +92,62 @@ python3 app/server.py
 
 Then open `http://localhost:8000`.
 
+## Next.js / Vercel app
+
+The hosted demo is a Next.js app with a serverless dictionary-baseline API route.
+
+```bash
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000`.
+
+Production build:
+
+```bash
+npm run build
+```
+
+Deploy on Vercel:
+
+1. Import this GitHub repository in Vercel.
+2. Keep the framework preset as `Next.js`.
+3. Use the default commands from `vercel.json`.
+4. Deploy.
+
+The Python app in `app/` remains as a local legacy demo; Vercel serves the
+Next.js app from `pages/`.
+
+### Tagalog coverage
+
+The hosted demo uses three layers:
+
+1. exact seed benchmark prompt matches
+2. curated Tagalog phrase matches for common hackathon demo cases
+3. expanded Tagalog/Hiligaynon dictionary fallback
+
+For future larger coverage, use:
+
+```bash
+python3 scripts/build_tl_hil_lexicon.py
+```
+
+That script builds a noisy Tagalog -> Hiligaynon bridge lexicon from
+Kaikki/Wiktionary machine-readable dictionaries by matching shared English
+glosses. Glosbe is documented in `RESOURCES.md` as a direct Tagalog-Hiligaynon
+manual reference source.
+
 ## Benchmark format
+
+The current hackathon scaffold contains 30 seed examples in:
+
+```text
+data/benchmark/hil_translation_v1.jsonl
+```
+
+All current examples are `seed_unverified` until a Hiligaynon speaker reviews
+the reference translations.
 
 Each row in `data/benchmark/hil_translation_v1.jsonl` is one translation case:
 
@@ -120,6 +178,8 @@ The v1 evaluator reports:
 - token F1
 - chrF-style character n-gram F-score
 - per-domain metric averages
+
+See `docs/evaluation_report.md` for the current hackathon evaluation notes.
 
 Automatic metrics are only a first pass. The final benchmark should include
 human ratings for:
@@ -194,6 +254,10 @@ This repository still contains earlier speech-oriented utilities:
 
 These are not the v1 focus anymore. They remain useful for the later STT/TTS
 phase after the translation benchmark is credible.
+
+## Hackathon pitch
+
+See `docs/submission_narrative.md` for a concise project narrative.
 
 ## License
 

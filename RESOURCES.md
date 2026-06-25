@@ -14,6 +14,8 @@ Check each resource's license before redistributing derived data.
 | Motus Hiligaynon Dictionary | Lexicon and usage checks | Internet Archive / UH ScholarSpace | Useful for reviewer reference. |
 | pinoydictionary Hiligaynon | Queryable Hiligaynon dictionary | https://hiligaynon.pinoydictionary.com | Manual lookup only unless terms allow more. |
 | kaikki.org Hiligaynon | Machine-readable Wiktionary-derived entries | https://kaikki.org/dictionary/Hiligaynon/ | Can seed `data/lexicon_hil_auto.tsv`; check CC BY-SA obligations. |
+| kaikki.org Tagalog | Machine-readable Wiktionary-derived Tagalog entries | https://kaikki.org/dictionary/Tagalog/ | Can be bridged through English glosses to Hiligaynon entries. |
+| Glosbe Tagalog-Hiligaynon | Direct online Tagalog-Hiligaynon dictionary and examples | https://glosbe.com/tl/hil | Use as reference/manual lookup; do not bulk scrape without checking terms. |
 | ASJP Hiligaynon wordlist | Small machine-readable wordlist | https://asjp.clld.org | Useful for starter lexical coverage. |
 | hilisenti-v1 | Hiligaynon text examples | https://huggingface.co/datasets/jjjardev/hilisenti-v1 | Check license before reuse. |
 
@@ -42,6 +44,16 @@ python3 scripts/translate_hil.py "Good morning, I went to the market yesterday"
 
 The dictionary baseline is intentionally limited. It helps show why contextual
 translation is needed.
+
+For a noisy Tagalog -> Hiligaynon bridge lexicon from Kaikki/Wiktionary:
+
+```bash
+python3 scripts/build_tl_hil_lexicon.py
+# writes data/lexicon_tl_hil_auto.tsv
+```
+
+This matches Tagalog and Hiligaynon words through shared English glosses. It is
+useful for demo coverage, but it is not validated translation data.
 
 ## Benchmark sources to create yourselves
 

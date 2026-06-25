@@ -19,6 +19,8 @@ data/predictions/translation_baseline_dict.jsonl
 ```bash
 python3 scripts/validate.py --kind translation --dir data/benchmark
 
+python3 scripts/generate_baseline_predictions.py
+
 python3 scripts/evaluate_translation.py \
   --refs data/benchmark/hil_translation_v1.jsonl \
   --preds data/predictions/translation_baseline_dict.jsonl
@@ -28,7 +30,7 @@ python3 scripts/evaluate_translation.py \
 
 | Model | Coverage | Exact match | Token F1 | chrF | Notes |
 |-------|----------|-------------|----------|------|-------|
-| dict-baseline | TBD | TBD | TBD | TBD | Offline word lookup; exposes why context-aware MT is needed |
+| dict-baseline | 100.0% | 0.0% | 30.9% | 34.7% | Offline word lookup; exposes why context-aware MT is needed |
 | neural-baseline | TBD | TBD | TBD | TBD | Optional HF model backend |
 | fine-tuned-v1 | TBD | TBD | TBD | TBD | Future reviewed-data model |
 
@@ -56,6 +58,8 @@ Known likely failures:
 - no paragraph-level context
 - no pronoun or tense/aspect resolution
 - weak handling of domain terminology
+
+See `docs/evaluation_report.md` for the latest generated numbers.
 
 ## Future speech results
 

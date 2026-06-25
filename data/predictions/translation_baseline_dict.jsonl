@@ -1,5 +1,30 @@
-{"id":"hil-tr-v1-001","model":"dict-baseline","prediction":"Maayo aga, Ako *will* kadto sa merkado *because* kami *need* pagkaon."}
-{"id":"hil-tr-v1-002","model":"dict-baseline","prediction":"Palihog *call* *doctor* *if* bata *has* *fever* gab-i."}
-{"id":"hil-tr-v1-003","model":"dict-baseline","prediction":"*Class* *cancelled* *because* *rain* *strong* *but* *students* *should* *read* *module* sa balay."}
-{"id":"hil-tr-v1-004","model":"dict-baseline","prediction":"Ako *left* *key* sa *table* indi *inside* *bag*."}
-{"id":"hil-tr-v1-005","model":"dict-baseline","prediction":"*Can* ikaw *explain* *this* sa Hiligaynon *so* *elders* *can* *understand*?"}
+{"id": "hil-tr-v1-001", "model": "dict-baseline", "prediction": "Maayo aga, Ako *will* kadto sa merkado kay kami *need* pagkaon."}
+{"id": "hil-tr-v1-002", "model": "dict-baseline", "prediction": "Palihog *call* *doctor* *if* bata *has* *fever* *tonight*."}
+{"id": "hil-tr-v1-003", "model": "dict-baseline", "prediction": "*class* *cancelled* kay *rain* *strong*, pero *students* *should* basa *module* sa balay."}
+{"id": "hil-tr-v1-004", "model": "dict-baseline", "prediction": "Ako *left* *key* *on* *table*, *not* *inside* *bag*."}
+{"id": "hil-tr-v1-005", "model": "dict-baseline", "prediction": "*Can* ikaw *explain* ini sa *Hiligaynon* *so* *elders* *can* *understand*?"}
+{"id": "hil-tr-v1-006", "model": "dict-baseline", "prediction": "*not* *cross* *bridge* kay tubig *rising* *quickly*."}
+{"id": "hil-tr-v1-007", "model": "dict-baseline", "prediction": "Kuha ini *medicine* *after* *eating*, *not* *before* *breakfast*."}
+{"id": "hil-tr-v1-008", "model": "dict-baseline", "prediction": "*Pakisabi* *sa* *guro* *na* *mahuhuli* ako *dahil* *walang* *masasakyan*."}
+{"id": "hil-tr-v1-009", "model": "dict-baseline", "prediction": "*Nag-online* *class* ako subong *pero* *weak* *ang* *internet* *sa* *balay*."}
+{"id": "hil-tr-v1-010", "model": "dict-baseline", "prediction": "*Bring* isa *valid* *ID* kag sulat imo *full* *name* *on* *form*."}
+{"id": "hil-tr-v1-011", "model": "dict-baseline", "prediction": "Siya *said* siya *would* hulat diri, pero siya nagkadto balay *early*."}
+{"id": "hil-tr-v1-012", "model": "dict-baseline", "prediction": "kan-on *field* *needs* tubig, pero *not* abri *gate* *yet*."}
+{"id": "hil-tr-v1-013", "model": "dict-baseline", "prediction": "*If* *pain* *gets* *worse*, kadto sa hospital *immediately*."}
+{"id": "hil-tr-v1-014", "model": "dict-baseline", "prediction": "*Huwag* *mong* *kalimutang* *isara* *ang* *pinto* *bago* *ka* *umalis*."}
+{"id": "hil-tr-v1-015", "model": "dict-baseline", "prediction": "Palihog *send* *report* *before* *lunch* *para* *ma-review* *ko*."}
+{"id": "hil-tr-v1-016", "model": "dict-baseline", "prediction": "*Stay* *outside* *until* *building* *checked* *by* *rescue* *team*."}
+{"id": "hil-tr-v1-017", "model": "dict-baseline", "prediction": "*office* abri *from* walo sa aga *until* lima sa hapon."}
+{"id": "hil-tr-v1-018", "model": "dict-baseline", "prediction": "Basa *story* *first*, *then* *answer* *questions* sa *end*."}
+{"id": "hil-tr-v1-019", "model": "dict-baseline", "prediction": "pagkaon *for* *visitors*, *so* palihog *not* kaon *it* *yet*."}
+{"id": "hil-tr-v1-020", "model": "dict-baseline", "prediction": "*I-check* *mo* *ang* *schedule* *kay* *may* *meeting* *kita* karon."}
+{"id": "hil-tr-v1-021", "model": "dict-baseline", "prediction": "Hugas imo *hands* *before* *touching* *wound*."}
+{"id": "hil-tr-v1-022", "model": "dict-baseline", "prediction": "*Call* imo *family* kag *tell* *them* ikaw *safe*."}
+{"id": "hil-tr-v1-023", "model": "dict-baseline", "prediction": "*Libre* *ang* *serbisyong* *ito* *para* *sa* *mga* *senior* *citizen*."}
+{"id": "hil-tr-v1-024", "model": "dict-baseline", "prediction": "dalan malapit simbahan, *not* malapit eskwelahan."}
+{"id": "hil-tr-v1-025", "model": "dict-baseline", "prediction": "Kay libro tigulang, *handle* *it* *carefully* san-o ikaw basa *it*."}
+{"id": "hil-tr-v1-026", "model": "dict-baseline", "prediction": "*Kung* *nahihilo* *ka*, *sit* *down* *anay* kag inom tubig."}
+{"id": "hil-tr-v1-027", "model": "dict-baseline", "prediction": "*manager* *approved* *request*, pero *payment* *not* *ready* *yet*."}
+{"id": "hil-tr-v1-028", "model": "dict-baseline", "prediction": "*not* *harvest* prutas subong kay *it* *still* *not* *ripe*."}
+{"id": "hil-tr-v1-029", "model": "dict-baseline", "prediction": "*Lumipat* *kayo* *sa* *mas* *mataas* *na* *lugar* *kung* *patuloy* *ang* *baha*."}
+{"id": "hil-tr-v1-030", "model": "dict-baseline", "prediction": "*If* ikaw *cannot* basa *form*, *ask* *staff* *for* bulig."}
