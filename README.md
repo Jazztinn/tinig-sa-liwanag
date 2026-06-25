@@ -76,6 +76,9 @@ https://tinig-sa-liwanag.vercel.app
   summaries.
 - **Two demo apps** — a stdlib local Python app (`app/`) and a Next.js/Vercel app
   (`pages/`), both with layered phrase + dictionary fallback.
+- **Tinig — AI assistant demo** — a multilingual (Hiligaynon / Tagalog / English)
+  assistant built on the translation layer, with an on-page context section to
+  ground the conversation.
 - **Lexicon tooling** — curated `data/lexicon_hil.tsv`, plus builders that mine
   Kaikki/Wiktionary for en→hil and Tagalog→Hiligaynon bridge entries.
 - **Sample prompts** across health, education, emergency, public service, daily
@@ -171,6 +174,27 @@ For demo quality, the deployed app uses three layers:
 
 The phrase and dictionary layers improve presentation, but the research artifact
 remains the benchmark/evaluation pipeline.
+
+### Tinig — the AI assistant demo
+
+The MVP also includes a working demo app named **Tinig**: an AI assistant built
+on top of Tinig sa Liwanag that can converse in **Hiligaynon, Tagalog, and
+English** (including code-switched input).
+
+How it works:
+
+- The user opens Tinig and is shown a **context section** — plain-language
+  background the user can understand — so the conversation has grounding instead
+  of starting cold.
+- The user types or speaks in any mix of Hiligaynon, Tagalog, and English.
+- Tinig replies using the translation layer, so responses come back in
+  Hiligaynon (or the user's chosen language), demonstrating the project's core
+  capability in a real assistant flow.
+
+Tinig is the user-facing proof that the benchmark and translation pipeline are
+useful in practice: the same Hiligaynon language layer that the benchmark
+measures is what powers the assistant's understanding and replies. The benchmark
+remains the research artifact; Tinig shows what it enables.
 
 ## Technologies Used
 
