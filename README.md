@@ -13,7 +13,7 @@
 https://tinig-sa-liwanag.vercel.app
 ```
 
-**Open dataset (Hugging Face):**
+**Open dataset — built by Team Hague (Hugging Face):**
 
 [![Dataset on HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch)
 
@@ -21,7 +21,7 @@ https://tinig-sa-liwanag.vercel.app
 https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch
 ```
 
-40 native-recorded code-switch Hiligaynon/Tagalog/English clips with per-word language tags and switch-region WER scoring. CC BY 4.0.
+A dataset we built from scratch — 40 native-recorded code-switch Hiligaynon/Tagalog/English clips with per-word language tags, switch-region WER scoring, and a second 40-clip speaker extension. Recorded and reviewed by native Ilonggo speakers. CC BY 4.0.
 
 **Reproduce the benchmark (one-click Google Colab):**
 
