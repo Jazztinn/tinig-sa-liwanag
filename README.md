@@ -146,12 +146,10 @@ Measurement is the first act of inclusion:
 
 Sugidanon directly supports:
 
-| SDG | Alignment |
-|-----|-----------|
-| **SDG 4 — Quality Education** | Open, reproducible tools for studying and teaching Philippine language technology. |
-| **SDG 9 — Industry, Innovation & Infrastructure** | Novel benchmark infrastructure (switch-region WER) that advances the state of code-switch ASR research. |
-| **SDG 10 — Reduced Inequalities** | Quantifies the gap that leaves Hiligaynon speakers underserved by mainstream speech AI; makes the gap fundable and fixable. |
-| **SDG 17 — Partnerships for the Goals** | CC BY 4.0 open dataset and MIT-licensed tooling designed for reuse by researchers, developers, and future community contributors worldwide. |
+<a href="https://sdgs.un.org/goals/goal4"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" alt="SDG 4 — Quality Education" width="160"/></a>
+<a href="https://sdgs.un.org/goals/goal9"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg" alt="SDG 9 — Industry, Innovation & Infrastructure" width="160"/></a>
+<a href="https://sdgs.un.org/goals/goal10"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" alt="SDG 10 — Reduced Inequalities" width="160"/></a>
+<a href="https://sdgs.un.org/goals/goal17"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg" alt="SDG 17 — Partnerships for the Goals" width="160"/></a>
 
 ## Project case
 
