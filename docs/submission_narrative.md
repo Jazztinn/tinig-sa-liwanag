@@ -85,9 +85,11 @@ python3 scripts/package_dataset.py --output release --overwrite
 
 ## Honest limitations
 
-- The current corpus has one speaker and 40 clips.
-- Per-word language tags are seed-labeled and need another native-speaker
-  confirmation pass before being described as fully adjudicated gold labels.
+- The frozen headline corpus has one speaker and 40 clips; the second native
+  speaker is reported separately as an extension until a multi-speaker release
+  is frozen.
+- Per-word language tags are speaker-reviewed, but not yet independently
+  adjudicated by a second reviewer.
 - The baseline result is preliminary and should be compared with larger ASR
   models.
 - The deterministic split falls back to clip-level splitting until more
@@ -98,6 +100,7 @@ benchmark foundation, not a production speech product.
 
 ## Next step
 
-The highest-impact next step is to add more Hiligaynon speakers, confirm the
-token language tags, and freeze a larger test set for comparing Whisper,
-MMS-style models, and future Hiligaynon-tuned ASR systems.
+The highest-impact next step is to add more Hiligaynon speakers, adjudicate a
+subset of token language tags with a second reviewer, and freeze a larger test
+set for comparing Whisper, MMS-style models, and future Hiligaynon-tuned ASR
+systems.

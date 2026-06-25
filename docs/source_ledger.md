@@ -17,14 +17,20 @@ See `docs/licensing.md` for the repository license structure and
 
 | Source ID | Title | URL | Rights | Subset | Clips | Notes |
 |-----------|-------|-----|--------|--------|-------|-------|
-| `src_scripted_02` | Team Hague Script 3, speaker 2 | local (`data/extensions/scripted_native_spk2/`) | CC BY 4.0 (text); audio recorded by the speaker | `scripted_native` candidate | 40 | Native speaker, clean WAV shape, transcript and token language tags reviewed; not in headline WER yet because bundled ASR predictions are not generated |
+| `src_scripted_02` | Team Hague Script 3, speaker 2 | local (`data/extensions/scripted_native_spk2/`) | CC BY 4.0 (text); audio recorded by the speaker | `scripted_native` extension | 40 | Native speaker, clean WAV shape, transcript and token language tags reviewed; reported separately from headline WER |
+
+## Planned non-native extension
+
+| Source ID | Title | URL | Rights | Subset | Clips | Notes |
+|-----------|-------|-----|--------|--------|-------|-------|
+| `src_nonnative_local_01` | Team Hague non-native recording script | local (`data/extensions/non_native_eval/`) | Not recorded yet; requires speaker consent before audio is added | `non_native_eval` | 20 planned | Robustness-only scaffold. No audio enters public release until consent, transcript review, token-tag review, and redistribution terms are documented. |
 
 ## Candidate future sources
 
 External podcast or vlog audio is not part of the current public benchmark
-release. Candidate sources must stay out of `data/audio/` and out of headline
-WER until redistribution rights, speaker status, transcript quality, and subset
-labels are documented.
+release. Candidate sources must stay out of `data/audio/`, out of
+`data/extensions/non_native_eval/`, and out of headline WER until redistribution
+rights, speaker status, transcript quality, and subset labels are documented.
 
 ## Required record per external source
 

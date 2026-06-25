@@ -25,7 +25,8 @@ https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch
 ```
 
 40 native-recorded code-switch Hiligaynon/Tagalog/English clips with per-word
-language tags and switch-region WER scoring. CC BY 4.0.
+language tags and switch-region WER scoring. A second 40-clip native-speaker
+extension is included locally for robustness reporting. CC BY 4.0.
 
 **Reproduce the benchmark (one-click Google Colab):**
 
@@ -91,7 +92,11 @@ Languages** challenge by shipping a focused benchmark:
 
 - 40 native-recorded Hiligaynon/Tagalog/English code-switch clips with per-word
   language tags
+- a separate 40-clip second-speaker extension for robustness analysis
+- a 20-line non-native evaluation scaffold for future robustness testing
 - a switch-region WER scorer (overall WER, monolingual WER, switch penalty)
+- speaker, domain, switch-type, token-language, and language-pair ASR
+  breakdown reports
 - a reproducible Whisper baseline (one-click Colab)
 - an annotation schema for reviewed code-switch references
 - documentation, dataset card, and provenance records
@@ -107,10 +112,16 @@ Live demos are linked at the top of this README.
 
 ## Features
 
-- **Code-switch ASR benchmark** — 40 native clips with per-word language tags and
-  switch-region WER scoring (`score.py`).
+- **Code-switch ASR benchmark** — 40 frozen headline native clips with per-word
+  language tags and switch-region WER scoring (`score.py`).
 - **Switch-region WER scorer** — overall WER, monolingual Hiligaynon WER,
   switch-region WER, switch penalty, and per-language-pair breakdown.
+- **Robustness breakdowns** — `scripts/analyze_asr_breakdowns.py` reports ASR
+  performance by speaker, domain, switch type, token language, and switch pair,
+  including the second-speaker extension.
+- **Non-native evaluation scaffold** — `data/extensions/non_native_eval/` has a
+  20-line recording manifest plus readiness validator; no fake or unlicensed
+  audio is counted.
 - **Reproducible baseline** — Whisper runner + one-click Colab over the public
   Hugging Face dataset, zero local setup.
 - **Annotation schema** (`SCHEMA.md`) for reviewed code-switch references and
@@ -177,8 +188,9 @@ Our interpretation of the project case:
 - Start with Hiligaynon because it is underrepresented compared with Tagalog.
 - Build a benchmark and reproducible pipeline before claiming a production model.
 - Lead with the code-switch ASR benchmark; keep translation as an extension layer.
-- Make limitations explicit: one speaker, 40 clips, and per-word language tags
-  still need a confirmation pass before they are fully adjudicated.
+- Make limitations explicit: the headline benchmark is one speaker and 40 clips;
+  the second speaker is reported as an extension until a multi-speaker release
+  decision is made.
 
 ## What we developed
 
@@ -189,12 +201,20 @@ can evaluate against.
 We developed:
 
 - 40 native-recorded Hiligaynon / Tagalog / English code-switch clips
+- 40 additional reviewed second-speaker extension clips kept outside the frozen
+  headline score
+- 20 planned non-native evaluation prompts kept outside scoring until consented
+  audio and reviewed annotations exist
 - per-word `hil` / `tl` / `en` language tags
 - a Hugging Face-style dataset card for the labeled ASR test set
 - a JSON annotation schema for clips, speaker metadata, transcripts, and token
   language tags
 - a switch-region WER scorer with monolingual, switch-region, switch penalty,
   and language-pair breakdowns
+- an ASR breakdown reporter for speaker, domain, switch type, and token-language
+  error analysis
+- a non-native evaluation scaffold with manifest, recording script, and readiness
+  validator
 - bundled Whisper baseline predictions and reproducible benchmark reports
 - a judge-facing release pipeline (`scripts/build_release.py`)
 - deterministic dataset split CSVs and release packaging
@@ -263,15 +283,17 @@ sugidanon/
 │   └── README.md                    # Hugging Face dataset card
 ├── package.json                     # Next.js/Vercel app
 ├── pages/
-│   ├── index.js                     # project landing page
-│   ├── benchmark.js                 # interactive ASR benchmark explorer
+│   ├── index.js                     # live benchmark explorer (metrics + clip token-diff)
 │   └── api/translate.js             # optional translation extension API
 ├── styles/
 │   └── globals.css
-├── score.py                         # switch-region ASR WER scorer
+├── BENCHMARK.md                     # benchmark card: protocol, cohorts, reproducibility
+├── score.py                         # switch-region ASR WER scorer (--ci for bootstrap CIs)
+├── data/benchmark/MANIFEST.json     # frozen, content-addressed benchmark version
 ├── scripts/
+│   ├── freeze_benchmark.py           # write/verify the frozen MANIFEST (drift gate)
 │   ├── build_release.py              # judge-facing validation + package pipeline
-│   ├── build_benchmark_web.py        # static data for /benchmark
+│   ├── build_benchmark_web.py        # static data for the explorer (public/benchmark.json)
 │   ├── validate.py                   # validates ASR benchmark or translation files
 │   ├── benchmark_asr.py              # optional Whisper refresh + scoring
 │   ├── package_dataset.py            # release package builder
@@ -575,6 +597,10 @@ Active speech components (see the code-switch ASR benchmark section above):
 - `scripts/record.py` — capture audio + matching annotation
 - `scripts/run_whisper.py` — Whisper ASR baseline
 - `scripts/eval_asr_baselines.py` — one-command WER over baseline predictions
+- `scripts/analyze_asr_breakdowns.py` — speaker/domain/switch-type/token-language
+  benchmark breakdowns
+- `scripts/validate_non_native_eval.py` — readiness check for the 20-line
+  non-native robustness scaffold
 - `data/annotations/` — the code-switch-labeled corpus
 
 Reserved for the later TTS / speech-to-speech phase:

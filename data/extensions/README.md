@@ -6,26 +6,28 @@ standard `score.py` / `run_whisper.py` runs.
 
 | Subset | Dir | Clips | Status |
 |--------|-----|-------|--------|
-| `scripted_native` candidate | `scripted_native_spk2/` | 40 | Native speaker, clean WAV shape, transcript and token tags reviewed |
+| `scripted_native` extension | `scripted_native_spk2/` | 40 | Native speaker, clean WAV shape, reviewed transcript/tags, Whisper baseline generated |
+| `non_native_eval` planned set | `non_native_eval/` | 20 planned | Local recording scaffold; no checked-in audio yet; robustness only |
 
-## Speaker 2 candidate
+## Speaker 2 extension
 
 - `scripted_native_spk2/` contains a second native-speaker recording set.
 - WAV files are mono 16 kHz and durations are populated.
 - Transcripts come from the elicitation script.
 - Per-word language tags are reviewed.
-- Keep this subset out of the headline benchmark until baseline predictions are
-  generated and a multi-speaker reporting decision is made.
+- Bundled Whisper predictions are available under
+  `scripted_native_spk2/predictions/`.
+- Keep this subset out of the frozen headline benchmark unless the team decides
+  to publish a multi-speaker benchmark version.
 
-## Non-native candidate rules
+## Non-native evaluation scaffold
 
-- Non-native, podcast, vlog, or other external-source clips are not checked in
-  here unless redistribution rights are fully documented.
+- `non_native_eval/` contains a 20-line manifest and recording script for a
+  consented non-native speaker.
+- No external YouTube/podcast/vlog audio is checked in for this subset.
+- Current status is planned-only: 20 prompts, 0 audio files, 0 annotations.
+- Use `scripts/validate_non_native_eval.py` to check readiness.
 - **Never** count `non_native_eval` toward the native headline benchmark — it is
   a robustness / stress-test subset only.
-- Source rights and redistribution status are not release-ready. Fill exact
-  title, URL, license/permission, and redistribution terms in
-  `docs/source_ledger.md` before publishing or packaging this subset.
-- Per-word language tags and transcripts must be reviewed before scoring.
-- Clip IDs should record the source format (`podcast_`, `vlog_`, etc.), while
-  `subset` should remain `non_native_eval`.
+- Score only after audio is recorded, transcripts are reviewed, per-word tags are
+  reviewed, and consent/provenance are documented.

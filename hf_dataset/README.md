@@ -8,8 +8,6 @@ pretty_name: Sugidanon Hiligaynon Code-Switched Speech Test Set
 task_categories:
   - automatic-speech-recognition
   - audio-classification
-task_ids:
-  - speech-recognition
 tags:
   - hiligaynon
   - ilonggo

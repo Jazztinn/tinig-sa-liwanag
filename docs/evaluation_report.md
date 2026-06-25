@@ -8,7 +8,7 @@ health, culture, everyday, oral tradition), 4 switch types (`HIL`=11, `HIL+EN`=1
 `HIL+TL`=7, `HIL+TL+EN`=5). Reference text and per-word language tags were
 reviewed by a Hiligaynon speaker.
 
-### Baseline result — Whisper small, `--language tl`
+### Headline baseline result — Whisper small, `--language tl`
 
 | Metric | WER |
 |--------|-----|
@@ -18,6 +18,32 @@ reviewed by a Hiligaynon speaker.
 | **Switch penalty** (switch − mono) | **−30.6%** |
 
 Switch-region WER by language pair: `hil↔en` 40.0%, `hil↔tl` 24.4%, `tl↔en` 6.2%.
+
+### Additional benchmark dimensions
+
+The benchmark now reports more than code-switch proximity. The generated
+breakdown report covers:
+
+- speaker robustness
+- domain difficulty
+- switch-type difficulty (`HIL`, `HIL+EN`, `HIL+TL`, `HIL+TL+EN`)
+- token-language WER for Hiligaynon, Tagalog, and English reference tokens
+- switch-region WER by language pair
+
+The frozen headline score remains the original 40 clips from `spk01`. The new
+`spk02` subset is a separate second-speaker extension, not a replacement.
+The `non_native_eval` subset is currently a 20-line planned recording scaffold;
+it has no scored audio yet and is excluded from all WER tables.
+
+| Dataset | Clips | Overall | Switch-region | Monolingual | Switch penalty |
+|---------|------:|--------:|--------------:|------------:|---------------:|
+| headline `spk01` | 40 | 59.5% | 35.8% | 66.3% | -30.6% |
+| extension `spk02` | 40 | 34.4% | 28.6% | 38.8% | -10.2% |
+| combined diagnostic | 80 | 47.2% | 32.0% | 53.6% | -21.6% |
+
+Combined token-language WER: Hiligaynon 49.6%, Tagalog 27.3%, English 30.6%.
+Combined domain WER ranges from 38.0% (`everyday`) to 55.8% (`health`).
+Pure Hiligaynon (`HIL`) remains the hardest switch type at 63.3% combined WER.
 
 ### Interpretation — the negative penalty is the finding
 
@@ -34,7 +60,10 @@ catches the borrowed words and misses the Ilonggo.**
 
 - Whisper **small** (not large-v3) — preliminary; a larger model lowers WER.
 - Per-word tags are speaker-reviewed for the current headline benchmark.
-- Single speaker — expand speakers before drawing model-level conclusions.
+- The headline score is single-speaker; the second native speaker is reported
+  separately as an extension until a multi-speaker benchmark version is frozen.
+- Non-native evaluation is scaffolded only; do not score or publish it until
+  consented audio, reviewed transcripts, and reviewed token-language tags exist.
 
 ### Reproduce
 
@@ -42,6 +71,12 @@ catches the borrowed words and misses the Ilonggo.**
 python3 scripts/validate.py --kind asr --dir data/annotations
 python3 scripts/run_whisper.py --model small --language tl   # optional refresh
 python3 score.py --ref data/annotations --hyp data/predictions
+python3 scripts/analyze_asr_breakdowns.py \
+  --dataset headline:data/annotations:data/predictions \
+  --dataset spk02:data/extensions/scripted_native_spk2/annotations:data/extensions/scripted_native_spk2/predictions \
+  --out-json results/asr_breakdowns.json \
+  --out-md results/asr_breakdowns.md
+python3 scripts/validate_non_native_eval.py
 ```
 
 ---

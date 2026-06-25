@@ -11,8 +11,10 @@ unchanged; merge into the headline only after a multi-speaker decision.
 - Transcripts come from the script; per-word language tags were reviewed by the
   speaker (`lang_tags_status: reviewed`).
 - Clip IDs `spk2_001..040` map 1:1 to Script 3 lines 1–40.
-- This subset is not part of the headline benchmark yet because no bundled ASR
-  predictions or benchmark report have been generated for the multi-speaker set.
+- Bundled Whisper small `--language tl` predictions are available in
+  `predictions/`.
+- This subset is not part of the frozen headline benchmark yet; it is reported
+  separately as a second-speaker extension in `results/asr_breakdowns.md`.
 
 ## Cut quality
 
