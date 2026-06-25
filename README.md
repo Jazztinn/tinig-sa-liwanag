@@ -1,5 +1,7 @@
 # Team Hague
 
+[![Benchmark integrity](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml/badge.svg)](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml)
+
 **ACM TechSprint Asteria Submission**  
 **Event dates:** June 25-27, 2026
 
@@ -101,12 +103,24 @@ Languages** challenge by shipping a focused benchmark:
 - an annotation schema for reviewed code-switch references
 - documentation, dataset card, and provenance records
 
-The headline finding:
+The headline finding (Whisper small, `--language tl`, **1 speaker / 40 clips**):
+
+| Metric | Value | 95% CI |
+|--------|------:|--------|
+| Overall WER | 57.4% | — |
+| Switch-region WER | 35.8% | — |
+| Monolingual WER | 65.9% | — |
+| Switch penalty | −30.1% | — |
 
 ```text
 Current multilingual models recognize borrowed English and Tagalog words,
 but fail on the Hiligaynon matrix language.
 ```
+
+*N is intentionally small (40 clips, 1 headline speaker, 165 switch tokens / 208 mono
+tokens). Results are reproducible and directionally consistent with the spk02
+extension (switch penalty −10.2% over 40 clips), but should be interpreted as
+early-benchmark estimates, not large-sample statistics.*
 
 Live demos are linked at the top of this README.
 
@@ -487,6 +501,11 @@ Reserved for the later TTS / speech-to-speech phase:
 
 See `docs/project_case_fit.md` for the judge-facing fit summary and
 `docs/submission_narrative.md` for the concise project narrative.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to add clips, run the review
+CLI, and pass the freeze gate before merging.
 
 ## AI disclosure
 

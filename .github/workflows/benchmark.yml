@@ -1,0 +1,30 @@
+name: Benchmark integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate annotations (40/40)
+        run: python3 scripts/validate.py --kind asr --dir data/annotations
+
+      - name: Score benchmark (reproduce canonical numbers)
+        run: python3 score.py --ref data/annotations --hyp data/predictions
+
+      - name: Freeze gate (drift check)
+        run: python3 scripts/freeze_benchmark.py --verify
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
