@@ -1,6 +1,6 @@
 # Sugidanon — Benchmark Card
 
-**Version 1.0.0** · frozen manifest: [`data/benchmark/MANIFEST.json`](data/benchmark/MANIFEST.json)
+**Version 1.0.1** · frozen manifest: [`data/benchmark/MANIFEST.json`](data/benchmark/MANIFEST.json)
 · license CC-BY-4.0 · code-switch ASR benchmark for Hiligaynon (Ilonggo).
 
 This card is the single source of truth for the benchmark protocol. The canonical
@@ -38,10 +38,10 @@ headline test number stays untouched.
 
 | Metric | WER | 95% CI |
 |--------|----:|--------|
-| Overall | 59.5% | [50.7%, 68.7%] |
-| Monolingual (Hiligaynon) | 66.3% | [59.2%, 72.8%] |
+| Overall | 57.4% | [49.3%, 65.8%] |
+| Monolingual (Hiligaynon) | 65.9% | [58.6%, 72.3%] |
 | Switch-region | 35.8% | [26.1%, 46.4%] |
-| **Switch penalty** | **−30.6%** | switch − mono |
+| **Switch penalty** | **−30.1%** | switch − mono |
 
 Switch-pair WER: `hil↔en` 40.0% · `hil↔tl` 24.4% · `tl↔en` 6.2%.
 
@@ -92,7 +92,7 @@ python3 scripts/analyze_asr_breakdowns.py \
   --out-json results/asr_breakdowns.json --out-md results/asr_breakdowns.md
 
 # 4. refresh / verify the frozen manifest
-python3 scripts/freeze_benchmark.py            # write v1.0.0
+python3 scripts/freeze_benchmark.py            # write v1.0.1
 python3 scripts/freeze_benchmark.py --verify   # CI gate: fail on any drift
 ```
 
@@ -105,6 +105,35 @@ forcing `tl` beats auto on every metric.
 - Native speakers are credited as **authors**, not data sources.
 - Benchmark release license: CC-BY-4.0. Third-party audio with incompatible terms
   (e.g. non-commercial corpora) is excluded from the release.
+
+## Extending to a new language
+
+Hiligaynon is the proof of concept; the method is the contribution. The scorer is
+**language-agnostic** — `score.py` treats `lang` tags as opaque labels and derives
+switch-pair buckets from the data (`pair_label`), so nothing about Hiligaynon,
+Tagalog, or English is hardcoded. To stand up the same benchmark for another
+underserved language (Cebuano, Waray, Aklanon, Kinaray-a, Capiznon, …) you supply:
+
+1. **Audio** — one clip per utterance (`.wav`).
+2. **Annotations** — one JSON per clip following [`SCHEMA.md`](SCHEMA.md):
+   `tokens: [{text, lang}]` plus `domain`, `switch_type`, `speaker`,
+   `gold_status`, `provenance`.
+3. **Native-reviewed `lang` tags** — per-word language labels confirmed by a
+   native speaker. AI output is never treated as gold (see ethics above).
+4. **Baseline predictions** — one `{clip_id, text}` JSON per clip from any ASR model.
+
+Then the existing tooling runs unchanged:
+
+```bash
+python3 score.py --ref <lang>/annotations --hyp <lang>/predictions --ci
+python3 scripts/freeze_benchmark.py        # freeze the new cohort
+```
+
+**How many clips?** ~40 is a reasonable floor. The bootstrap CIs are the stopping
+rule: if a language's switch-region and monolingual intervals still overlap,
+collect more clips until they separate — at which point the switch penalty is
+statistically established for that language. The benchmark reports its own
+statistical readiness, so "how much data is enough" stops being a guess.
 
 ## Roadmap to a fuller benchmark
 

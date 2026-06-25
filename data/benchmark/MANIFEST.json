@@ -1,6 +1,6 @@
 {
   "benchmark": "Sugidanon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "frozen_on": "2026-06-26",
   "task": "code-switch automatic speech recognition (Hiligaynon matrix)",
   "primary_metric": "switch-region word error rate",
@@ -23,7 +23,7 @@
     "normalization": "lowercase; strip punctuation except apostrophe and hyphen",
     "switch_region_window": 1,
     "language_forcing": "tl",
-    "sha256": "ef3ed91ca47bea2cd4337d393364a1fd60a339f984a3d2b10391f419c7404a41"
+    "sha256": "90b8a3fa3dfe2f957ac00abc6b68cb9f066b0559db9b5f6fd6e8626cb0e0dce4"
   },
   "cohorts": {
     "headline": {
@@ -34,7 +34,7 @@
       "predictions": "data/predictions",
       "status": "frozen",
       "n_clips": 40,
-      "total_duration_sec": 182.7,
+      "total_duration_sec": 179.2,
       "by_domain": {
         "market": 5,
         "transport": 5,
@@ -174,9 +174,9 @@
         },
         {
           "clip_id": "hil_cs_013",
-          "annotation_sha256": "6c8d4e23391e811ca393c1b1d68074160630a608a9a710d8533086fe243a4ccd",
-          "audio_sha256": "547d9e29d0efbf5b6d52c4d43c38093ccf9f0eabed9e918e5e5e56971ce88fad",
-          "duration_sec": 10.44,
+          "annotation_sha256": "7d32daa704eb7b55a6fff48fe0c70d24d01c7093c146ebb8ccfc2c6f4f7233f6",
+          "audio_sha256": "312529857d84520cc10f9c66f48d812a96b5a4ff679d4eb5b0191ca3246e810b",
+          "duration_sec": 6.91,
           "domain": "school_work",
           "switch_type": "HIL+TL",
           "gold_status": "native_gold",

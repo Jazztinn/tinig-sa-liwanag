@@ -28,7 +28,7 @@ from datetime import date
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "data", "benchmark", "MANIFEST.json")
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 # Cohort ladder. Roles are frozen split assignments; speaker-disjoint by
 # construction so test (spk01) and development (spk02) never leak.

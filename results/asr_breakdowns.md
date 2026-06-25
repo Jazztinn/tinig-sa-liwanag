@@ -9,16 +9,16 @@ Clips: 40
 
 | Metric | WER |
 |---|---:|
-| Overall | 59.5% (222/373) |
+| Overall | 57.4% (214/373) |
 | Switch-region | 35.8% (59/165) |
-| Monolingual | 66.3% (138/208) |
-| Switch penalty | -30.6% |
+| Monolingual | 65.9% (137/208) |
+| Switch penalty | -30.1% |
 
 ### By speaker
 
 | Bucket | Clips | WER |
 |---|---:|---:|
-| `spk01` | 40 | 59.5% (222/373) |
+| `spk01` | 40 | 57.4% (214/373) |
 
 ### By domain
 
@@ -29,7 +29,7 @@ Clips: 40
 | `family` | 5 | 61.7% (29/47) |
 | `market` | 5 | 57.4% (27/47) |
 | `everyday` | 5 | 44.4% (20/45) |
-| `school_work` | 5 | 64.4% (29/45) |
+| `school_work` | 5 | 46.7% (21/45) |
 | `culture` | 5 | 67.4% (29/43) |
 | `health` | 5 | 66.7% (28/42) |
 
@@ -39,14 +39,14 @@ Clips: 40
 |---|---:|---:|
 | `HIL+EN` | 17 | 59.9% (94/157) |
 | `HIL` | 11 | 75.0% (75/100) |
-| `HIL+TL` | 7 | 61.9% (39/63) |
+| `HIL+TL` | 7 | 49.2% (31/63) |
 | `HIL+TL+EN` | 5 | 26.4% (14/53) |
 
 ### By token language
 
 | Bucket | Clips | WER |
 |---|---:|---:|
-| `hil` | 40 | 58.3% (176/302) |
+| `hil` | 40 | 57.9% (175/302) |
 | `en` | 22 | 29.2% (14/48) |
 | `tl` | 12 | 30.4% (7/23) |
 
@@ -58,7 +58,7 @@ Clips: 40
 | `hil<->tl` | 24.4% (11/45) |
 | `tl<->en` | 6.2% (1/16) |
 
-Unattributed token-language insertions: 25
+Unattributed token-language insertions: 18
 
 ## spk2
 
@@ -123,16 +123,16 @@ Clips: 80
 
 | Metric | WER |
 |---|---:|
-| Overall | 47.2% (346/733) |
+| Overall | 46.1% (338/733) |
 | Switch-region | 32.0% (111/347) |
-| Monolingual | 53.6% (207/386) |
-| Switch penalty | -21.6% |
+| Monolingual | 53.4% (206/386) |
+| Switch penalty | -21.4% |
 
 ### By speaker
 
 | Bucket | Clips | WER |
 |---|---:|---:|
-| `spk01` | 40 | 59.5% (222/373) |
+| `spk01` | 40 | 57.4% (214/373) |
 | `spk02` | 40 | 34.4% (124/360) |
 
 ### By domain
@@ -143,7 +143,7 @@ Clips: 80
 | `transport` | 10 | 41.1% (39/95) |
 | `market` | 10 | 53.8% (50/93) |
 | `everyday` | 10 | 38.0% (35/92) |
-| `school_work` | 10 | 42.4% (39/92) |
+| `school_work` | 10 | 33.7% (31/92) |
 | `family` | 10 | 50.0% (44/88) |
 | `health` | 10 | 55.8% (48/86) |
 | `culture` | 10 | 50.6% (43/85) |
@@ -154,14 +154,14 @@ Clips: 80
 |---|---:|---:|
 | `HIL+EN` | 32 | 45.9% (133/290) |
 | `HIL` | 21 | 63.3% (119/188) |
-| `HIL+TL` | 15 | 44.6% (58/130) |
+| `HIL+TL` | 15 | 38.5% (50/130) |
 | `HIL+TL+EN` | 12 | 28.8% (36/125) |
 
 ### By token language
 
 | Bucket | Clips | WER |
 |---|---:|---:|
-| `hil` | 80 | 49.6% (255/514) |
+| `hil` | 80 | 49.4% (254/514) |
 | `tl` | 27 | 27.3% (33/121) |
 | `en` | 44 | 30.6% (30/98) |
 
@@ -173,4 +173,4 @@ Clips: 80
 | `hil<->tl` | 29.1% (30/103) |
 | `tl<->en` | 24.1% (13/54) |
 
-Unattributed token-language insertions: 28
+Unattributed token-language insertions: 21

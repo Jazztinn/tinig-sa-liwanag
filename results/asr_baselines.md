@@ -22,7 +22,7 @@ into one headline WER (see `SCHEMA.md`).
 
 | Model | Clips | Overall WER | Switch-region WER | Monolingual WER | Switch penalty |
 |-------|-------|-------------|-------------------|-----------------|----------------|
-| `whisper-small-tl` (forced Tagalog) | 40 | 59.5% | 35.8% | 66.3% | -30.6% |
+| `whisper-small-tl` (forced Tagalog) | 40 | 57.4% | 35.8% | 65.9% | -30.1% |
 | `whisper-small-auto` (auto-detect) | 40 | 61.7% | 38.8% | 68.3% | -29.5% |
 
 Per language pair (`whisper-small-tl`): `hil↔en` 40.0%, `hil↔tl` 24.4%, `tl↔en` 6.2%.

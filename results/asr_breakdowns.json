@@ -2,8 +2,8 @@
   "headline": {
     "clip_count": 40,
     "overall": {
-      "wer": 0.5951742627345844,
-      "errors": 222,
+      "wer": 0.5737265415549598,
+      "errors": 214,
       "words": 373
     },
     "switch_region": {
@@ -12,11 +12,11 @@
       "words": 165
     },
     "monolingual": {
-      "wer": 0.6634615384615384,
-      "errors": 138,
+      "wer": 0.6586538461538461,
+      "errors": 137,
       "words": 208
     },
-    "switch_penalty": -0.30588578088578083,
+    "switch_penalty": -0.30107808857808854,
     "language_pairs": {
       "hil<->en": {
         "wer": 0.4,
@@ -36,8 +36,8 @@
     },
     "by_speaker": {
       "spk01": {
-        "wer": 0.5951742627345844,
-        "errors": 222,
+        "wer": 0.5737265415549598,
+        "errors": 214,
         "words": 373,
         "clips": 40
       }
@@ -74,8 +74,8 @@
         "clips": 5
       },
       "school_work": {
-        "wer": 0.6444444444444445,
-        "errors": 29,
+        "wer": 0.4666666666666667,
+        "errors": 21,
         "words": 45,
         "clips": 5
       },
@@ -106,8 +106,8 @@
         "clips": 11
       },
       "HIL+TL": {
-        "wer": 0.6190476190476191,
-        "errors": 39,
+        "wer": 0.49206349206349204,
+        "errors": 31,
         "words": 63,
         "clips": 7
       },
@@ -120,8 +120,8 @@
     },
     "by_token_language": {
       "hil": {
-        "wer": 0.5827814569536424,
-        "errors": 176,
+        "wer": 0.5794701986754967,
+        "errors": 175,
         "words": 302,
         "clips": 40
       },
@@ -138,7 +138,7 @@
         "clips": 12
       }
     },
-    "unattributed_token_language_insertions": 25
+    "unattributed_token_language_insertions": 18
   },
   "spk2": {
     "clip_count": 40,
@@ -284,8 +284,8 @@
   "combined": {
     "clip_count": 80,
     "overall": {
-      "wer": 0.47203274215552526,
-      "errors": 346,
+      "wer": 0.461118690313779,
+      "errors": 338,
       "words": 733
     },
     "switch_region": {
@@ -294,11 +294,11 @@
       "words": 347
     },
     "monolingual": {
-      "wer": 0.5362694300518135,
-      "errors": 207,
+      "wer": 0.533678756476684,
+      "errors": 206,
       "words": 386
     },
-    "switch_penalty": -0.21638470382702962,
+    "switch_penalty": -0.21379403025190008,
     "language_pairs": {
       "hil<->en": {
         "wer": 0.336322869955157,
@@ -318,8 +318,8 @@
     },
     "by_speaker": {
       "spk01": {
-        "wer": 0.5951742627345844,
-        "errors": 222,
+        "wer": 0.5737265415549598,
+        "errors": 214,
         "words": 373,
         "clips": 40
       },
@@ -356,8 +356,8 @@
         "clips": 10
       },
       "school_work": {
-        "wer": 0.42391304347826086,
-        "errors": 39,
+        "wer": 0.33695652173913043,
+        "errors": 31,
         "words": 92,
         "clips": 10
       },
@@ -394,8 +394,8 @@
         "clips": 21
       },
       "HIL+TL": {
-        "wer": 0.4461538461538462,
-        "errors": 58,
+        "wer": 0.38461538461538464,
+        "errors": 50,
         "words": 130,
         "clips": 15
       },
@@ -408,8 +408,8 @@
     },
     "by_token_language": {
       "hil": {
-        "wer": 0.4961089494163424,
-        "errors": 255,
+        "wer": 0.49416342412451364,
+        "errors": 254,
         "words": 514,
         "clips": 80
       },
@@ -426,6 +426,6 @@
         "clips": 44
       }
     },
-    "unattributed_token_language_insertions": 28
+    "unattributed_token_language_insertions": 21
   }
 }

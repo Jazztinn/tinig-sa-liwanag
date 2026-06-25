@@ -12,7 +12,7 @@ hil_cs_009          87.5%      0.0%     66.7%
 hil_cs_010          83.3%     75.0%     87.5%
 hil_cs_011          80.0%     71.4%     66.7%
 hil_cs_012           9.1%      9.1%      0.0%
-hil_cs_013         171.4%     33.3%     75.0%
+hil_cs_013          57.1%     33.3%     50.0%
 hil_cs_014          37.5%     40.0%     33.3%
 hil_cs_015          55.6%      0.0%     55.6%
 hil_cs_016          90.0%      0.0%     90.0%
@@ -41,12 +41,12 @@ hil_cs_038          44.4%     25.0%     60.0%
 hil_cs_039          66.7%      0.0%     66.7%
 hil_cs_040          36.4%      0.0%     66.7%
 ----------------------------------------------
-CORPUS              59.5%     35.8%     66.3%
+CORPUS              57.4%     35.8%     65.9%
 
-Overall WER       : 59.5%  (222/373)
+Overall WER       : 57.4%  (214/373)
 Switch-region WER : 35.8%  (59/165)
-Monolingual WER   : 66.3%  (138/208)
-Switch penalty    : -30.6% (switch WER minus monolingual WER)
+Monolingual WER   : 65.9%  (137/208)
+Switch penalty    : -30.1% (switch WER minus monolingual WER)
 
 Switch-region WER by language pair:
   hil<->tl  : 24.4%  (11/45)

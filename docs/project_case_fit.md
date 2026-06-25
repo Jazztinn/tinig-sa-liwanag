@@ -29,10 +29,10 @@ Current baseline:
 
 | Metric | Result |
 |--------|--------|
-| Overall WER | 59.5% |
-| Monolingual Hiligaynon WER | 66.3% |
+| Overall WER | 57.4% |
+| Monolingual Hiligaynon WER | 65.9% |
 | Switch-region WER | 35.8% |
-| Switch penalty | -30.6% |
+| Switch penalty | -30.1% |
 
 The negative switch penalty means the model performs better near switch words
 than on ordinary Hiligaynon. That is the benchmark finding.

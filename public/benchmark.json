@@ -1,11 +1,11 @@
 {
   "model": "whisper-small-tl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "headline": {
-    "overall": 59.5,
+    "overall": 57.4,
     "switch": 35.8,
-    "mono": 66.3,
-    "penalty": -30.6,
+    "mono": 65.9,
+    "penalty": -30.1,
     "pairs": {
       "hil_en": 40.0,
       "hil_tl": 24.4,
@@ -17,10 +17,10 @@
       "name": "headline",
       "role": "test",
       "speaker": "spk01",
-      "overall": 59.5,
+      "overall": 57.4,
       "switch": 35.8,
-      "mono": 66.3,
-      "penalty": -30.6,
+      "mono": 65.9,
+      "penalty": -30.1,
       "n": 40
     },
     {
@@ -936,7 +936,7 @@
       "switch_type": "HIL+TL",
       "subset": "scripted_native",
       "reference": "Nahirapan ako sa exam kahapon, grabe ka-budlay.",
-      "prediction": "Nairapan ako sa exam kapun. Graby kabudlay. Takapasawa ka na sa subyek mo. Congrat sabi.",
+      "prediction": "Nairapan ako sa exam kapon. Grabe ka budlay.",
       "tokens": [
         {
           "text": "Nahirapan",
@@ -972,7 +972,7 @@
           "text": "grabe",
           "lang": "hil",
           "switch": false,
-          "error": true
+          "error": false
         },
         {
           "text": "ka-budlay",
@@ -982,9 +982,9 @@
         }
       ],
       "wer": {
-        "overall": 171.4,
+        "overall": 57.1,
         "switch": 33.3,
-        "mono": 75.0
+        "mono": 50.0
       }
     },
     {
