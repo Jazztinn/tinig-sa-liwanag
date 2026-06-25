@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_040",
   "audio_file": "audio/hil_cs_040.wav",
-  "duration_sec": 4.98,
+  "duration_sec": null,
   "domain": "oral_tradition",
   "switch_type": "HIL+TL",
   "transcript": "Dapat ituro natin sa mga bata ang aton lenguahe kag tradisyon.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

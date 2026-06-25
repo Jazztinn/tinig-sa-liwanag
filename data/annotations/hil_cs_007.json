@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_007",
   "audio_file": "audio/hil_cs_007.wav",
-  "duration_sec": 2.58,
+  "duration_sec": null,
   "domain": "transport",
   "switch_type": "HIL+TL",
   "transcript": "Sakay na tayo kay ma-late pa ako sa trabaho.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

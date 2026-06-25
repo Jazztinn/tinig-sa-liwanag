@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_004",
   "audio_file": "audio/hil_cs_004.wav",
-  "duration_sec": 3.51,
+  "duration_sec": null,
   "domain": "market",
   "switch_type": "HIL",
   "transcript": "Tama na ina nga bugas, indi na magdugang.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

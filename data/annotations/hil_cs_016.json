@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_016",
   "audio_file": "audio/hil_cs_016.wav",
-  "duration_sec": 3.18,
+  "duration_sec": null,
   "domain": "family",
   "switch_type": "HIL",
   "transcript": "Kaon na kita kay handa na ang sud-an ni Nanay.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

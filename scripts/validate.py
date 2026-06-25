@@ -16,6 +16,7 @@ import os
 import sys
 
 VALID_LANGS = {"hil", "tl", "en", "other"}
+VALID_FLUENCY = {"native", "fluent", "non_native"}
 VALID_SOURCE_LANGS = {"en", "fil", "tl", "hil", "mixed"}
 VALID_DIFFICULTY = {"easy", "medium", "hard"}
 VALID_REVIEW_STATUS = {"seed_unverified", "reviewed", "adjudicated"}
@@ -113,6 +114,12 @@ def validate_asr_file(path, audio_root):
             errors.append(f"token {i}: bad lang {tok['lang']!r}")
         if tok["idx"] != i:
             errors.append(f"token {i}: idx {tok['idx']} not contiguous (expected {i})")
+
+    speaker = data.get("speaker")
+    if isinstance(speaker, dict) and "fluency" in speaker:
+        if speaker["fluency"] not in VALID_FLUENCY:
+            errors.append(f"bad speaker.fluency {speaker['fluency']!r} "
+                          f"(use {sorted(VALID_FLUENCY)})")
 
     audio_file = data.get("audio_file")
     if audio_file:

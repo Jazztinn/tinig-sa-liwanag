@@ -90,8 +90,8 @@ def wav_duration(path):
         return None
 
 
-def write_annotation(clip_id, domain, switch_type, text, duration, ann_dir):
-    ann = make_annotation(clip_id, domain, switch_type, text, duration)
+def write_annotation(clip_id, domain, switch_type, text, duration, ann_dir, speaker=None):
+    ann = make_annotation(clip_id, domain, switch_type, text, duration, speaker=speaker)
     os.makedirs(ann_dir, exist_ok=True)
     path = os.path.join(ann_dir, f"{clip_id}.json")
     with open(path, "w", encoding="utf-8") as f:
@@ -107,8 +107,17 @@ def main():
     ap.add_argument("--from-wav", default=None, help="register this wav instead of recording")
     ap.add_argument("--audio-dir", default=os.path.join(ROOT, "data", "audio"))
     ap.add_argument("--ann-dir", default=os.path.join(ROOT, "data", "annotations"))
+    ap.add_argument("--speaker-id", default=None, help="speaker id, e.g. spk02")
+    ap.add_argument("--name", default=None, help="speaker name (optional)")
+    ap.add_argument("--fluency", default=None,
+                    choices=["native", "fluent", "non_native"],
+                    help="Hiligaynon fluency: native | fluent | non_native")
     ap.add_argument("--list", action="store_true", help="list prompts and exit")
     args = ap.parse_args()
+
+    speaker = {k: v for k, v in {
+        "id": args.speaker_id, "name": args.name, "fluency": args.fluency,
+    }.items() if v is not None} or None
 
     if args.list or args.prompt is None:
         list_prompts()
@@ -136,7 +145,7 @@ def main():
         record_wav(dst_wav, args.seconds, args.device)
 
     duration = wav_duration(dst_wav)
-    ann_path = write_annotation(clip_id, domain, switch_type, text, duration, args.ann_dir)
+    ann_path = write_annotation(clip_id, domain, switch_type, text, duration, args.ann_dir, speaker=speaker)
     print(f"\nSaved audio:      {os.path.relpath(dst_wav, ROOT)}  ({duration}s)")
     print(f"Wrote annotation: {os.path.relpath(ann_path, ROOT)}")
     print("Now have a Hiligaynon speaker confirm the per-word lang tags (seed_unverified).")

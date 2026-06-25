@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_003",
   "audio_file": "audio/hil_cs_003.wav",
-  "duration_sec": 4.86,
+  "duration_sec": null,
   "domain": "market",
   "switch_type": "HIL+TL",
   "transcript": "Nag-discount gali ang tindahan, kaya bumili na lang tayo ng marami.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

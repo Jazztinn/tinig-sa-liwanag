@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_030",
   "audio_file": "audio/hil_cs_030.wav",
-  "duration_sec": 3.81,
+  "duration_sec": null,
   "domain": "culture",
   "switch_type": "HIL+EN",
   "transcript": "Mag-meet ta sa booth pagkatapos sang performance.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

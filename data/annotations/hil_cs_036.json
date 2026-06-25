@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_036",
   "audio_file": "audio/hil_cs_036.wav",
-  "duration_sec": 5.4,
+  "duration_sec": null,
   "domain": "oral_tradition",
   "switch_type": "HIL",
   "transcript": "Ang sugidanon amo ang aton mga pamatan-on nga sugilanon halin sang una.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

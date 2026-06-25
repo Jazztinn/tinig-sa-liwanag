@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_038",
   "audio_file": "audio/hil_cs_038.wav",
-  "duration_sec": 4.56,
+  "duration_sec": null,
   "domain": "oral_tradition",
   "switch_type": "HIL+EN",
   "transcript": "Importante gid i-preserve ang aton culture para sa palaabuton.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

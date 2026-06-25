@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_031",
   "audio_file": "audio/hil_cs_031.wav",
-  "duration_sec": 3.24,
+  "duration_sec": null,
   "domain": "everyday",
   "switch_type": "HIL+EN",
   "transcript": "Sige, text mo na lang ako kung diin kita magkita.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

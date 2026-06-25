@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_034",
   "audio_file": "audio/hil_cs_034.wav",
-  "duration_sec": 6.03,
+  "duration_sec": null,
   "domain": "everyday",
   "switch_type": "HIL",
   "transcript": "Salamat gid sa imo bulig kahapon, ginapasalamatan ko ina.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

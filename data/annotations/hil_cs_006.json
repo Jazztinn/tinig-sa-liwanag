@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_006",
   "audio_file": "audio/hil_cs_006.wav",
-  "duration_sec": 3.15,
+  "duration_sec": null,
   "domain": "transport",
   "switch_type": "HIL+EN",
   "transcript": "Pwede ko mag-drop off sa may corner sang highway?",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

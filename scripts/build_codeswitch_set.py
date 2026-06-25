@@ -248,8 +248,26 @@ def tag_tokens(text):
     return [(t, lg) for t, lg in out if t]
 
 
-def make_annotation(clip_id, domain, switch_type, text, duration=None):
+# Speaker fluency in Hiligaynon. `native` is the gold bar; `non_native` clips
+# must NOT be presented as native gold data (keep them clearly labeled).
+VALID_FLUENCY = ("native", "fluent", "non_native")
+
+DEFAULT_SPEAKER = {
+    "id": "spk01",
+    "name": "Aziel Faith Agustin",
+    "primary_language": "hil",
+    "fluency": "native",
+    "region": "",
+    "age_band": "",
+    "gender": "",
+}
+
+
+def make_annotation(clip_id, domain, switch_type, text, duration=None, speaker=None):
     toks = tag_tokens(text)
+    spk = dict(DEFAULT_SPEAKER)
+    if speaker:
+        spk.update(speaker)
     return {
         "clip_id": clip_id,
         "audio_file": f"audio/{clip_id}.wav",
@@ -257,8 +275,7 @@ def make_annotation(clip_id, domain, switch_type, text, duration=None):
         "domain": domain,
         "switch_type": switch_type,
         "transcript": text,
-        "speaker": {"id": "spk01", "primary_language": "hil",
-                    "region": "", "age_band": "", "gender": ""},
+        "speaker": spk,
         "matrix_language": "hil",
         "review_status": "reviewed",            # text vetted by a Hiligaynon speaker
         "lang_tags_status": "seed_unverified",  # per-word tags auto-seeded, pending confirmation
@@ -268,13 +285,13 @@ def make_annotation(clip_id, domain, switch_type, text, duration=None):
     }
 
 
-def build(sentences, start_index, out_dir):
+def build(sentences, start_index, out_dir, speaker=None):
     """Write one annotation per sentence; clip IDs start at start_index."""
     os.makedirs(out_dir, exist_ok=True)
     written = []
     for offset, (domain, switch_type, text) in enumerate(sentences):
         clip_id = f"hil_cs_{start_index + offset:03d}"
-        ann = make_annotation(clip_id, domain, switch_type, text)
+        ann = make_annotation(clip_id, domain, switch_type, text, speaker=speaker)
         with open(os.path.join(out_dir, f"{clip_id}.json"), "w", encoding="utf-8") as f:
             json.dump(ann, f, ensure_ascii=False, indent=2)
         written.append((clip_id, switch_type))
@@ -286,7 +303,21 @@ def main():
     ap.add_argument("--out-dir", default="data/annotations")
     ap.add_argument("--script", default="1",
                     help="which elicitation script: 1, 2, 3, or all")
+    ap.add_argument("--speaker-id", default=None, help="speaker id, e.g. spk02")
+    ap.add_argument("--name", default=None, help="speaker name (optional)")
+    ap.add_argument("--fluency", default=None, choices=VALID_FLUENCY,
+                    help="Hiligaynon fluency: native | fluent | non_native")
+    ap.add_argument("--region", default=None)
+    ap.add_argument("--age-band", default=None)
+    ap.add_argument("--gender", default=None)
     args = ap.parse_args()
+
+    speaker = {k: v for k, v in {
+        "id": args.speaker_id, "name": args.name, "fluency": args.fluency,
+        "region": args.region, "age_band": args.age_band, "gender": args.gender,
+    }.items() if v is not None} or None
+    if speaker and "fluency" in speaker and speaker["fluency"] == "non_native":
+        print("NOTE: non_native clips — do not present these as native gold data.\n")
 
     which = list(SCRIPTS) if args.script == "all" else [int(args.script)]
     written = []
@@ -294,7 +325,7 @@ def main():
         if s not in SCRIPTS:
             raise SystemExit(f"Unknown script {s}; choose from {list(SCRIPTS)} or all")
         start = (s - 1) * 40 + 1
-        written += build(SCRIPTS[s], start, args.out_dir)
+        written += build(SCRIPTS[s], start, args.out_dir, speaker=speaker)
         print(f"Script {s}: hil_cs_{start:03d}..{start + len(SCRIPTS[s]) - 1:03d}")
 
     print(f"\nWrote {len(written)} annotations to {args.out_dir}.")

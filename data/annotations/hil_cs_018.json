@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_018",
   "audio_file": "audio/hil_cs_018.wav",
-  "duration_sec": 5.31,
+  "duration_sec": null,
   "domain": "family",
   "switch_type": "HIL+TL+EN",
   "transcript": "Lipat ko gali i-off ang aircon, kaya ang taas ng bill namin.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

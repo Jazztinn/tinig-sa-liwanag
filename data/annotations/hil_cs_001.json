@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_001",
   "audio_file": "audio/hil_cs_001.wav",
-  "duration_sec": 3.39,
+  "duration_sec": null,
   "domain": "market",
   "switch_type": "HIL+EN",
   "transcript": "Pila ang grocery budget naton para sa weekend?",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""
