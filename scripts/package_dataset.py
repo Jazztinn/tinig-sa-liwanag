@@ -250,16 +250,29 @@ def build_package(args):
     os.makedirs(dataset_dir, exist_ok=True)
     os.makedirs(benchmark_dir, exist_ok=True)
 
+    stats = compute_statistics(rows, args.audio)
     copy_tree_files(args.annotations, os.path.join(dataset_dir, "annotations"), ".json")
     if args.include_audio:
         copy_tree_files(args.audio, os.path.join(dataset_dir, "audio"), ".wav")
     write_metadata_csv(rows, os.path.join(dataset_dir, "metadata.csv"))
     write_metadata_jsonl(rows, os.path.join(dataset_dir, "metadata.jsonl"))
 
-    stats = compute_statistics(rows, args.audio)
     with open(os.path.join(dataset_dir, "statistics.json"), "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
     write_dataset_card(rows, stats, os.path.join(dataset_dir, "dataset_card.md"), args.include_audio)
+    subprocess.run(
+        [
+            "python3",
+            "scripts/split_dataset.py",
+            "--annotations",
+            args.annotations,
+            "--audio",
+            args.audio,
+            "--output-dir",
+            dataset_dir,
+        ],
+        check=True,
+    )
 
     copy_tree_files(args.predictions, os.path.join(benchmark_dir, "predictions"), ".json")
     score_text = run_score(args.annotations, args.predictions)
