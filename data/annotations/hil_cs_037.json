@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_037",
   "audio_file": "audio/hil_cs_037.wav",
-  "duration_sec": 5.73,
+  "duration_sec": null,
   "domain": "oral_tradition",
   "switch_type": "HIL",
   "transcript": "Ginasaysay sang aton mga katigulangan ang mga estorya paagi sa pag-amba.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

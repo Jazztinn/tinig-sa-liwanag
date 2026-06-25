@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_033",
   "audio_file": "audio/hil_cs_033.wav",
-  "duration_sec": 4.26,
+  "duration_sec": null,
   "domain": "everyday",
   "switch_type": "HIL",
   "transcript": "Wala lang, ginatamad ako maglakat subong.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

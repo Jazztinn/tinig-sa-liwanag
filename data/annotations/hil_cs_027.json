@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_027",
   "audio_file": "audio/hil_cs_027.wav",
-  "duration_sec": 3.87,
+  "duration_sec": null,
   "domain": "culture",
   "switch_type": "HIL+TL",
   "transcript": "Sayaw na tayo kay nagsugod na ang parada.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

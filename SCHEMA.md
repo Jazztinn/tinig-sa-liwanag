@@ -165,7 +165,8 @@ what makes switch-region WER (`score.py`) possible.
 | `audio_file` | string | Path relative to `data/`, e.g. `audio/hil_cs_001.wav` (required) |
 | `tokens` | list | Per-word `{idx, text, lang}`, `idx` contiguous from 0 (required) |
 | `domain` | string | Domain bucket (optional) |
-| `speaker` | object | `id`, `primary_language`, `region`, `age_band`, `gender` (optional) |
+| `speaker` | object | `id`, `name`, `primary_language`, `fluency`, `region`, `age_band`, `gender` (optional) |
+| `speaker.fluency` | string | `native`, `fluent`, or `non_native` — Hiligaynon fluency. Do not present `non_native` clips as native gold data. |
 | `matrix_language` | string | Base language of the utterance (optional) |
 | `review_status` | string | `seed_unverified`, `reviewed`, or `adjudicated` (optional) |
 | `provenance` | object | `source`, `license`, `note` for redistribution (optional) |

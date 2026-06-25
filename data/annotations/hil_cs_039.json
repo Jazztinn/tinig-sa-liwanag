@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_039",
   "audio_file": "audio/hil_cs_039.wav",
-  "duration_sec": 6.03,
+  "duration_sec": null,
   "domain": "oral_tradition",
   "switch_type": "HIL",
   "transcript": "Madamo nga hurobaton kag paktakon ang nadula na sa karon nga henerasyon.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

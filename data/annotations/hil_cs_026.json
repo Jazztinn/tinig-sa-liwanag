@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_026",
   "audio_file": "audio/hil_cs_026.wav",
-  "duration_sec": 3.78,
+  "duration_sec": null,
   "domain": "culture",
   "switch_type": "HIL+EN",
   "transcript": "Excited gid ako sa Dinagyang festival sa sunod nga semana.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

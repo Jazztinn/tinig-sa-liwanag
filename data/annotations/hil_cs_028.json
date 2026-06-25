@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_028",
   "audio_file": "audio/hil_cs_028.wav",
-  "duration_sec": 4.62,
+  "duration_sec": null,
   "domain": "culture",
   "switch_type": "HIL+TL+EN",
   "transcript": "Ang ganda ng costumes, perfect para sa photo namon!",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

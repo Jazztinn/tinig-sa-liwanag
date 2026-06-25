@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_021",
   "audio_file": "audio/hil_cs_021.wav",
-  "duration_sec": 3.42,
+  "duration_sec": null,
   "domain": "health",
   "switch_type": "HIL+EN",
   "transcript": "May appointment ako sa health center buwas sang aga.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

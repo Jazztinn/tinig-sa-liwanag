@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_012",
   "audio_file": "audio/hil_cs_012.wav",
-  "duration_sec": 4.71,
+  "duration_sec": null,
   "domain": "school_work",
   "switch_type": "HIL+TL+EN",
   "transcript": "May meeting kami sa Monday, tapos may deadline pa sang report.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

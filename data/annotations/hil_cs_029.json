@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_029",
   "audio_file": "audio/hil_cs_029.wav",
-  "duration_sec": 4.92,
+  "duration_sec": null,
   "domain": "culture",
   "switch_type": "HIL",
   "transcript": "Daku gid ang kasadya sang mga tawo sa plaza.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""

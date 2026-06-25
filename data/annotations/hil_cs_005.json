@@ -1,13 +1,15 @@
 {
   "clip_id": "hil_cs_005",
   "audio_file": "audio/hil_cs_005.wav",
-  "duration_sec": 5.1,
+  "duration_sec": null,
   "domain": "market",
   "switch_type": "HIL+EN",
   "transcript": "Wala na sang change ang vendor, so pabayloan ta sang bente.",
   "speaker": {
     "id": "spk01",
+    "name": "Aziel Faith Agustin",
     "primary_language": "hil",
+    "fluency": "native",
     "region": "",
     "age_band": "",
     "gender": ""
