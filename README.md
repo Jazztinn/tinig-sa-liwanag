@@ -22,6 +22,8 @@ The Vercel site auto-deploys from this repo's `main` branch to
 
 **Open dataset (Hugging Face):**
 
+[![Dataset on HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch)
+
 ```text
 https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch
 ```
