@@ -4,18 +4,43 @@ const HF = "https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch"
 const COLAB = "https://colab.research.google.com/github/Jazztinn/tinig-sa-liwanag/blob/main/notebooks/sugidanon_colab.ipynb";
 const GITHUB = "https://github.com/Jazztinn/tinig-sa-liwanag";
 
-const results = [
-  ["Overall WER", "59.8%"],
-  ["Monolingual (Hiligaynon)", "66.3%"],
-  ["Switch-region", "36.4%"],
-  ["Switch penalty", "−30.0%"],
+// WER bars (higher = worse). Scaled against a 70% visual ceiling.
+const CEIL = 70;
+const breakdown = [
+  { label: "Monolingual Hiligaynon", wer: 66.3, note: "pure Ilonggo words" },
+  { label: "Overall", wer: 59.8, note: "whole utterance" },
+  { label: "Switch-region", wer: 36.4, note: "words next to a language switch" },
+];
+const pairs = [
+  { label: "tl ↔ en", wer: 6.2, note: "Tagalog–English: nearly solved" },
+  { label: "hil ↔ tl", wer: 24.4, note: "Hiligaynon–Tagalog" },
+  { label: "hil ↔ en", wer: 40.8, note: "Hiligaynon–English: worst" },
 ];
 
-const pairs = [
-  ["hil ↔ en", "40.8%"],
-  ["hil ↔ tl", "24.4%"],
-  ["tl ↔ en", "6.2%"],
-];
+function werColor(wer) {
+  // green (low/good) -> amber -> red (high/bad)
+  if (wer < 20) return "#34d399";
+  if (wer < 40) return "#fbbf24";
+  return "#fb7185";
+}
+
+function Bar({ label, wer, note }) {
+  return (
+    <div className="bar">
+      <div className="barhead">
+        <span className="barlabel">{label}</span>
+        <span className="barval" style={{ color: werColor(wer) }}>{wer}%</span>
+      </div>
+      <div className="bartrack">
+        <div className="barfill" style={{
+          width: `${Math.min(100, (wer / CEIL) * 100)}%`,
+          background: `linear-gradient(90deg, ${werColor(wer)}aa, ${werColor(wer)})`,
+        }} />
+      </div>
+      <span className="barnote">{note}</span>
+    </div>
+  );
+}
 
 function Code({ children }) {
   return <pre className="code"><code>{children}</code></pre>;
@@ -23,163 +48,222 @@ function Code({ children }) {
 
 export default function Home() {
   return (
-    <main className="doc">
-      <header className="top">
-        <p className="eyebrow">Open speech benchmark · Hiligaynon (Ilonggo)</p>
-        <h1>Sugidanon 🎙️</h1>
-        <p className="tagline">
-          The first openly-licensed, <strong>code-switch-labeled speech benchmark</strong> for
-          Hiligaynon — a language spoken by 9M+ Filipinos yet nearly invisible to modern
-          speech technology.
-        </p>
-        <nav className="links">
-          <a className="btn primary" href={COLAB} target="_blank" rel="noreferrer">▶ Run the benchmark (Colab)</a>
-          <a className="btn" href={HF} target="_blank" rel="noreferrer">📦 Dataset (Hugging Face)</a>
-          <a className="btn" href={GITHUB} target="_blank" rel="noreferrer">💻 Code (GitHub)</a>
-          <Link className="btn" href="/demo">🗣 Translation demo</Link>
-        </nav>
-      </header>
+    <div className="page">
+      <main className="wrap">
+        <header className="hero glass">
+          <p className="kicker">Open speech benchmark &middot; Hiligaynon (Ilonggo)</p>
+          <h1>Sugidanon</h1>
+          <p className="lede">
+            The first openly-licensed, code-switch-labeled speech benchmark for
+            Hiligaynon &mdash; a language spoken by over 9 million Filipinos, yet
+            nearly invisible to modern speech technology.
+          </p>
+          <nav className="links">
+            <a className="pill primary" href={COLAB} target="_blank" rel="noreferrer">Run the benchmark</a>
+            <a className="pill" href={HF} target="_blank" rel="noreferrer">Dataset</a>
+            <a className="pill" href={GITHUB} target="_blank" rel="noreferrer">Source code</a>
+            <Link className="pill" href="/demo">Translation demo</Link>
+          </nav>
+        </header>
 
-      <section className="card finding">
-        <h2>The finding</h2>
-        <p>
-          Run an off-the-shelf Tagalog ASR model (Whisper) on real Ilonggo speech and it
-          <strong> catches the borrowed English/Tagalog words but misses the Hiligaynon.</strong>
-          Sugidanon makes that gap measurable with a <em>switch penalty</em>: WER at the moment
-          the language switches, minus WER on monolingual words.
-        </p>
-        <div className="grid">
-          <table>
-            <tbody>
-              {results.map(([k, v]) => (
-                <tr key={k}><td>{k}</td><td><strong>{v}</strong></td></tr>
-              ))}
-            </tbody>
-          </table>
-          <table>
-            <thead><tr><td>switch by pair</td><td>WER</td></tr></thead>
-            <tbody>
-              {pairs.map(([k, v]) => (
-                <tr key={k}><td>{k}</td><td><strong>{v}</strong></td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="muted">
-          Negative penalty = switch words scored <em>better</em> than monolingual ones: the
-          model knows the loanwords, not the Ilonggo matrix. <code>tl↔en</code> is near-solved
-          (6%); <code>hil↔en</code> is worst (41%). The gap scales with Hiligaynon.
-          Baseline: Whisper small, single speaker — preliminary.
-        </p>
-      </section>
+        <section className="glass finding">
+          <span className="eyebrow">The finding</span>
+          <h2 className="punch">
+            Today&apos;s speech AI hears the English and Tagalog in Ilonggo speech
+            &mdash; but misses the Hiligaynon itself.
+          </h2>
+          <p className="plain">
+            When a Hiligaynon speaker mixes in an English or Tagalog word, an
+            off-the-shelf model transcribes it almost perfectly. The moment they
+            speak actual Hiligaynon, it fails roughly <strong>two of every three
+            words</strong>. We turned that blind spot into a measurable number.
+          </p>
 
-      <section className="card">
-        <h2>What&apos;s inside</h2>
-        <ul>
-          <li><strong>40 code-switch clips</strong> (~3.1 min), one Hiligaynon speaker.</li>
-          <li><strong>8 domains:</strong> market, transport, school/work, family, health,
-            culture, everyday, oral tradition / heritage.</li>
-          <li><strong>4 switch types:</strong> <code>HIL</code>, <code>HIL+EN</code>,
-            <code>HIL+TL</code>, <code>HIL+TL+EN</code>.</li>
-          <li><strong>Per-word language tags</strong> (<code>hil</code>/<code>tl</code>/<code>en</code>)
-            so the scorer isolates switch-region errors.</li>
-          <li>Transcripts reviewed by the speaker; per-word tags auto-seeded, pending a
-            confirmation pass. CC BY 4.0.</li>
-        </ul>
-      </section>
+          <div className="bars">
+            <div className="barcol">
+              <h3>Word error rate by region</h3>
+              <p className="colsub">Higher is worse. The model does best exactly where it leans on borrowed words.</p>
+              {breakdown.map((b) => <Bar key={b.label} {...b} />)}
+            </div>
+            <div className="barcol">
+              <h3>Error rate by switch pair</h3>
+              <p className="colsub">The more Hiligaynon is involved, the harder it gets.</p>
+              {pairs.map((b) => <Bar key={b.label} {...b} />)}
+            </div>
+          </div>
 
-      <section className="card">
-        <h2>Use it</h2>
-        <p><strong>Load the dataset</strong> (one line, audiofolder layout):</p>
-        <Code>{`from datasets import load_dataset
+          <div className="takeaway">
+            <strong>Why it matters:</strong> the failure scales with how much
+            Hiligaynon a sentence contains. Tagalog&ndash;English code-switching is
+            nearly solved (6% error); Hiligaynon&ndash;English is the worst (41%).
+            That gap is what Sugidanon measures &mdash; and it&apos;s the first open
+            dataset that lets anyone measure it.
+            <span className="fine">Baseline: OpenAI Whisper (small), single speaker. Preliminary.</span>
+          </div>
+        </section>
+
+        <section className="glass">
+          <h2>What&apos;s inside</h2>
+          <div className="chips">
+            <div className="chip"><strong>40</strong><span>code-switch clips (~3.1 min)</span></div>
+            <div className="chip"><strong>8</strong><span>everyday domains</span></div>
+            <div className="chip"><strong>4</strong><span>switch types</span></div>
+            <div className="chip"><strong>per-word</strong><span>hil / tl / en tags</span></div>
+          </div>
+          <p className="body">
+            Domains span market, transport, school/work, family, health, culture,
+            everyday talk, and oral tradition. Every word is tagged by language, so
+            the scorer can isolate exactly where errors happen. Transcripts were
+            reviewed by a native speaker; per-word tags are seed-labeled pending a
+            confirmation pass. Released under CC BY 4.0.
+          </p>
+        </section>
+
+        <section className="glass">
+          <h2>Use it</h2>
+          <p className="body">Load the dataset in one line:</p>
+          <Code>{`from datasets import load_dataset
 
 ds = load_dataset("LauelKills/sugidanon-hil-codeswitch",
                   data_dir="data/audio", split="train")
 print(ds[0]["transcript"], ds[0]["switch_type"])
 print(ds[0]["tokens"])   # per-word hil/tl/en tags`}</Code>
-
-        <p><strong>Reproduce the benchmark</strong> — one click, no setup:&nbsp;
-          <a href={COLAB} target="_blank" rel="noreferrer">open the Colab</a> → Runtime → Run all.</p>
-
-        <p><strong>Or locally</strong> (clone the repo first):</p>
-        <Code>{`python3 scripts/validate.py --kind asr --dir data/annotations
-python3 scripts/run_whisper.py --model small --language tl
+          <p className="body">
+            Reproduce the whole benchmark with no local setup:&nbsp;
+            <a className="ilink" href={COLAB} target="_blank" rel="noreferrer">open the Colab</a> and
+            choose Runtime &rarr; Run all. Or run it locally:
+          </p>
+          <Code>{`python3 scripts/run_whisper.py --model small --language tl
 python3 score.py --ref data/annotations --hyp data/predictions`}</Code>
-      </section>
+        </section>
 
-      <section className="card">
-        <h2>Build on it</h2>
-        <p>Sugidanon is a building block, not a finished product. Ways to extend:</p>
-        <ul>
-          <li><strong>Benchmark another model.</strong> Run Whisper <code>large-v3</code> or
-            Meta MMS, drop predictions in <code>data/predictions/asr/&lt;model&gt;/</code>, then
-            <code> python3 scripts/eval_asr_baselines.py</code> for a side-by-side table.</li>
-          <li><strong>Grow the corpus.</strong> Add speakers/clips with the capture pipeline:
-            edit the elicitation set, record with <code>scripts/record.py</code> (or batch-split
-            a session via <code>scripts/split_claps.py</code>).</li>
-          <li><strong>Confirm the labels.</strong> Have a Hiligaynon speaker verify the per-word
-            tags, flip <code>lang_tags_status</code> to <code>reviewed</code> — then the
-            switch/monolingual split is gold.</li>
-          <li><strong>Fine-tune.</strong> Use the reviewed split as eval while adapting an open
-            multilingual model toward Hiligaynon; keep this test set frozen.</li>
-          <li><strong>Extend to a pipeline.</strong> Reuse the corpus as the speech component of
-            STT → translation → TTS for Ilonggo.</li>
-        </ul>
-      </section>
+        <section className="glass">
+          <h2>Build on it</h2>
+          <p className="body">Sugidanon is a building block, not a finished product. You can:</p>
+          <ul className="list">
+            <li>Benchmark another model (Whisper large-v3, Meta MMS) on the same clips and compare switch penalties.</li>
+            <li>Grow the corpus &mdash; add speakers and clips with the included capture and clap-splitting pipeline.</li>
+            <li>Confirm the per-word tags with a native speaker to harden the switch/monolingual split.</li>
+            <li>Fine-tune an open multilingual model toward Hiligaynon, keeping this set as a frozen test.</li>
+            <li>Extend it into a full speech-to-text, translation, and text-to-speech pipeline for Ilonggo.</li>
+          </ul>
+        </section>
 
-      <section className="card">
-        <h2>Why it matters</h2>
-        <p>
-          The Philippines has 130+ languages. Tagalog speech recognition has advanced;
-          regional tongues like Hiligaynon, Cebuano, and Waray still lack open datasets,
-          benchmarks, and models. Real Ilonggo speech constantly mixes Hiligaynon, Tagalog,
-          and English — exactly where generic systems break. Sugidanon turns that invisible
-          failure into a number the next developer can build against.
-        </p>
-      </section>
+        <section className="glass">
+          <h2>Why this matters</h2>
+          <p className="body">
+            The Philippines has more than 130 languages. Tagalog speech
+            recognition has advanced; regional tongues like Hiligaynon, Cebuano,
+            and Waray still lack open datasets, benchmarks, and models. Real
+            Ilonggo speech constantly mixes Hiligaynon, Tagalog, and English &mdash;
+            exactly where generic systems break. Sugidanon turns that invisible
+            failure into a number the next developer can build against.
+          </p>
+        </section>
 
-      <footer className="foot">
-        <p>
-          <strong>Acknowledgments.</strong> Recorded and reviewed by <strong>Aziel Faith
-          Agustin</strong> (Hiligaynon speaker). Built by Team Hague for ACM TechSprint
-          Asteria 2026.
-        </p>
-        <p className="muted">
-          Data: CC BY 4.0 · Code: MIT ·&nbsp;
-          <a href={HF} target="_blank" rel="noreferrer">Hugging Face</a> ·&nbsp;
-          <a href={GITHUB} target="_blank" rel="noreferrer">GitHub</a> ·&nbsp;
-          <a href={COLAB} target="_blank" rel="noreferrer">Colab</a>
-        </p>
-      </footer>
+        <footer className="foot">
+          <p>
+            Recorded and reviewed by <strong>Aziel Faith Agustin</strong>
+            (Hiligaynon speaker). Built by Team Hague for ACM TechSprint Asteria 2026.
+          </p>
+          <p className="fine">
+            Data: CC BY 4.0 &middot; Code: MIT &middot;{" "}
+            <a className="ilink" href={HF} target="_blank" rel="noreferrer">Hugging Face</a> &middot;{" "}
+            <a className="ilink" href={GITHUB} target="_blank" rel="noreferrer">GitHub</a> &middot;{" "}
+            <a className="ilink" href={COLAB} target="_blank" rel="noreferrer">Colab</a>
+          </p>
+        </footer>
+      </main>
 
       <style jsx>{`
-        .doc { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
-        .top { margin-bottom: 32px; }
-        .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; opacity: .7; margin: 0 0 8px; }
-        h1 { font-size: 2.6rem; margin: 0 0 12px; }
-        .tagline { font-size: 1.15rem; line-height: 1.55; opacity: .92; margin: 0 0 24px; }
-        .links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .btn { display: inline-block; padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(127,127,127,.35);
-               text-decoration: none; font-weight: 600; font-size: .95rem; }
-        .btn.primary { background: #ff6b4a; color: #fff; border-color: #ff6b4a; }
-        .card { border: 1px solid rgba(127,127,127,.25); border-radius: 16px; padding: 24px 28px; margin: 18px 0; }
-        .card h2 { margin: 0 0 12px; font-size: 1.4rem; }
-        .card p { line-height: 1.6; margin: 0 0 12px; }
-        .card ul { line-height: 1.65; padding-left: 20px; margin: 0; }
-        .card li { margin: 6px 0; }
-        .finding .grid { display: flex; flex-wrap: wrap; gap: 24px; margin: 8px 0 12px; }
-        table { border-collapse: collapse; }
-        td { padding: 6px 18px 6px 0; vertical-align: top; }
-        thead td { opacity: .6; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
-        .muted { opacity: .7; font-size: .92rem; }
-        code { background: rgba(127,127,127,.18); padding: 1px 6px; border-radius: 5px; font-size: .88em; }
-        .code { background: rgba(127,127,127,.12); border: 1px solid rgba(127,127,127,.2);
-                border-radius: 10px; padding: 16px; overflow-x: auto; font-size: .85rem; line-height: 1.5; }
-        .code code { background: none; padding: 0; }
-        .foot { margin-top: 28px; border-top: 1px solid rgba(127,127,127,.25); padding-top: 20px; }
-        .foot a { color: inherit; }
-        @media (max-width: 600px) { h1 { font-size: 2rem; } .doc { padding: 28px 16px 60px; } }
+        .page {
+          min-height: 100vh; color: #f3f6fc;
+          background:
+            radial-gradient(80% 70% at 12% 0%, rgba(56,140,255,.30), transparent 55%),
+            radial-gradient(70% 60% at 100% 8%, rgba(150,110,255,.28), transparent 55%),
+            radial-gradient(80% 70% at 80% 100%, rgba(35,200,190,.22), transparent 55%),
+            #0a0e1c;
+          background-attachment: fixed;
+        }
+        .wrap { max-width: 940px; margin: 0 auto; padding: 56px 20px 72px; display: flex; flex-direction: column; gap: 18px; }
+
+        .glass {
+          background: rgba(20,28,48,.55);
+          backdrop-filter: blur(18px) saturate(140%);
+          -webkit-backdrop-filter: blur(18px) saturate(140%);
+          border: 1px solid rgba(255,255,255,.12);
+          border-radius: 20px;
+          padding: 30px 34px;
+        }
+
+        .hero { text-align: left; }
+        .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; color: #9fc0ff; margin: 0 0 12px; font-weight: 600; }
+        h1 { font-size: 2.9rem; margin: 0 0 14px; letter-spacing: -.02em; color: #ffffff; font-weight: 700; }
+        .lede { font-size: 1.16rem; line-height: 1.6; color: #dbe3f4; margin: 0 0 22px; max-width: 62ch; }
+        .links { display: flex; flex-wrap: wrap; gap: 12px; }
+        .pill {
+          display: inline-block; padding: 11px 18px; border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.20); color: #f3f6fc; text-decoration: none;
+          font-weight: 600; font-size: .95rem; background: rgba(255,255,255,.08);
+          transition: background .15s ease;
+        }
+        .pill:hover { background: rgba(255,255,255,.16); }
+        .pill.primary { border-color: transparent; color: #06121f;
+          background: linear-gradient(90deg,#73c8ff,#54e0c6); }
+
+        h2 { font-size: 1.5rem; margin: 0 0 14px; letter-spacing: -.01em; color: #ffffff; }
+        .eyebrow { display: inline-block; text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; color: #7cc4ff; margin-bottom: 12px; font-weight: 600; }
+        .punch { font-size: 1.65rem; line-height: 1.35; margin: 0 0 16px; letter-spacing: -.01em; color: #ffffff; font-weight: 700; }
+        .plain { font-size: 1.05rem; line-height: 1.65; color: #dbe3f4; margin: 0 0 26px; max-width: 70ch; }
+        .plain strong, .punch strong { color: #ffffff; }
+        .body { font-size: 1rem; line-height: 1.65; color: #d4dcee; margin: 0 0 14px; max-width: 72ch; }
+
+        .bars { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 6px 0 24px; }
+        .barcol h3 { font-size: 1.02rem; margin: 0 0 4px; color: #ffffff; }
+        .colsub { font-size: .86rem; color: #aab8d4; margin: 0 0 18px; line-height: 1.45; }
+        .bar { margin: 0 0 16px; }
+        .barhead { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; gap: 10px; }
+        .barlabel { font-size: .94rem; color: #eaf0fb; }
+        .barval { font-size: 1.02rem; font-weight: 700; white-space: nowrap; }
+        .bartrack { height: 12px; border-radius: 999px; background: rgba(255,255,255,.10); overflow: hidden; }
+        .barfill { height: 100%; border-radius: 999px; transition: width .6s ease; }
+        .barnote { display: block; font-size: .8rem; color: #9aa9c6; margin-top: 5px; }
+
+        .takeaway { font-size: 1rem; line-height: 1.62; color: #eef2fb; padding: 18px 20px;
+          border-radius: 14px; background: rgba(90,150,255,.14); border: 1px solid rgba(120,170,255,.28); }
+        .takeaway strong { color: #ffffff; }
+        .fine { display: block; margin-top: 8px; font-size: .82rem; color: #a6b3cf; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 18px; }
+        .chip { flex: 1 1 140px; border-radius: 14px; padding: 16px 18px;
+          background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); }
+        .chip strong { display: block; font-size: 1.5rem; color: #ffffff; }
+        .chip span { font-size: .82rem; color: #b6c2da; }
+
+        .list { margin: 0; padding-left: 20px; line-height: 1.7; color: #d4dcee; }
+        .list li { margin: 6px 0; }
+
+        .ilink { color: #7cc4ff; text-decoration: none; border-bottom: 1px solid rgba(124,196,255,.45); }
+        .ilink:hover { border-color: #7cc4ff; }
+
+        .code {
+          background: rgba(4,8,18,.72); border: 1px solid rgba(255,255,255,.10);
+          border-radius: 12px; padding: 16px 18px; overflow-x: auto;
+          font-size: .85rem; line-height: 1.55; color: #d7e6ff; margin: 0 0 14px;
+        }
+        .code code { background: none; }
+
+        .foot { padding: 6px 6px 0; color: #b6c2da; font-size: .95rem; line-height: 1.6; }
+        .foot a { color: #7cc4ff; }
+        .foot strong { color: #f3f6fc; }
+
+        @media (max-width: 720px) {
+          h1 { font-size: 2.1rem; }
+          .punch { font-size: 1.32rem; }
+          .bars { grid-template-columns: 1fr; gap: 20px; }
+          .glass { padding: 24px 20px; }
+        }
       `}</style>
-    </main>
+    </div>
   );
 }
