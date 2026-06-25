@@ -270,6 +270,8 @@ sugidanon/
 │   ├── validate.py                   # validates translation benchmark or ASR files
 │   ├── benchmark_asr.py              # one-command ASR validation + scoring
 │   ├── package_dataset.py            # release package builder
+│   ├── split_dataset.py              # deterministic split CSV builder
+│   ├── review_annotations.py         # terminal language-tag review
 │   └── ...                           # future speech/G2P utilities
 ├── data/
 │   ├── benchmark/
@@ -337,6 +339,11 @@ What ships:
   build a release package.
 - **Release packager** — `scripts/package_dataset.py` exports metadata,
   statistics, dataset card, predictions, and benchmark report to `release/`.
+- **Dataset split tool** — `scripts/split_dataset.py` writes deterministic
+  `train.csv`, `validation.csv`, and `test.csv` splits, using speaker-aware
+  grouping when enough speakers exist.
+- **Token-tag review CLI** — `scripts/review_annotations.py` lets a reviewer
+  approve or edit per-token `hil` / `tl` / `en` labels in terminal.
 - **Reproducible capture pipeline** — `scripts/build_codeswitch_set.py` emits the
   annotation stubs from an elicitation set; `scripts/record.py` captures audio
   and writes the matching annotation. See `docs/recording_kit.md`.
@@ -364,6 +371,16 @@ python3 scripts/benchmark_asr.py --model small --language tl
 
 # build a redistributable metadata + benchmark package
 python3 scripts/benchmark_asr.py --skip-whisper --package
+
+# build deterministic train/validation/test split CSVs
+python3 scripts/split_dataset.py --output-dir release/dataset
+
+# review token language tags
+python3 scripts/review_annotations.py --summary
+python3 scripts/review_annotations.py --only hil_cs_001
+
+# run dataset integrity tests
+python3 -m unittest discover -s tests
 ```
 
 Per-word language tags are `seed_unverified`: a qualified Hiligaynon speaker must
@@ -371,6 +388,10 @@ review them before the clips are treated as gold. Audio is recorded by
 contributors (see the recording kit) — the repo does not redistribute
 third-party speech under CC BY 4.0. The bundled ASR predictions are baseline
 outputs for reproducibility, not final model-quality claims.
+
+Sugidanon's strongest distinction is not generic data cleanup. It measures
+failure at Hiligaynon/Tagalog/English switch points and connects that speech
+benchmark to Hiligaynon translation and live demos.
 
 ## Next.js / Vercel app
 
@@ -600,6 +621,45 @@ gold data.
 AI-generated content was not treated as authoritative linguistic ground truth.
 The current seed translations, phrase examples, and ASR labels are marked as
 requiring future human review where appropriate.
+
+## Data protection, privacy & ethics
+
+This project handles human voice recordings, which are personal data. We treat
+them accordingly.
+
+- **Informed consent.** Audio is collected only from speakers who agreed to have
+  their voice recorded, published as an open dataset under CC BY 4.0, and reused
+  for speech-technology research. Consent is obtained before recording.
+- **Minimal personal data.** Clips contain elicited, scripted sentences — not
+  private conversations. Speakers are identified only by a coarse, anonymized id
+  (e.g. `spk01`) plus optional non-identifying metadata (region, age band,
+  gender, Hiligaynon fluency). We do **not** publish contact details, exact
+  location, or other directly identifying information in the dataset files.
+  A speaker's name appears only as voluntary credit in `Acknowledgments`.
+- **No sensitive content.** The elicitation scripts avoid real health records,
+  financial details, or other sensitive personal information about real people.
+  Speakers are asked to remove a recording if they accidentally include anything
+  private.
+- **Right to withdraw.** A contributing speaker may request removal of their
+  clips at any time; we will delete the affected audio and annotations from the
+  repository and the published dataset and note the change.
+- **Provenance & licensing.** Third-party audio or text is never relicensed.
+  Source and license are recorded per item (see `docs/licensing.md`,
+  `RESOURCES.md`); external corpora stay under their own terms and are
+  git-ignored, not redistributed.
+- **Honest labeling.** Speaker fluency is recorded (`native` / `fluent` /
+  `non_native`); non-native clips are flagged and must not be presented as
+  native gold data. AI-assisted labels are marked `seed_unverified` until a
+  human reviews them.
+- **Intended use.** A research and evaluation building block for inclusive
+  Philippine speech technology. It must not be used to identify, profile,
+  surveil, or impersonate the speakers, or to build voice-cloning systems
+  without the speakers' separate, explicit consent.
+- **Security.** Access tokens and credentials are never committed; secrets are
+  kept out of the repository (`.gitignore`), and any exposed token is rotated.
+
+If you reuse this dataset, keep these protections: preserve attribution, honor
+withdrawal requests forwarded to us, and do not attempt to re-identify speakers.
 
 ## License
 
