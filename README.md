@@ -10,6 +10,23 @@
 - **Bumpus, Michael**
 - **Arwin Jeremy**
 
+## Team roles and rules
+
+| Member | Primary role |
+|--------|--------------|
+| Legaspi, Jazztinn Kyle | Lead / pipeline, evaluation scripts, demo app |
+| De Guzman, Nimeesha Baterna | Benchmark data, schema, domain examples |
+| Bumpus, Michael | Frontend / demo UI, documentation |
+| Arwin Jeremy | Lexicon, Tagalog/Hiligaynon bridge, review coordination |
+
+Working rules:
+
+- Hiligaynon references stay `seed_unverified` until a qualified speaker reviews them.
+- AI output is never treated as authoritative language ground truth.
+- Every commit keeps the core benchmark tooling dependency-free (stdlib).
+- Source provenance and license are recorded for any third-party data.
+- Decisions and scope changes are agreed by the team before merging to `main`.
+
 # Tinig sa Liwanag
 
 **A context-aware Hiligaynon text translation benchmark, baseline, and demo
@@ -47,6 +64,24 @@ Live demo:
 ```text
 https://tinig-sa-liwanag.vercel.app
 ```
+
+## Features
+
+- **Context-aware translation benchmark** — JSONL examples labeled with domain,
+  context notes, linguistic phenomena, difficulty, and review status.
+- **Annotation schema** (`SCHEMA.md`) for reviewed Hiligaynon translation examples.
+- **Baseline translation runner** — dictionary backend (offline, zero deps) plus
+  an optional Hugging Face neural backend.
+- **Automatic evaluator** — coverage, exact match, token F1, chrF, per-domain
+  summaries.
+- **Two demo apps** — a stdlib local Python app (`app/`) and a Next.js/Vercel app
+  (`pages/`), both with layered phrase + dictionary fallback.
+- **Lexicon tooling** — curated `data/lexicon_hil.tsv`, plus builders that mine
+  Kaikki/Wiktionary for en→hil and Tagalog→Hiligaynon bridge entries.
+- **Sample prompts** across health, education, emergency, public service, daily
+  life, and code-switching for quick demoing.
+- **Future-ready speech utilities** — code-switched ASR scorer, Whisper runner,
+  Hiligaynon G2P, and TTS routing kept for the later STT/TTS phase.
 
 ## Why this matters
 
@@ -136,6 +171,18 @@ For demo quality, the deployed app uses three layers:
 
 The phrase and dictionary layers improve presentation, but the research artifact
 remains the benchmark/evaluation pipeline.
+
+## Technologies Used
+
+- **Python 3** (stdlib only for the core benchmark tooling — no install needed)
+- **Next.js / React** + **Vercel** for the hosted demo and serverless API route
+- **Node.js / npm** for the web app build
+- **Hugging Face `transformers` + `torch`** (optional neural translation backend)
+- **Ollama** (optional local context-aware LLM, e.g. `aya:8b`)
+- **Kaikki.org / Wiktextract** machine-readable dictionaries for lexicon building
+- Evaluation: custom token F1 + chrF-style metrics (pure Python)
+- Future speech phase: **OpenAI Whisper**, **Meta MMS**, F5-TTS/VITS Hiligaynon,
+  `ffmpeg`
 
 ## Repository structure
 
