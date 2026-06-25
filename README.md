@@ -6,8 +6,9 @@
 **Live demos:**
 
 ```text
-https://tinig-sa-liwanag.vercel.app   # translation benchmark demo
-https://tinig-one.vercel.app          # Tinig — AI assistant using Tinig sa Liwanag's resources
+https://tinig-sa-liwanag.vercel.app   # Translation benchmark demo
+https://tinig-one.vercel.app          # Companion Demo: Tinig — AI assistant using Tinig sa Liwanag's resources
+Tinig (companion demo repository): https://github.com/ALinuxPerson/tinig
 ```
 
 ## Members
