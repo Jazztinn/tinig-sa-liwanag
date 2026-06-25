@@ -12,9 +12,8 @@ See `docs/licensing.md` for the repository license structure and
 | Source ID | Title | URL | Rights | Subset | Clips | Notes |
 |-----------|-------|-----|--------|--------|-------|-------|
 | `src_scripted_01` | Team Hague elicitation set | local (`data/audio/`) | CC BY 4.0 (text); audio recorded by the reviewing speaker | `scripted_native` | 40 | Speaker consented; reference text reviewed; per-word tags `seed_unverified` |
-| `src_podcast_01` | TBD (YouTube) | TBD — fill exact URL | YouTube; rights confirmed by Team Hague | `native_podcast` | 10 | Whisper-seeded transcripts; `seed_unverified`; per-word tags not set; native review required before gold |
-| `src_vlog_01` | TBD (YouTube) | TBD — fill exact URL | YouTube; rights confirmed by Team Hague | `native_vlog` | 10 | Whisper-seeded; `seed_unverified`; exclude music clips (`vlog_001/003/010` flagged) on review |
-| `src_nonnative_01` | TBD | TBD | TBD | `non_native_eval` | TBD | Robustness only — never counted as native gold |
+| `src_nonnative_01` | TBD (YouTube podcast) | TBD — fill exact URL | YouTube; rights confirmed by Team Hague | `non_native_eval` | 10 | Non-native speech (`podcast_*`); `not_native_gold`; Whisper-seeded; tags not set; robustness only |
+| `src_nonnative_02` | TBD (YouTube vlog) | TBD — fill exact URL | YouTube; rights confirmed by Team Hague | `non_native_eval` | 10 | Non-native speech (`vlog_*`); `not_native_gold`; exclude music clips (`vlog_001/003/010`) on review; robustness only |
 
 ## Required record per external source
 
