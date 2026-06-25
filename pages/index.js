@@ -93,7 +93,7 @@ export default function Home() {
       <section className="hero">
         <div>
           <p className="eyebrow">Context-aware Hiligaynon translation MVP</p>
-          <h1>Tinig sa Liwanag</h1>
+          <h1>Sugidanon</h1>
           <p className="lede">
             A reproducible benchmark scaffold, dictionary baseline, evaluator, and demo for
             English, Filipino, and code-switched text into Hiligaynon.

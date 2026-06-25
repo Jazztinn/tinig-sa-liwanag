@@ -1,6 +1,6 @@
 # Schema
 
-Tinig sa Liwanag now uses a translation-first schema. The primary artifact is a
+Sugidanon now uses a translation-first schema. The primary artifact is a
 JSONL benchmark for context-aware translation into Hiligaynon.
 
 Legacy code-switched ASR annotations are still supported for future speech work,

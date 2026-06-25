@@ -6,8 +6,8 @@
 **Live demos:**
 
 ```text
-https://tinig-sa-liwanag.vercel.app   # Translation benchmark demo
-https://tinig-one.vercel.app          # Companion Demo: Tinig — AI assistant using Tinig sa Liwanag's resources
+https://sugidanon.vercel.app          # Translation benchmark demo
+https://tinig-one.vercel.app          # Companion Demo: Tinig — AI assistant using Sugidanon's resources
 Tinig (companion demo repository): https://github.com/ALinuxPerson/tinig
 ```
 
@@ -35,7 +35,7 @@ Working rules:
 - Source provenance and license are recorded for any third-party data.
 - Decisions and scope changes are agreed by the team before merging to `main`.
 
-# Tinig sa Liwanag
+# Sugidanon
 
 **A context-aware Hiligaynon text translation benchmark, baseline, and demo
 pipeline.**
@@ -182,7 +182,7 @@ remains the benchmark/evaluation pipeline.
 ### Tinig — the AI assistant demo
 
 The MVP also includes a working demo app named **Tinig**: an AI assistant built
-on top of Tinig sa Liwanag that can converse in **Hiligaynon, Tagalog, and
+on top of Sugidanon that can converse in **Hiligaynon, Tagalog, and
 English** (including code-switched input).
 
 How it works:
@@ -215,7 +215,7 @@ remains the research artifact; Tinig shows what it enables.
 ## Repository structure
 
 ```text
-tinig-sa-liwanag/
+sugidanon/
 ├── README.md
 ├── SCHEMA.md
 ├── RESOURCES.md

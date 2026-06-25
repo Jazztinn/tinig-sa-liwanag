@@ -4,7 +4,7 @@ language:
   - hil
   - tl
   - en
-pretty_name: Tinig sa Liwanag / Sugidanon Hiligaynon Code-Switched Speech Test Set
+pretty_name: Sugidanon Hiligaynon Code-Switched Speech Test Set
 task_categories:
   - automatic-speech-recognition
   - audio-classification
@@ -22,11 +22,11 @@ size_categories:
   - n<1K
 ---
 
-# Dataset Card: Tinig sa Liwanag / Sugidanon
+# Dataset Card: Sugidanon
 
 ## Dataset Summary
 
-Tinig sa Liwanag / Sugidanon is a small, open, labeled test-set scaffold for
+Sugidanon is a small, open, labeled test-set scaffold for
 evaluating code-switched Hiligaynon, Filipino/Tagalog, and English speech
 recognition.
 
@@ -154,8 +154,8 @@ LICENSE
 ## Citation
 
 ```bibtex
-@dataset{team_hague_tinig_sa_liwanag_2026,
-  title = {Tinig sa Liwanag / Sugidanon: Code-switched Hiligaynon speech and translation benchmark scaffold},
+@dataset{team_hague_sugidanon_2026,
+  title = {Sugidanon: Code-switched Hiligaynon speech and translation benchmark scaffold},
   author = {{Team Hague}},
   year = {2026},
   license = {CC BY 4.0}

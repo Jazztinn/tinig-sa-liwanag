@@ -1,6 +1,6 @@
 # AI Usage Disclosure
 
-**Project:** Tinig sa Liwanag - Context-Aware Hiligaynon Translation Benchmark
+**Project:** Sugidanon - Context-Aware Hiligaynon Translation Benchmark
 
 **Track:** Inclusive Speech Technology for Philippine Languages
 

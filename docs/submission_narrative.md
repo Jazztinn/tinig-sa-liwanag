@@ -2,7 +2,7 @@
 
 ## One-line pitch
 
-Tinig sa Liwanag is a reproducible benchmark scaffold and demo for
+Sugidanon is a reproducible benchmark scaffold and demo for
 context-aware Hiligaynon translation, designed as the language foundation for
 future Philippine STT/TTS systems.
 

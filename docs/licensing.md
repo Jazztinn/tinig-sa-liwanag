@@ -24,7 +24,7 @@ This includes:
 When using the dataset, cite:
 
 ```text
-Team Hague. Tinig sa Liwanag / Sugidanon: Code-switched Hiligaynon speech and
+Team Hague. Sugidanon: Code-switched Hiligaynon speech and
 translation benchmark scaffold. 2026. CC BY 4.0.
 ```
 
