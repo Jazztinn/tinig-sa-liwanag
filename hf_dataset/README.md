@@ -189,6 +189,28 @@ See:
 docs/transcription_guidelines.md
 ```
 
+## Data protection & ethics
+
+These are human voice recordings — personal data — handled accordingly.
+
+- **Consent.** Recorded only from speakers who agreed to open release (CC BY 4.0)
+  and reuse for speech-technology research, obtained before recording.
+- **Minimal / anonymized PII.** Scripted elicited sentences, not private
+  conversations. Speakers are identified by a coarse anonymized id (e.g.
+  `spk01`) plus optional non-identifying metadata (region, age band, gender,
+  Hiligaynon fluency). No contact details or exact location in the data; a name
+  appears only as voluntary credit.
+- **Right to withdraw.** A speaker may request removal; affected audio and
+  annotations are deleted from the dataset.
+- **Honest labeling.** `speaker.fluency` is recorded (`native` / `fluent` /
+  `non_native`); non-native clips are flagged and must not be used as native
+  gold data. AI-assisted tags are `seed_unverified` until human-reviewed.
+- **Intended use.** A research/evaluation building block for inclusive Philippine
+  speech technology. Do **not** use it to identify, profile, surveil, or
+  impersonate speakers, or to build voice-cloning systems without the speakers'
+  separate explicit consent. If you reuse it: preserve attribution, honor
+  withdrawal requests, and do not attempt to re-identify speakers.
+
 ## Licensing
 
 Dataset files created by Team Hague are released under **CC BY 4.0**.
