@@ -8,10 +8,11 @@ unchanged; merge into the headline only after a multi-speaker decision.
 
 - Speaker: Nimeesha De Guzman (`spk02`), native Hiligaynon, female.
 - `subset: scripted_native`, `gold_status: native_gold`.
-- Transcripts come from the script; **per-word language tags are not set**
-  (`tokens[].lang = null`, `lang_tags_status: seed_unverified`) — a native
-  reviewer must confirm wording and tag tokens before scoring.
+- Transcripts come from the script; per-word language tags were reviewed by the
+  speaker (`lang_tags_status: reviewed`).
 - Clip IDs `spk2_001..040` map 1:1 to Script 3 lines 1–40.
+- This subset is not part of the headline benchmark yet because no bundled ASR
+  predictions or benchmark report have been generated for the multi-speaker set.
 
 ## Cut quality
 

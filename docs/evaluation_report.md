@@ -4,9 +4,9 @@
 
 The speech deliverable: **40 native-recorded code-switch clips** (3.1 min total),
 one Hiligaynon speaker, 8 domains (market, transport, school/work, family,
-health, culture, everyday, oral tradition), 4 switch types (`HIL`=10, `HIL+EN`=15,
-`HIL+TL`=8, `HIL+TL+EN`=7). Reference text reviewed by the speaker; per-word
-language tags auto-seeded, pending speaker confirmation.
+health, culture, everyday, oral tradition), 4 switch types (`HIL`=11, `HIL+EN`=17,
+`HIL+TL`=7, `HIL+TL+EN`=5). Reference text and per-word language tags were
+reviewed by a Hiligaynon speaker.
 
 ### Baseline result — Whisper small, `--language tl`
 
@@ -33,15 +33,14 @@ catches the borrowed words and misses the Ilonggo.**
 ### Caveats
 
 - Whisper **small** (not large-v3) — preliminary; a larger model lowers WER.
-- Per-word tags are `seed_unverified`; speaker confirmation firms up the
-  switch/monolingual split.
+- Per-word tags are speaker-reviewed for the current headline benchmark.
 - Single speaker — expand speakers before drawing model-level conclusions.
 
 ### Reproduce
 
 ```bash
 python3 scripts/validate.py --kind asr --dir data/annotations
-python3 scripts/run_whisper.py --model small --language tl   # or large-v3
+python3 scripts/run_whisper.py --model small --language tl   # optional refresh
 python3 score.py --ref data/annotations --hyp data/predictions
 ```
 
