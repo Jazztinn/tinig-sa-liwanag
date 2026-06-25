@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_005",
-  "audio_file": "audio/podcast_005.wav",
-  "duration_sec": 7.39,
+  "clip_id": "podcast_003",
+  "audio_file": "audio/podcast_003.wav",
+  "duration_sec": 5.5,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "at aton gamiton ng lingwahe kay",
+  "transcript": "podcast and longer talks yeah",
   "speaker": {
     "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
+  "subset": "non_native_eval",
   "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,32 +29,27 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "at",
+      "text": "podcast",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "aton",
+      "text": "and",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "gamiton",
+      "text": "longer",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "ng",
+      "text": "talks",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "lingwahe",
-      "lang": null
-    },
-    {
-      "idx": 5,
-      "text": "kay",
+      "text": "yeah",
       "lang": null
     }
   ]

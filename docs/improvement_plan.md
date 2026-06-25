@@ -35,11 +35,11 @@ Recommended current canonical values:
 
 | Metric | Value |
 |--------|-------|
-| Overall WER | 61.4% |
-| Monolingual Hiligaynon WER | 69.2% |
-| Switch-region WER | 38.8% |
-| Switch penalty | -30.4% |
-| `hil<->en` switch WER | 44.2% |
+| Overall WER | 59.5% |
+| Monolingual Hiligaynon WER | 66.3% |
+| Switch-region WER | 35.8% |
+| Switch penalty | -30.6% |
+| `hil<->en` switch WER | 40.0% |
 | `hil<->tl` switch WER | 24.4% |
 | `tl<->en` switch WER | 6.2% |
 
@@ -158,9 +158,9 @@ Include a table like:
 
 | Region | WER | Interpretation |
 |--------|-----|----------------|
-| Monolingual Hiligaynon | 69.2% | The model struggles most with Hiligaynon words. |
-| Switch-region | 38.8% | Borrowed English/Tagalog words are easier. |
-| `hil<->en` | 44.2% | Hardest switch pair. |
+| Monolingual Hiligaynon | 66.3% | The model struggles most with Hiligaynon words. |
+| Switch-region | 35.8% | Borrowed English/Tagalog words are easier. |
+| `hil<->en` | 40.0% | Hardest switch pair. |
 | `tl<->en` | 6.2% | Mostly solved by existing models. |
 
 ### 7. Report scores by subset
@@ -192,7 +192,7 @@ Report:
 
 | Model | Overall WER | HIL WER | Switch WER | Switch Penalty |
 |-------|-------------|---------|------------|----------------|
-| Whisper small `--language tl` | 61.4% | 69.2% | 38.8% | -30.4% |
+| Whisper small `--language tl` | 59.5% | 66.3% | 35.8% | -30.6% |
 | Whisper auto | TBD | TBD | TBD | TBD |
 | Whisper large-v3 | TBD | TBD | TBD | TBD |
 

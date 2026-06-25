@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_004",
-  "audio_file": "audio/podcast_004.wav",
-  "duration_sec": 6.4,
+  "clip_id": "podcast_006",
+  "audio_file": "audio/podcast_006.wav",
+  "duration_sec": 7.78,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "So... Dapat ula English. So sa sininga video...",
+  "transcript": "Kailigay noon. Okay. Kay podcast man inay, Bali... Na-inspire.",
   "speaker": {
     "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
+  "subset": "non_native_eval",
   "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,42 +29,47 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "So...",
+      "text": "Kailigay",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "Dapat",
+      "text": "noon.",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "ula",
+      "text": "Okay.",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "English.",
+      "text": "Kay",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "So",
+      "text": "podcast",
       "lang": null
     },
     {
       "idx": 5,
-      "text": "sa",
+      "text": "man",
       "lang": null
     },
     {
       "idx": 6,
-      "text": "sininga",
+      "text": "inay,",
       "lang": null
     },
     {
       "idx": 7,
-      "text": "video...",
+      "text": "Bali...",
+      "lang": null
+    },
+    {
+      "idx": 8,
+      "text": "Na-inspire.",
       "lang": null
     }
   ]

@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_002",
-  "audio_file": "audio/podcast_002.wav",
-  "duration_sec": 5.95,
+  "clip_id": "vlog_003",
+  "audio_file": "audio/vlog_003.wav",
+  "duration_sec": 12.0,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "thumbnail sa atun titul Ilong",
+  "transcript": "seal",
   "speaker": {
-    "id": "podcast_spk",
+    "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
-  "source_type": "podcast",
+  "subset": "non_native_eval",
+  "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,27 +29,7 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "thumbnail",
-      "lang": null
-    },
-    {
-      "idx": 1,
-      "text": "sa",
-      "lang": null
-    },
-    {
-      "idx": 2,
-      "text": "atun",
-      "lang": null
-    },
-    {
-      "idx": 3,
-      "text": "titul",
-      "lang": null
-    },
-    {
-      "idx": 4,
-      "text": "Ilong",
+      "text": "seal",
       "lang": null
     }
   ]

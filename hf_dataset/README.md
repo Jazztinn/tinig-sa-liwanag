@@ -84,9 +84,7 @@ extensions are kept **separate** and never blended into the headline WER.
 | Subset | Speaker | Speech type | Status |
 |--------|---------|-------------|--------|
 | `scripted_native` | Native | Prompted code-switch clips | Headline benchmark (40 clips) |
-| `native_podcast` | Native | Natural long-form | Extension, `seed_unverified` |
-| `native_vlog` | Native | Everyday conversational | Extension, `seed_unverified` |
-| `non_native_eval` | Non-native | Learner speech | Robustness only — never native gold |
+| `non_native_eval` | Non-native | Podcast/vlog speech | Robustness only (20 clips) — never native gold |
 
 Each clip carries `subset`, `source_type`, `speech_style`, and `gold_status`
 fields. Non-native clips are a robustness subset and must not be used as native

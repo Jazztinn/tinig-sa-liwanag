@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_008",
-  "audio_file": "audio/podcast_008.wav",
-  "duration_sec": 5.11,
+  "clip_id": "vlog_010",
+  "audio_file": "audio/vlog_010.wav",
+  "duration_sec": 6.53,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "anti-melai ng mga bisaya sila.",
+  "transcript": "Rest",
   "speaker": {
-    "id": "podcast_spk",
+    "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
-  "source_type": "podcast",
+  "subset": "non_native_eval",
+  "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,27 +29,7 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "anti-melai",
-      "lang": null
-    },
-    {
-      "idx": 1,
-      "text": "ng",
-      "lang": null
-    },
-    {
-      "idx": 2,
-      "text": "mga",
-      "lang": null
-    },
-    {
-      "idx": 3,
-      "text": "bisaya",
-      "lang": null
-    },
-    {
-      "idx": 4,
-      "text": "sila.",
+      "text": "Rest",
       "lang": null
     }
   ]

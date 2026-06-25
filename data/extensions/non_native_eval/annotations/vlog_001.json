@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_009",
-  "audio_file": "audio/podcast_009.wav",
-  "duration_sec": 5.38,
+  "clip_id": "vlog_001",
+  "audio_file": "audio/vlog_001.wav",
+  "duration_sec": 12.0,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "Anong so sa hiligayon, please comment down below.",
+  "transcript": "West high ground lounging town",
   "speaker": {
-    "id": "podcast_spk",
+    "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
-  "source_type": "podcast",
+  "subset": "non_native_eval",
+  "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,42 +29,27 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "Anong",
+      "text": "West",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "so",
+      "text": "high",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "sa",
+      "text": "ground",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "hiligayon,",
+      "text": "lounging",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "please",
-      "lang": null
-    },
-    {
-      "idx": 5,
-      "text": "comment",
-      "lang": null
-    },
-    {
-      "idx": 6,
-      "text": "down",
-      "lang": null
-    },
-    {
-      "idx": 7,
-      "text": "below.",
+      "text": "town",
       "lang": null
     }
   ]

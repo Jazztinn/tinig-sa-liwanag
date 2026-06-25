@@ -1,24 +1,24 @@
 {
-  "clip_id": "vlog_002",
-  "audio_file": "audio/vlog_002.wav",
-  "duration_sec": 12.0,
+  "clip_id": "vlog_005",
+  "audio_file": "audio/vlog_005.wav",
+  "duration_sec": 8.44,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "Iconatora International Sa God sa God Take out yam mam Anong imoy ang BIGA, BIGA aka biga biga Kung mapailu-ilo kam",
+  "transcript": "Bala anta lang, gidnaan. Dasaan, daka beach vibes man di ako. Ari, tahong tahong, gidya. Graby ka tahong, doka bagay. Gidya sa ako ng estatic. So kakawa niya man.",
   "speaker": {
     "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_vlog",
+  "subset": "non_native_eval",
   "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,107 +29,147 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "Iconatora",
+      "text": "Bala",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "International",
+      "text": "anta",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "Sa",
+      "text": "lang,",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "God",
+      "text": "gidnaan.",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "sa",
+      "text": "Dasaan,",
       "lang": null
     },
     {
       "idx": 5,
-      "text": "God",
+      "text": "daka",
       "lang": null
     },
     {
       "idx": 6,
-      "text": "Take",
+      "text": "beach",
       "lang": null
     },
     {
       "idx": 7,
-      "text": "out",
+      "text": "vibes",
       "lang": null
     },
     {
       "idx": 8,
-      "text": "yam",
+      "text": "man",
       "lang": null
     },
     {
       "idx": 9,
-      "text": "mam",
+      "text": "di",
       "lang": null
     },
     {
       "idx": 10,
-      "text": "Anong",
+      "text": "ako.",
       "lang": null
     },
     {
       "idx": 11,
-      "text": "imoy",
+      "text": "Ari,",
       "lang": null
     },
     {
       "idx": 12,
-      "text": "ang",
+      "text": "tahong",
       "lang": null
     },
     {
       "idx": 13,
-      "text": "BIGA,",
+      "text": "tahong,",
       "lang": null
     },
     {
       "idx": 14,
-      "text": "BIGA",
+      "text": "gidya.",
       "lang": null
     },
     {
       "idx": 15,
-      "text": "aka",
+      "text": "Graby",
       "lang": null
     },
     {
       "idx": 16,
-      "text": "biga",
+      "text": "ka",
       "lang": null
     },
     {
       "idx": 17,
-      "text": "biga",
+      "text": "tahong,",
       "lang": null
     },
     {
       "idx": 18,
-      "text": "Kung",
+      "text": "doka",
       "lang": null
     },
     {
       "idx": 19,
-      "text": "mapailu-ilo",
+      "text": "bagay.",
       "lang": null
     },
     {
       "idx": 20,
-      "text": "kam",
+      "text": "Gidya",
+      "lang": null
+    },
+    {
+      "idx": 21,
+      "text": "sa",
+      "lang": null
+    },
+    {
+      "idx": 22,
+      "text": "ako",
+      "lang": null
+    },
+    {
+      "idx": 23,
+      "text": "ng",
+      "lang": null
+    },
+    {
+      "idx": 24,
+      "text": "estatic.",
+      "lang": null
+    },
+    {
+      "idx": 25,
+      "text": "So",
+      "lang": null
+    },
+    {
+      "idx": 26,
+      "text": "kakawa",
+      "lang": null
+    },
+    {
+      "idx": 27,
+      "text": "niya",
+      "lang": null
+    },
+    {
+      "idx": 28,
+      "text": "man.",
       "lang": null
     }
   ]

@@ -1,24 +1,24 @@
 {
-  "clip_id": "vlog_003",
-  "audio_file": "audio/vlog_003.wav",
+  "clip_id": "vlog_009",
+  "audio_file": "audio/vlog_009.wav",
   "duration_sec": 12.0,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "seal",
+  "transcript": "malik nanda",
   "speaker": {
     "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_vlog",
+  "subset": "non_native_eval",
   "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,7 +29,12 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "seal",
+      "text": "malik",
+      "lang": null
+    },
+    {
+      "idx": 1,
+      "text": "nanda",
       "lang": null
     }
   ]

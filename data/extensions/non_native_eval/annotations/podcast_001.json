@@ -1,24 +1,24 @@
 {
-  "clip_id": "vlog_007",
-  "audio_file": "audio/vlog_007.wav",
-  "duration_sec": 6.01,
+  "clip_id": "podcast_001",
+  "audio_file": "audio/podcast_001.wav",
+  "duration_sec": 6.82,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "Bukawawa, hindi ba lang mga bag nila? Tahoom, ng design. As in, hala, nami-anigoy sa mga bag nila.",
+  "transcript": "Hello mga tuto, mga indahay, welcome sa ako n'y a YouTube channel. So ko nakita n'yong mandara sa aton n'y a YouTube.",
   "speaker": {
-    "id": "vlog_spk",
+    "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_vlog",
-  "source_type": "vlog",
+  "subset": "non_native_eval",
+  "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,92 +29,112 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "Bukawawa,",
+      "text": "Hello",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "hindi",
+      "text": "mga",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "ba",
+      "text": "tuto,",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "lang",
+      "text": "mga",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "mga",
+      "text": "indahay,",
       "lang": null
     },
     {
       "idx": 5,
-      "text": "bag",
+      "text": "welcome",
       "lang": null
     },
     {
       "idx": 6,
-      "text": "nila?",
-      "lang": null
-    },
-    {
-      "idx": 7,
-      "text": "Tahoom,",
-      "lang": null
-    },
-    {
-      "idx": 8,
-      "text": "ng",
-      "lang": null
-    },
-    {
-      "idx": 9,
-      "text": "design.",
-      "lang": null
-    },
-    {
-      "idx": 10,
-      "text": "As",
-      "lang": null
-    },
-    {
-      "idx": 11,
-      "text": "in,",
-      "lang": null
-    },
-    {
-      "idx": 12,
-      "text": "hala,",
-      "lang": null
-    },
-    {
-      "idx": 13,
-      "text": "nami-anigoy",
-      "lang": null
-    },
-    {
-      "idx": 14,
       "text": "sa",
       "lang": null
     },
     {
+      "idx": 7,
+      "text": "ako",
+      "lang": null
+    },
+    {
+      "idx": 8,
+      "text": "n'y",
+      "lang": null
+    },
+    {
+      "idx": 9,
+      "text": "a",
+      "lang": null
+    },
+    {
+      "idx": 10,
+      "text": "YouTube",
+      "lang": null
+    },
+    {
+      "idx": 11,
+      "text": "channel.",
+      "lang": null
+    },
+    {
+      "idx": 12,
+      "text": "So",
+      "lang": null
+    },
+    {
+      "idx": 13,
+      "text": "ko",
+      "lang": null
+    },
+    {
+      "idx": 14,
+      "text": "nakita",
+      "lang": null
+    },
+    {
       "idx": 15,
-      "text": "mga",
+      "text": "n'yong",
       "lang": null
     },
     {
       "idx": 16,
-      "text": "bag",
+      "text": "mandara",
       "lang": null
     },
     {
       "idx": 17,
-      "text": "nila.",
+      "text": "sa",
+      "lang": null
+    },
+    {
+      "idx": 18,
+      "text": "aton",
+      "lang": null
+    },
+    {
+      "idx": 19,
+      "text": "n'y",
+      "lang": null
+    },
+    {
+      "idx": 20,
+      "text": "a",
+      "lang": null
+    },
+    {
+      "idx": 21,
+      "text": "YouTube.",
       "lang": null
     }
   ]

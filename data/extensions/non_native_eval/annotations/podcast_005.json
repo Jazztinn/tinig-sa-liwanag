@@ -1,24 +1,24 @@
 {
-  "clip_id": "vlog_009",
-  "audio_file": "audio/vlog_009.wav",
-  "duration_sec": 12.0,
+  "clip_id": "podcast_005",
+  "audio_file": "audio/podcast_005.wav",
+  "duration_sec": 7.39,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "malik nanda",
+  "transcript": "at aton gamiton ng lingwahe kay",
   "speaker": {
-    "id": "vlog_spk",
+    "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_vlog",
-  "source_type": "vlog",
+  "subset": "non_native_eval",
+  "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,12 +29,32 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "malik",
+      "text": "at",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "nanda",
+      "text": "aton",
+      "lang": null
+    },
+    {
+      "idx": 2,
+      "text": "gamiton",
+      "lang": null
+    },
+    {
+      "idx": 3,
+      "text": "ng",
+      "lang": null
+    },
+    {
+      "idx": 4,
+      "text": "lingwahe",
+      "lang": null
+    },
+    {
+      "idx": 5,
+      "text": "kay",
       "lang": null
     }
   ]

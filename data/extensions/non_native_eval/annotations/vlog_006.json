@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_007",
-  "audio_file": "audio/podcast_007.wav",
-  "duration_sec": 6.51,
+  "clip_id": "vlog_006",
+  "audio_file": "audio/vlog_006.wav",
+  "duration_sec": 5.99,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "na nang-inspire sa ilong... sa ilong kayo. Ba' din, I-inspire ko sa podcast ng...",
+  "transcript": "Aay, hindi na beach. Pang sariling, ano po lang ni Ginya. Kahit dahom, Ginya. Pero toong dahom, Ginya go.",
   "speaker": {
-    "id": "podcast_spk",
+    "id": "vlog_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
-  "source_type": "podcast",
+  "subset": "non_native_eval",
+  "source_type": "vlog",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,72 +29,97 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "na",
+      "text": "Aay,",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "nang-inspire",
+      "text": "hindi",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "sa",
+      "text": "na",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "ilong...",
+      "text": "beach.",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "sa",
+      "text": "Pang",
       "lang": null
     },
     {
       "idx": 5,
-      "text": "ilong",
+      "text": "sariling,",
       "lang": null
     },
     {
       "idx": 6,
-      "text": "kayo.",
+      "text": "ano",
       "lang": null
     },
     {
       "idx": 7,
-      "text": "Ba'",
+      "text": "po",
       "lang": null
     },
     {
       "idx": 8,
-      "text": "din,",
+      "text": "lang",
       "lang": null
     },
     {
       "idx": 9,
-      "text": "I-inspire",
+      "text": "ni",
       "lang": null
     },
     {
       "idx": 10,
-      "text": "ko",
+      "text": "Ginya.",
       "lang": null
     },
     {
       "idx": 11,
-      "text": "sa",
+      "text": "Kahit",
       "lang": null
     },
     {
       "idx": 12,
-      "text": "podcast",
+      "text": "dahom,",
       "lang": null
     },
     {
       "idx": 13,
-      "text": "ng...",
+      "text": "Ginya.",
+      "lang": null
+    },
+    {
+      "idx": 14,
+      "text": "Pero",
+      "lang": null
+    },
+    {
+      "idx": 15,
+      "text": "toong",
+      "lang": null
+    },
+    {
+      "idx": 16,
+      "text": "dahom,",
+      "lang": null
+    },
+    {
+      "idx": 17,
+      "text": "Ginya",
+      "lang": null
+    },
+    {
+      "idx": 18,
+      "text": "go.",
       "lang": null
     }
   ]

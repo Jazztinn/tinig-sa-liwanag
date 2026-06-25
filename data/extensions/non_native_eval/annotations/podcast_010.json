@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_006",
-  "audio_file": "audio/podcast_006.wav",
-  "duration_sec": 7.78,
+  "clip_id": "podcast_010",
+  "audio_file": "audio/podcast_010.wav",
+  "duration_sec": 5.47,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "Kailigay noon. Okay. Kay podcast man inay, Bali... Na-inspire.",
+  "transcript": "Hindi ko na madulang so. Sadre na video.",
   "speaker": {
     "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
+  "subset": "non_native_eval",
   "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,47 +29,42 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "Kailigay",
+      "text": "Hindi",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "noon.",
+      "text": "ko",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "Okay.",
+      "text": "na",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "Kay",
+      "text": "madulang",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "podcast",
+      "text": "so.",
       "lang": null
     },
     {
       "idx": 5,
-      "text": "man",
+      "text": "Sadre",
       "lang": null
     },
     {
       "idx": 6,
-      "text": "inay,",
+      "text": "na",
       "lang": null
     },
     {
       "idx": 7,
-      "text": "Bali...",
-      "lang": null
-    },
-    {
-      "idx": 8,
-      "text": "Na-inspire.",
+      "text": "video.",
       "lang": null
     }
   ]

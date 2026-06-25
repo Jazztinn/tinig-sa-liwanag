@@ -1,24 +1,24 @@
 {
-  "clip_id": "podcast_010",
-  "audio_file": "audio/podcast_010.wav",
-  "duration_sec": 5.47,
+  "clip_id": "podcast_002",
+  "audio_file": "audio/podcast_002.wav",
+  "duration_sec": 5.95,
   "domain": "everyday",
   "switch_type": null,
-  "transcript": "Hindi ko na madulang so. Sadre na video.",
+  "transcript": "thumbnail sa atun titul Ilong",
   "speaker": {
     "id": "podcast_spk",
     "name": "",
     "primary_language": "hil",
-    "fluency": "native",
+    "fluency": "non_native",
     "region": "",
     "age_band": "",
     "gender": ""
   },
   "matrix_language": "hil",
-  "subset": "native_podcast",
+  "subset": "non_native_eval",
   "source_type": "podcast",
   "speech_style": "conversational",
-  "gold_status": "seed_unverified",
+  "gold_status": "not_native_gold",
   "review_status": "seed_unverified",
   "lang_tags_status": "seed_unverified",
   "provenance": {
@@ -29,42 +29,27 @@
   "tokens": [
     {
       "idx": 0,
-      "text": "Hindi",
+      "text": "thumbnail",
       "lang": null
     },
     {
       "idx": 1,
-      "text": "ko",
+      "text": "sa",
       "lang": null
     },
     {
       "idx": 2,
-      "text": "na",
+      "text": "atun",
       "lang": null
     },
     {
       "idx": 3,
-      "text": "madulang",
+      "text": "titul",
       "lang": null
     },
     {
       "idx": 4,
-      "text": "so.",
-      "lang": null
-    },
-    {
-      "idx": 5,
-      "text": "Sadre",
-      "lang": null
-    },
-    {
-      "idx": 6,
-      "text": "na",
-      "lang": null
-    },
-    {
-      "idx": 7,
-      "text": "video.",
+      "text": "Ilong",
       "lang": null
     }
   ]
