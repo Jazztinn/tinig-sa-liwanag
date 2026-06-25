@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """
-split_dataset.py - Build deterministic train/validation/test CSV splits.
+split_dataset.py - Build deterministic split CSVs for the benchmark.
+
+Sugidanon is an evaluation benchmark: by default the whole headline set is the
+frozen TEST split, with no train split (see BENCHMARK.md). Development/tuning
+lives on the speaker-disjoint spk02 cohort, not on a carved slice of the
+headline. The --train/--val flags remain for downstream users who explicitly
+want to carve their own split, but they are off by default so this tool never
+contradicts the frozen benchmark.
 
 Uses speaker-aware grouping when enough speakers exist. With one speaker, falls
 back to deterministic clip-level splitting and records that limitation.
@@ -98,9 +105,12 @@ def main():
     ap.add_argument("--annotations", default="data/annotations")
     ap.add_argument("--audio", default="data/audio")
     ap.add_argument("--output-dir", default="release/dataset")
-    ap.add_argument("--train", type=float, default=0.70)
-    ap.add_argument("--val", type=float, default=0.15)
-    ap.add_argument("--test", type=float, default=0.15)
+    ap.add_argument("--train", type=float, default=0.0,
+                    help="train fraction; default 0.0 (eval-only benchmark, no train split)")
+    ap.add_argument("--val", type=float, default=0.0,
+                    help="validation fraction; default 0.0 (dev cohort is spk02, not a headline slice)")
+    ap.add_argument("--test", type=float, default=1.0,
+                    help="test fraction; default 1.0 (whole headline is the frozen test set)")
     ap.add_argument("--seed", type=int, default=2026)
     args = ap.parse_args()
 
