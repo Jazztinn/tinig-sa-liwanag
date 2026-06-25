@@ -22,25 +22,68 @@ size_categories:
   - n<1K
 ---
 
-# Dataset Card: Sugidanon
+# Sugidanon 🎙️ — Code-Switch Hiligaynon Speech Benchmark
 
-## Dataset Summary
+**The first openly-licensed, code-switch-labeled speech benchmark for Hiligaynon
+(Ilonggo) — a language spoken by 9M+ Filipinos yet nearly invisible to modern
+speech technology.**
 
-Sugidanon is a small, open, labeled test set for evaluating code-switched
-Hiligaynon, Filipino/Tagalog, and English speech recognition.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jazztinn/tinig-sa-liwanag/blob/main/notebooks/sugidanon_colab.ipynb)
+&nbsp;·&nbsp; **Code:** https://github.com/Jazztinn/tinig-sa-liwanag
+&nbsp;·&nbsp; **License:** CC BY 4.0
 
-It is designed to measure not only overall WER, but also WER near language
-switch points — the switch penalty. This matters for Philippine speech
-technology because real speech mixes regional languages, Filipino/Tagalog, and
-English.
+Real Hiligaynon-English-Tagalog speech, labeled per word, with a scorer that
+measures what generic models miss: accuracy **at the moment the language
+switches**. Run the one-click Colab to reproduce the headline result on a fresh
+machine in minutes.
 
-**Contents:** 40 code-switch utterances (~3.1 min) recorded by one Hiligaynon
-speaker, across 8 domains (market, transport, school/work, family, health,
-culture, everyday, oral tradition) and 4 switch types (`HIL`, `HIL+EN`,
-`HIL+TL`, `HIL+TL+EN`). The reference transcripts were reviewed by the speaker;
-per-word language tags are auto-seeded and marked `lang_tags_status:
-seed_unverified` pending the speaker's confirmation. Single-speaker — expand
-before drawing model-level conclusions.
+## Why it matters
+
+The Philippines has 130+ languages. Tagalog ASR has advanced; regional tongues
+like Hiligaynon have **no open speech datasets, benchmarks, or models**. Real
+Ilonggo speech constantly mixes Hiligaynon, Tagalog, and English — exactly where
+off-the-shelf systems break. Sugidanon makes that failure **measurable**, so the
+next developer has a building block instead of a blank page.
+
+## Headline result
+
+Whisper small (`--language tl`) over the 40 clips:
+
+| Metric | WER |
+|--------|-----|
+| Overall | 59.8% |
+| Monolingual (Hiligaynon) | 66.3% |
+| Switch-region | 36.4% |
+| **Switch penalty** | **−30.0%** |
+
+By pair: `hil↔en` 40.8%, `hil↔tl` 24.4%, `tl↔en` 6.2%.
+
+**The negative penalty is the finding:** a Tagalog model nails the borrowed
+English/Tagalog words but fails on the Hiligaynon matrix it was never trained on.
+`tl↔en` is near-solved (6%); `hil↔en` is worst (41%). The gap scales with
+Hiligaynon — precisely what this dataset exists to expose.
+
+## What's inside
+
+40 code-switch utterances (~3.1 min) recorded by a Hiligaynon speaker, across
+**8 everyday domains** (market, transport, school/work, family, health, culture,
+everyday, oral tradition / heritage) and **4 switch types** (`HIL`, `HIL+EN`,
+`HIL+TL`, `HIL+TL+EN`). Every word carries a `hil`/`tl`/`en` tag, so the scorer
+can isolate switch-region errors.
+
+Transcripts were reviewed by the speaker; per-word language tags are auto-seeded
+(`lang_tags_status: seed_unverified`) pending a confirmation pass. Single
+speaker — a seed benchmark to extend, not a final model-ranking corpus.
+
+## Quick start
+
+```python
+from datasets import load_dataset
+ds = load_dataset("LauelKills/sugidanon-hil-codeswitch", data_dir="data/audio", split="train")
+ds[0]["audio"], ds[0]["transcript"], ds[0]["switch_type"], ds[0]["tokens"]
+```
+
+Or reproduce the benchmark end-to-end with the one-click Colab badge above.
 
 ## Languages
 
