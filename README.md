@@ -11,6 +11,15 @@ https://tinig-one.vercel.app          # Companion Demo: Tinig — AI assistant u
 Tinig (companion demo repository): https://github.com/ALinuxPerson/tinig
 ```
 
+**Open dataset (Hugging Face):**
+
+```text
+https://huggingface.co/datasets/LauelKills/sugidanon-hil-codeswitch
+```
+
+40 native-recorded code-switch Hiligaynon/Tagalog/English clips with per-word
+language tags and switch-region WER scoring. CC BY 4.0.
+
 ## Members
 
 - **Legaspi, Jazztinn Kyle**
