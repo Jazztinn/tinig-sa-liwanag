@@ -1,9 +1,11 @@
-# Team Hague
+# Team Hague — Sugidanon
 
 [![Benchmark integrity](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml/badge.svg)](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml)
 
 **ACM TechSprint Asteria Submission**  
 **Event dates:** June 25-27, 2026
+
+> *Measuring what gets erased — an open code-switch ASR benchmark for Hiligaynon, the language of 9M+ Filipinos that speech AI has never learned to hear.*
 
 **Live demo:**
 
@@ -88,22 +90,6 @@ This repository is scoped around one question:
 Overall WER hides which language failed. Sugidanon separates errors on
 Hiligaynon matrix-language words from errors near Tagalog and English switch
 points, making code-switch ASR failure measurable.
-
-## Current deliverable
-
-The repository targets the **Inclusive Speech Technology for Philippine
-Languages** challenge by shipping a focused benchmark:
-
-- 40 native-recorded Hiligaynon/Tagalog/English code-switch clips with per-word
-  language tags
-- a separate 40-clip second-speaker extension for robustness analysis
-- a 20-line non-native evaluation scaffold for future robustness testing
-- a switch-region WER scorer (overall WER, monolingual WER, switch penalty)
-- speaker, domain, switch-type, token-language, and language-pair ASR
-  breakdown reports
-- a reproducible Whisper baseline (one-click Colab)
-- an annotation schema for reviewed code-switch references
-- documentation, dataset card, and provenance records
 
 The headline finding (Whisper small, `--language tl`, **1 speaker / 40 clips**):
 
