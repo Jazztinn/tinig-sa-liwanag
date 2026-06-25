@@ -149,6 +149,10 @@ python scripts/translate_hil.py --backend hf \
 - **`hf`** backend: uses a Hiligaynon LLM from `RESOURCES.md`. Real translation,
   needs model download + GPU recommended.
 
+[![Open Translator In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Jazztinn/tinig-sa-liwanag/blob/main/notebooks/translator_colab.ipynb)
+**One-click translator:** the Colab notebook runs the neural Hiligaynon model on
+a free GPU with an interactive text box (dictionary fallback if no GPU).
+
 **Grow the dictionary:** add `source_word⇥hiligaynon⇥lang` lines to
 `data/lexicon_hil.tsv` (no code edit; native-speaker checked). Source material —
 Kaufmann KVED, Motus, pinoydictionary, ASJP — listed in `RESOURCES.md`. Open
