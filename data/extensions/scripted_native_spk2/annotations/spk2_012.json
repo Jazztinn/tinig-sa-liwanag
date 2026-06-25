@@ -19,68 +19,68 @@
   "source_type": "prompted_code_switch",
   "speech_style": "scripted",
   "gold_status": "native_gold",
-  "review_status": "seed_unverified",
-  "lang_tags_status": "seed_unverified",
+  "review_status": "reviewed",
+  "lang_tags_status": "reviewed",
   "provenance": {
     "source": "Team Hague elicitation Script 3 (Nimeesha De Guzman)",
     "license": "CC BY 4.0 (text); audio recorded by speaker",
-    "note": "Clap-split; transcript from script; per-word lang tags NOT set — native review required."
+    "note": "Transcript and per-word language tags reviewed by the speaker; kept as a candidate second-speaker extension until baseline predictions are added."
   },
   "tokens": [
     {
       "idx": 0,
       "text": "May",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 1,
       "text": "overtime",
-      "lang": null
+      "lang": "en"
     },
     {
       "idx": 2,
       "text": "ako",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 3,
       "text": "mamaya,",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 4,
       "text": "tapos",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 5,
       "text": "may",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 6,
       "text": "meeting",
-      "lang": null
+      "lang": "en"
     },
     {
       "idx": 7,
       "text": "pa",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 8,
       "text": "bukas",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 9,
       "text": "ng",
-      "lang": null
+      "lang": "tl"
     },
     {
       "idx": 10,
       "text": "umaga.",
-      "lang": null
+      "lang": "tl"
     }
   ],
   "clip_quality": "ok"

@@ -165,11 +165,12 @@ what makes switch-region WER (`score.py`) possible.
   "source_type": "prompted_code_switch",
   "speech_style": "scripted",
   "gold_status": "native_gold",
-  "review_status": "seed_unverified",
+  "review_status": "reviewed",
+  "lang_tags_status": "reviewed",
   "provenance": {
     "source": "Team Hague elicitation set (original)",
     "license": "CC BY 4.0 (text); audio under its own capture license",
-    "note": "SEED per-word language tags — native Hiligaynon speaker must review"
+    "note": "Reference text and per-word language tags reviewed by a Hiligaynon speaker."
   },
   "tokens": [
     { "idx": 0, "text": "Nag-grocery", "lang": "hil" },

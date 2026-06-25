@@ -19,58 +19,58 @@
   "source_type": "prompted_code_switch",
   "speech_style": "scripted",
   "gold_status": "native_gold",
-  "review_status": "seed_unverified",
-  "lang_tags_status": "seed_unverified",
+  "review_status": "reviewed",
+  "lang_tags_status": "reviewed",
   "provenance": {
     "source": "Team Hague elicitation Script 3 (Nimeesha De Guzman)",
     "license": "CC BY 4.0 (text); audio recorded by speaker",
-    "note": "Re-recorded as standalone clip by speaker; transcript from script; per-word lang tags NOT set — native review required."
+    "note": "Transcript and per-word language tags reviewed by the speaker; kept as a candidate second-speaker extension until baseline predictions are added."
   },
   "tokens": [
     {
       "idx": 0,
       "text": "Indi",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 1,
       "text": "pagbaklon",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 2,
       "text": "ang",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 3,
       "text": "hilaw",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 4,
       "text": "nga",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 5,
       "text": "prutas",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 6,
       "text": "kay",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 7,
       "text": "maaslom",
-      "lang": null
+      "lang": "hil"
     },
     {
       "idx": 8,
       "text": "pa.",
-      "lang": null
+      "lang": "hil"
     }
   ],
   "clip_quality": "ok"

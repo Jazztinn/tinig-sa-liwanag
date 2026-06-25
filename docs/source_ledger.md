@@ -11,7 +11,13 @@ See `docs/licensing.md` for the repository license structure and
 
 | Source ID | Title | URL | Rights | Subset | Clips | Notes |
 |-----------|-------|-----|--------|--------|-------|-------|
-| `src_scripted_01` | Team Hague elicitation set | local (`data/audio/`) | CC BY 4.0 (text); audio recorded by the reviewing speaker | `scripted_native` | 40 | Speaker consented; reference text reviewed; per-word tags `seed_unverified` |
+| `src_scripted_01` | Team Hague elicitation set | local (`data/audio/`) | CC BY 4.0 (text); audio recorded by the reviewing speaker | `scripted_native` | 40 | Speaker consented; reference text and per-word tags reviewed |
+
+## Candidate native extension
+
+| Source ID | Title | URL | Rights | Subset | Clips | Notes |
+|-----------|-------|-----|--------|--------|-------|-------|
+| `src_scripted_02` | Team Hague Script 3, speaker 2 | local (`data/extensions/scripted_native_spk2/`) | CC BY 4.0 (text); audio recorded by the speaker | `scripted_native` candidate | 40 | Native speaker, clean WAV shape, transcript and token language tags reviewed; not in headline WER yet because bundled ASR predictions are not generated |
 
 ## Candidate future sources
 

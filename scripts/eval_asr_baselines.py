@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-One-command ASR baseline evaluation.
+ASR baseline evaluation helper.
 
-Runs the existing switch-region WER scorer over every baseline prediction
-directory in data/predictions/asr/.
+Runs the existing switch-region WER scorer over either:
+  - one flat prediction directory containing <clip_id>.json files, or
+  - every model subdirectory under a prediction root.
 
 Usage:
     python3 scripts/eval_asr_baselines.py
-    python3 scripts/eval_asr_baselines.py --ref data/annotations
+    python3 scripts/eval_asr_baselines.py --pred-root data/predictions_auto
 """
 
 import argparse
@@ -58,7 +59,7 @@ def pct(value):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ref", default=os.path.join(ROOT, "data", "annotations"))
-    ap.add_argument("--pred-root", default=os.path.join(ROOT, "data", "predictions", "asr"))
+    ap.add_argument("--pred-root", default=os.path.join(ROOT, "data", "predictions"))
     args = ap.parse_args()
 
     if not os.path.isdir(args.ref):
@@ -66,10 +67,17 @@ def main():
     if not os.path.isdir(args.pred_root):
         sys.exit(f"Prediction root not found: {args.pred_root}")
 
-    models = [
-        name for name in sorted(os.listdir(args.pred_root))
-        if os.path.isdir(os.path.join(args.pred_root, name))
-    ]
+    has_flat_predictions = any(
+        name.endswith(".json") for name in os.listdir(args.pred_root)
+    )
+    if has_flat_predictions:
+        models = [("bundled", args.pred_root)]
+    else:
+        models = [
+            (name, os.path.join(args.pred_root, name))
+            for name in sorted(os.listdir(args.pred_root))
+            if os.path.isdir(os.path.join(args.pred_root, name))
+        ]
     if not models:
         sys.exit(f"No model prediction directories found under {args.pred_root}")
 
@@ -80,8 +88,7 @@ def main():
     print("-" * 84)
 
     had_missing = False
-    for model in models:
-        hyp_dir = os.path.join(args.pred_root, model)
+    for model, hyp_dir in models:
         clips, totals, _ = score_model(args.ref, hyp_dir)
         if clips == 0:
             had_missing = True
@@ -99,8 +106,8 @@ def main():
 
     print()
     print("Notes:")
-    print("- Current repository predictions are worked examples, not final benchmark results.")
-    print("- Replace data/predictions/asr/<model>/*.json with real Whisper/MMS outputs to reproduce final reported WER.")
+    print("- Current repository predictions are the bundled Whisper small --language tl baseline.")
+    print("- To compare another model, pass --pred-root to a flat prediction directory or a root of model subdirectories.")
     print("- The scorer reports switch-region WER, monolingual WER, and switch penalty.")
 
     sys.exit(1 if had_missing else 0)

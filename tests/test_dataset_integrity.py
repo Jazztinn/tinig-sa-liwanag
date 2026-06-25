@@ -31,8 +31,8 @@ class DatasetIntegrityTest(unittest.TestCase):
                 duration = w.getnframes() / w.getframerate()
                 self.assertEqual(w.getframerate(), 16000)
                 self.assertEqual(w.getnchannels(), 1)
-            if row.get("duration_sec") is not None:
-                self.assertLess(abs(duration - float(row["duration_sec"])), 0.03, row["clip_id"])
+            self.assertIsNotNone(row.get("duration_sec"), row["clip_id"])
+            self.assertLess(abs(duration - float(row["duration_sec"])), 0.03, row["clip_id"])
 
     def test_no_duplicate_audio_or_transcripts(self):
         hashes = {}
@@ -85,6 +85,13 @@ class DatasetIntegrityTest(unittest.TestCase):
             )
             self.assertTrue(os.path.exists(os.path.join(tmp, "dataset", "metadata.csv")))
             self.assertTrue(os.path.exists(os.path.join(tmp, "benchmark", "results.json")))
+            with open(os.path.join(tmp, "benchmark", "results.json"), encoding="utf-8") as f:
+                results = json.load(f)
+            self.assertIn("switch_region_wer_by_pair", results)
+            self.assertIn("hil<->en", results["switch_region_wer_by_pair"])
+            with open(os.path.join(tmp, "dataset", "dataset_card.md"), encoding="utf-8") as f:
+                dataset_card = f.read()
+            self.assertIn("No non-native robustness subset is included", dataset_card)
 
 
 if __name__ == "__main__":

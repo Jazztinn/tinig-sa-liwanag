@@ -7,12 +7,30 @@ for the web explorer, and writes a redistributable release package.
 """
 
 import argparse
+import os
 import subprocess
 
 
 def run(cmd):
     print("+ " + " ".join(cmd), flush=True)
     subprocess.run(cmd, check=True)
+
+
+def ensure_prediction_coverage(annotation_dir, prediction_dir):
+    refs = sorted(
+        name for name in os.listdir(annotation_dir)
+        if name.startswith("hil_cs_") and name.endswith(".json")
+    )
+    missing = [
+        name for name in refs
+        if not os.path.exists(os.path.join(prediction_dir, name))
+    ]
+    if missing:
+        raise SystemExit(
+            f"Missing predictions for {len(missing)} clips in {prediction_dir}: "
+            + ", ".join(missing[:10])
+            + (" ..." if len(missing) > 10 else "")
+        )
 
 
 def main():
@@ -30,6 +48,8 @@ def main():
         help="do not regenerate public/benchmark.json or public/clips",
     )
     args = ap.parse_args()
+
+    ensure_prediction_coverage(args.annotations, args.predictions)
 
     run([
         "python3",

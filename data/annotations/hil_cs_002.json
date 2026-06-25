@@ -1,7 +1,7 @@
 {
   "clip_id": "hil_cs_002",
   "audio_file": "audio/hil_cs_002.wav",
-  "duration_sec": null,
+  "duration_sec": 4.47,
   "domain": "market",
   "switch_type": "HIL+TL",
   "transcript": "Magbakal ta sang isda kay mura-mura pa siya kanina.",
@@ -20,11 +20,11 @@
   "speech_style": "scripted",
   "gold_status": "native_gold",
   "review_status": "reviewed",
-  "lang_tags_status": "seed_unverified",
+  "lang_tags_status": "reviewed",
   "provenance": {
     "source": "Team Hague elicitation set (draft, reviewed by a Hiligaynon speaker)",
     "license": "CC BY 4.0 (text); audio recorded by the reviewing speaker",
-    "note": "Reference text reviewed. Per-word lang tags are AUTO-SEEDED — speaker confirms (SCHEMA.md)."
+    "note": "Reference text and per-word language tags reviewed by a Hiligaynon speaker."
   },
   "tokens": [
     {

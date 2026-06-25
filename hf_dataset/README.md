@@ -74,8 +74,7 @@ everyday, oral tradition / heritage) and **4 switch types** (`HIL`, `HIL+EN`,
 `HIL+TL`, `HIL+TL+EN`). Every word carries a `hil`/`tl`/`en` tag, so the scorer
 can isolate switch-region errors.
 
-Transcripts were reviewed by the speaker; per-word language tags are auto-seeded
-(`lang_tags_status: seed_unverified`) pending a confirmation pass. Single
+Transcripts and per-word language tags were reviewed by the speaker. Single
 speaker — a seed benchmark to extend, not a final model-ranking corpus.
 
 ## Subsets
@@ -152,7 +151,7 @@ Example:
   "transcript": "Pila ang grocery budget naton para sa weekend?",
   "matrix_language": "hil",
   "review_status": "reviewed",
-  "lang_tags_status": "seed_unverified",
+  "lang_tags_status": "reviewed",
   "tokens": [
     { "idx": 0, "text": "Pila", "lang": "hil" },
     { "idx": 1, "text": "ang", "lang": "hil" },
@@ -227,7 +226,8 @@ These are human voice recordings — personal data — handled accordingly.
   annotations are deleted from the dataset.
 - **Honest labeling.** `speaker.fluency` is recorded (`native` / `fluent` /
   `non_native`); non-native clips are flagged and must not be used as native
-  gold data. AI-assisted tags are `seed_unverified` until human-reviewed.
+  gold data. AI-assisted extension tags remain `seed_unverified` until
+  human-reviewed.
 - **Intended use.** A research/evaluation building block for inclusive Philippine
   speech technology. Do **not** use it to identify, profile, surveil, or
   impersonate speakers, or to build voice-cloning systems without the speakers'
@@ -283,6 +283,5 @@ borrowed English/Tagalog switch words but fails on the Hiligaynon matrix. See
 ## Limitations
 
 - Single speaker — expand speakers before drawing model-level conclusions.
-- Per-word language tags are auto-seeded (`seed_unverified`); confirm with the
-  speaker before treating the switch/monolingual split as final.
+- Per-word language tags are reviewed for the current headline benchmark.
 - Baseline uses Whisper small; rerun with large-v3 / MMS for stronger numbers.
