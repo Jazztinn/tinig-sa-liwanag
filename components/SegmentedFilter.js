@@ -87,6 +87,7 @@ export default function SegmentedFilter({ options, value, onChange }) {
 
       {/* draggable liquid-glass pill */}
       {slotW > 0 && (
+        {/* outer motion handles drag/position only — no overflow or clip here */}
         <motion.div
           style={{
             position: "absolute",
@@ -96,9 +97,6 @@ export default function SegmentedFilter({ options, value, onChange }) {
             width: slotW,
             x: pillX,
             zIndex: 20,
-            borderRadius: 999,
-            // clip-path beats overflow:hidden for clipping transformed children
-            clipPath: "inset(0 round 999px)",
             cursor: "grab",
           }}
           drag="x"
@@ -109,24 +107,24 @@ export default function SegmentedFilter({ options, value, onChange }) {
           onDragEnd={handleDragEnd}
           whileTap={{ cursor: "grabbing" }}
         >
-          {/* glass surface */}
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 999,
-              background:
-                "linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(230,234,242,0.95))",
-              backdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
-              WebkitBackdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
-              boxShadow:
-                "inset 0 2.5px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.12)",
-            }}
-          />
+          {/* inner static div does the clipping — static divs clip overflow:hidden reliably */}
+          <div style={{ position: "absolute", inset: 0, borderRadius: 999, overflow: "hidden" }}>
+            {/* glass surface */}
+            <div
+              aria-hidden
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(230,234,242,0.95))",
+                backdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
+                WebkitBackdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
+                boxShadow:
+                  "inset 0 2.5px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.12)",
+              }}
+            />
 
-          {/* magnified clone — cloneX counter-translates so active label stays centered;
-              transformOrigin center keeps scale anchored to pill center */}
+          {/* magnified clone */}
           <motion.div
             aria-hidden
             style={{
@@ -162,6 +160,7 @@ export default function SegmentedFilter({ options, value, onChange }) {
               </span>
             ))}
           </motion.div>
+          </div>{/* end clip wrapper */}
         </motion.div>
       )}
     </div>

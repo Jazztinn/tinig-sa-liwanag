@@ -771,20 +771,20 @@ export default function Home() {
         :global(.tokWrap::before) {
           content: attr(data-tip);
           position: absolute;
-          bottom: calc(100% + 8px);
+          top: calc(100% + 8px);
           left: 50%;
-          transform: translateX(max(-50%, -120px)) translateY(4px);
-          background: rgba(255,255,255,0.25);
+          transform: translateX(clamp(-120px, -50%, 0px)) translateY(-4px);
+          background: rgba(255,255,255,0.35);
           backdrop-filter: blur(20px) saturate(200%) brightness(1.15);
           -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.15);
-          border: 1px solid rgba(255,255,255,0.7);
+          border: 1px solid rgba(255,255,255,0.75);
           color: rgba(0,0,0,0.85);
           font-size: 0.68rem;
           font-weight: 600;
           white-space: nowrap;
           padding: 5px 10px;
           border-radius: 8px;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+          box-shadow: 0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.15s ease, transform 0.15s ease;
@@ -794,11 +794,11 @@ export default function Home() {
         :global(.tokWrap::after) {
           content: "";
           position: absolute;
-          bottom: calc(100% + 2px);
+          top: calc(100% + 2px);
           left: 50%;
           transform: translateX(-50%);
           border: 5px solid transparent;
-          border-top-color: rgba(255,255,255,0.6);
+          border-bottom-color: rgba(255,255,255,0.7);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.15s ease;
@@ -806,7 +806,7 @@ export default function Home() {
         }
         :global(.tokWrap:hover::before) {
           opacity: 1;
-          transform: translateX(max(-50%, -120px)) translateY(0);
+          transform: translateX(clamp(-120px, -50%, 0px)) translateY(0);
         }
         :global(.tokWrap:hover::after) {
           opacity: 1;
