@@ -131,8 +131,6 @@ Deletion and language-skip dominate the monolingual region; switch-boundary subs
 
 ## Explorer
 
-*Screenshot / GIF coming — frame reserved:*
-
 <p align="center">
   <img src="docs/explorer_preview.png" alt="Sugidanon benchmark explorer" width="800"/>
 </p>
@@ -363,18 +361,16 @@ sugidanon/
 
 ## Core pipeline
 
-```text
- elicit / record     →   annotate          →   native review    →   FREEZE
- (record.py)             tokens + hil/tl/en    (review_annotations)  MANIFEST.json
-                          (build_codeswitch_set)                      (sha256 + scorer pin)
-                                                                            │
-                                                                            ▼
- ASR baseline        →   predictions/      →   score.py         →   breakdowns + CIs
- (run_whisper.py)        {clip_id, text}       switch-region WER    (analyze_asr_breakdowns)
-                                               + bootstrap CI              │
-                                                                            ▼
-                                                  web explorer  ·  release package
-                                               (build_benchmark_web)  (build_release)
+```mermaid
+flowchart LR
+    A["Elicit / record<br/><code>record.py</code>"] --> B["Annotate<br/>tokens + hil/tl/en<br/><code>build_codeswitch_set.py</code>"]
+    B --> C["Native review<br/><code>review_annotations.py</code>"]
+    C --> D["FREEZE<br/>MANIFEST.json<br/>sha256 + scorer pin"]
+    D --> E["ASR baseline<br/><code>run_whisper.py</code>"]
+    E --> F["Predictions<br/>{clip_id, text}"]
+    F --> G["Score<br/>switch-region WER + bootstrap CI<br/><code>score.py</code>"]
+    G --> H["Breakdowns + CIs<br/><code>analyze_asr_breakdowns.py</code>"]
+    H --> I["Web explorer · release package<br/><code>build_benchmark_web.py</code> · <code>build_release.py</code>"]
 ```
 
 | Stage | Script | Output |

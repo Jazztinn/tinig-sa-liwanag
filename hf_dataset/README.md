@@ -54,13 +54,13 @@ Whisper small (`--language tl`) over the 40 clips:
 | Overall | 57.4% | [49.3%, 65.8%] |
 | Monolingual (Hiligaynon) | 65.9% | [58.6%, 72.3%] |
 | Switch-region | 35.8% | [26.1%, 46.4%] |
-| **Switch penalty** | **−30.1%** | switch − mono |
+| **Matrix-language erasure gap** | **−30.1%** | switch − mono |
 
 (Brackets = 95% clip-level bootstrap CIs from `score.py --ci`. Switch and
-monolingual intervals do not overlap, so the negative penalty is statistically
+monolingual intervals do not overlap, so the negative erasure gap is statistically
 meaningful.) By pair: `hil↔en` 40.0%, `hil↔tl` 24.4%, `tl↔en` 6.2%.
 
-**The negative penalty is the finding:** a Tagalog model nails the borrowed
+**The negative erasure gap is the finding:** a Tagalog model nails the borrowed
 English/Tagalog words but fails on the Hiligaynon matrix it was never trained on.
 `tl↔en` is near-solved (6%); `hil↔en` is worst (40%). The gap scales with
 Hiligaynon — precisely what this dataset exists to expose.
@@ -182,7 +182,7 @@ The scorer reports:
 - overall WER
 - switch-region WER
 - monolingual WER
-- switch penalty
+- matrix-language erasure gap
 - 95% clip-level bootstrap confidence intervals (`--ci`)
 
 The benchmark is frozen and content-addressed (`data/benchmark/MANIFEST.json`,
@@ -194,7 +194,7 @@ python3 scripts/freeze_benchmark.py --verify
 
 Cohorts are speaker-disjoint and never blended: the headline (spk01, 40 clips)
 is the frozen **test** set; spk02 (40 clips) is a separate **development**
-cohort that reproduces the negative switch penalty; `non_native_eval` is
+cohort that reproduces the negative matrix-language erasure gap; `non_native_eval` is
 robustness only. Full protocol in `BENCHMARK.md` in the GitHub repo.
 
 ## Baselines
@@ -287,9 +287,9 @@ Whisper small (`--language tl`) over the 40 clips:
 | Overall | 57.4% |
 | Monolingual (Hiligaynon) | 65.9% |
 | Switch-region | 35.8% |
-| Switch penalty | −30.1% |
+| Matrix-language erasure gap | −30.1% |
 
-The negative penalty is the finding: an off-the-shelf Tagalog model handles the
+The negative erasure gap is the finding: an off-the-shelf Tagalog model handles the
 borrowed English/Tagalog switch words but fails on the Hiligaynon matrix. See
 `docs/evaluation_report.md`. Preliminary (Whisper small, single speaker).
 

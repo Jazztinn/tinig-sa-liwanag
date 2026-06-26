@@ -47,3 +47,31 @@ data/external/
 # Keep folder structure but ignore large media if needed
 # data/audio/*.wav
 .vercel
+
+# Private reference videos (motion-graphics references; never commit)
+No-video-title-fdown.net.mp4
+*.mp4
+reference-videos/
+references/
+
+# Demo motion-graphics scenes (local video assets; not part of the benchmark)
+components/WorkflowSequenceScene.js
+pages/workflow-scene.js
+components/HiddenFailureScene.js
+pages/hidden-failure-scene.js
+components/CodeSwitchExampleScene.js
+pages/code-switch-example.js
+components/SolutionRevealScene.js
+pages/solution-reveal.js
+components/WhatWeBuiltScene.js
+pages/what-we-built.js
+components/MetricScene.js
+pages/metric-scene.js
+components/ReproProofScene.js
+pages/repro-proof.js
+components/HeadlineResultScene.js
+pages/headline-result.js
+components/ClosingScene.js
+pages/closing-scene.js
+components/OpeningHookScene.js
+pages/opening-hook.js
