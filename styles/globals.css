@@ -563,6 +563,41 @@ a:focus-visible {
   font-size: 0.92rem;
 }
 
+.speechDemoIntro .demoPreset {
+  display: grid;
+  gap: 8px;
+  max-width: 54ch;
+  border: 1px solid var(--line);
+  background: rgba(216, 144, 33, 0.12);
+  margin-top: 12px;
+  padding: 10px;
+  color: var(--ink-strong);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.demoPreset > span {
+  color: var(--muted-ink);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demoPreset > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.demoPreset b {
+  border: 1px solid rgba(69, 45, 25, 0.18);
+  background: rgba(246, 236, 216, 0.8);
+  padding: 3px 7px;
+  color: var(--ink-strong);
+  font-weight: 700;
+}
+
 .demoRecorder {
   display: grid;
   grid-template-columns: 68px 1fr;
@@ -625,14 +660,51 @@ a:focus-visible {
 .recorderWaveform {
   grid-column: 1 / -1;
   height: 62px;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
   border: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(69, 45, 25, 0.05), rgba(255, 255, 255, 0.08)),
     rgba(220, 205, 176, 0.24);
   padding: 9px 10px;
+}
+
+.waveBars {
+  height: 38px;
+  display: grid;
+  grid-template-columns: repeat(36, minmax(2px, 1fr));
+  gap: 3px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.waveBars span {
+  height: 100%;
+  min-height: 6px;
+  transform-origin: center;
+  border-radius: 3px;
+  background: var(--rust);
+  transition:
+    opacity 0.08s linear,
+    transform 0.08s linear;
+}
+
+.voiceMeterText {
+  color: var(--muted-ink);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.15;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.waveRecording {
+  border-color: rgba(167, 71, 29, 0.55);
+  background:
+    linear-gradient(180deg, rgba(167, 71, 29, 0.09), rgba(255, 255, 255, 0.08)),
+    rgba(220, 205, 176, 0.32);
 }
 
 .playbackRow {
@@ -1252,6 +1324,10 @@ a:focus-visible {
 
 .tokOk {
   background: var(--green-soft);
+}
+
+.tokPending {
+  background: rgba(236, 228, 207, 0.72);
 }
 
 .tokErr {
