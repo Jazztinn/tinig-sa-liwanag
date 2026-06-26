@@ -510,10 +510,18 @@ export default function Home() {
           display: flex;
           gap: 18px;
           align-items: center;
-          padding: 10px 18px;
-          font-size: 0.8rem;
-          color: var(--muted);
+          padding: 10px 20px;
+          font-size: 0.82rem;
+          font-weight: 500;
+          color: var(--text);
           flex-wrap: wrap;
+          background: rgba(255, 255, 255, 0.45);
+          backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+          -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+          border-bottom-color: rgba(255, 255, 255, 0.45);
+          border-right-color: rgba(255, 255, 255, 0.45);
+          box-shadow: none;
         }
         .legend .count {
           margin-left: auto;
@@ -527,6 +535,17 @@ export default function Home() {
           border-radius: 4px;
           margin-right: 6px;
           vertical-align: -2px;
+        }
+        .legend .tokSwitch {
+          background: var(--switch);
+          box-shadow: none;
+        }
+        .legend .tokOk {
+          background: var(--ok);
+        }
+        .legend .tokErr {
+          background: var(--err);
+          text-decoration: none;
         }
         .clips {
           display: flex;
