@@ -1,9 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { animate, motion, useMotionValue, useTransform } from "framer-motion";
+import { animate, motion, useMotionValue } from "framer-motion";
 
 const SPRING = { type: "spring", stiffness: 380, damping: 34 };
 const PAD = 4;
-const MAG = 1.16;
 
 export default function SegmentedFilter({ options, value, onChange }) {
   const trackRef = useRef(null);
@@ -14,9 +13,6 @@ export default function SegmentedFilter({ options, value, onChange }) {
 
   const pillX = useMotionValue(0);
   const dragging = useRef(false);
-
-  // clone shifts left as pill moves right — keeps active label centered under pill
-  const cloneX = useTransform(pillX, (v) => -v);
 
   useLayoutEffect(() => {
     const el = trackRef.current;
@@ -55,10 +51,9 @@ export default function SegmentedFilter({ options, value, onChange }) {
         background: "rgba(0,0,0,0.07)",
         boxShadow:
           "inset 0 2px 5px rgba(0,0,0,0.13), inset 0 -1px 0 rgba(255,255,255,0.6)",
-        flexWrap: "nowrap",
       }}
     >
-      {/* base label row — sets track width, always rendered */}
+      {/* clickable label row — always rendered, sets track width */}
       {options.map((opt) => (
         <button
           key={opt.id}
@@ -72,22 +67,22 @@ export default function SegmentedFilter({ options, value, onChange }) {
             borderRadius: 999,
             padding: "5px 14px",
             fontSize: "0.78rem",
-            fontWeight: 500,
-            color: "rgba(0,0,0,0.4)",
+            fontWeight: value === opt.id ? 700 : 500,
+            color: value === opt.id ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.4)",
             cursor: "pointer",
             whiteSpace: "nowrap",
             position: "relative",
             zIndex: 10,
             userSelect: "none",
+            transition: "color 0.15s, font-weight 0.15s",
           }}
         >
           {opt.label}
         </button>
       ))}
 
-      {/* draggable liquid-glass pill */}
+      {/* draggable glass pill — sits behind labels */}
       {slotW > 0 && (
-        {/* outer motion handles drag/position only - no overflow or clip here */}
         <motion.div
           style={{
             position: "absolute",
@@ -96,7 +91,14 @@ export default function SegmentedFilter({ options, value, onChange }) {
             left: PAD,
             width: slotW,
             x: pillX,
-            zIndex: 20,
+            zIndex: 5,
+            borderRadius: 999,
+            background:
+              "linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(230,234,242,0.95))",
+            backdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
+            WebkitBackdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
+            boxShadow:
+              "inset 0 2.5px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.12)",
             cursor: "grab",
           }}
           drag="x"
@@ -106,62 +108,7 @@ export default function SegmentedFilter({ options, value, onChange }) {
           onDragStart={() => { dragging.current = true; }}
           onDragEnd={handleDragEnd}
           whileTap={{ cursor: "grabbing" }}
-        >
-          {/* inner static div does the clipping — static divs clip overflow:hidden reliably */}
-          <div style={{ position: "absolute", inset: 0, borderRadius: 999, overflow: "hidden" }}>
-            {/* glass surface */}
-            <div
-              aria-hidden
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(230,234,242,0.95))",
-                backdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
-                WebkitBackdropFilter: "blur(18px) saturate(200%) brightness(1.1)",
-                boxShadow:
-                  "inset 0 2.5px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.12)",
-              }}
-            />
-
-          {/* magnified clone */}
-          <motion.div
-            aria-hidden
-            style={{
-              pointerEvents: "none",
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              width: n * slotW,
-              display: "flex",
-              alignItems: "center",
-              x: cloneX,
-              scale: MAG,
-              transformOrigin: "center center",
-              zIndex: 10,
-            }}
-          >
-            {options.map((opt) => (
-              <span
-                key={opt.id}
-                style={{
-                  width: slotW,
-                  flexShrink: 0,
-                  textAlign: "center",
-                  fontSize: "0.78rem",
-                  fontWeight: 700,
-                  color: "rgba(0,0,0,0.85)",
-                  whiteSpace: "nowrap",
-                  padding: "5px 0",
-                }}
-              >
-                {opt.label}
-              </span>
-            ))}
-          </motion.div>
-          </div>{/* end clip wrapper */}
-        </motion.div>
+        />
       )}
     </div>
   );
