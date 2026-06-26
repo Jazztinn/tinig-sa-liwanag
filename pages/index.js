@@ -72,17 +72,21 @@ function ClipRow({ clip, open, onToggle }) {
             <div className="clipBodyInner">
               <audio controls preload="none" src={`/${clip.audio}`} className="player" />
 
-              <div className="rowLabel">Reference — token diff</div>
-              <div className="tokens">
-                {clip.tokens.map((t, i) => (
-                  <Token key={i} t={t} />
-                ))}
+              <div className="clipCols">
+                <div className="clipCol">
+                  <div className="rowLabel">Reference — token diff</div>
+                  <div className="tokens">
+                    {clip.tokens.map((t, i) => (
+                      <Token key={i} t={t} />
+                    ))}
+                  </div>
+                </div>
+                <div className="clipColDivider" />
+                <div className="clipCol">
+                  <div className="rowLabel">Whisper prediction (forced <code>tl</code>)</div>
+                  <div className="pred">{clip.prediction}</div>
+                </div>
               </div>
-
-              <div className="rowLabel">
-                Whisper prediction (forced <code>tl</code>)
-              </div>
-              <div className="pred">{clip.prediction}</div>
             </div>
           </motion.div>
         )}
@@ -709,6 +713,21 @@ export default function Home() {
         }
         :global(.clipBody) {
           overflow: hidden;
+        }
+        :global(.clipCols) {
+          display: grid;
+          grid-template-columns: 1fr 1px 1fr;
+          gap: 16px;
+          align-items: start;
+        }
+        :global(.clipCol) {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        :global(.clipColDivider) {
+          background: rgba(0,0,0,0.07);
+          align-self: stretch;
         }
         :global(.player) {
           width: 100%;
