@@ -259,56 +259,60 @@ export default function Home() {
           </section>
         )}
 
-        <section className="filters">
-          <div className="filterGroup">
-            <span className="filterLabel">Switch</span>
-            <button
-              className={`glassBtn ${fSwitch === "ALL" ? "active" : ""}`}
-              onClick={() => setFSwitch("ALL")}
-            >
-              All
-            </button>
-            {SWITCH_TYPES.map((s) => (
+        <div className="filterCard glass">
+          <section className="filters">
+            <div className="filterGroup">
+              <span className="filterLabel">Switch</span>
               <button
-                key={s}
-                className={`glassBtn ${fSwitch === s ? "active" : ""}`}
-                onClick={() => setFSwitch(s)}
+                className={`glassBtn ${fSwitch === "ALL" ? "active" : ""}`}
+                onClick={() => setFSwitch("ALL")}
               >
-                {s}
+                All
               </button>
-            ))}
-          </div>
-          <div className="filterGroup">
-            <span className="filterLabel">Domain</span>
-            <button
-              className={`glassBtn ${fDomain === "ALL" ? "active" : ""}`}
-              onClick={() => setFDomain("ALL")}
-            >
-              All
-            </button>
-            {domains.map((d) => (
+              {SWITCH_TYPES.map((s) => (
+                <button
+                  key={s}
+                  className={`glassBtn ${fSwitch === s ? "active" : ""}`}
+                  onClick={() => setFSwitch(s)}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+            <div className="filterGroup">
+              <span className="filterLabel">Domain</span>
               <button
-                key={d}
-                className={`glassBtn ${fDomain === d ? "active" : ""}`}
-                onClick={() => setFDomain(d)}
+                className={`glassBtn ${fDomain === "ALL" ? "active" : ""}`}
+                onClick={() => setFDomain("ALL")}
               >
-                {d}
+                All
               </button>
-            ))}
-          </div>
-        </section>
+              {domains.map((d) => (
+                <button
+                  key={d}
+                  className={`glassBtn ${fDomain === d ? "active" : ""}`}
+                  onClick={() => setFDomain(d)}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </section>
 
-        <div className="legend glass">
-          <span>
-            <i className="sw tokSwitch" /> switch region
-          </span>
-          <span>
-            <i className="sw tokErr" /> ASR error
-          </span>
-          <span>
-            <i className="sw tokOk" /> correct
-          </span>
-          <span className="count">{clips.length} clips</span>
+          <div className="filterDivider" />
+
+          <div className="legend">
+            <span>
+              <i className="sw tokSwitch" /> switch region
+            </span>
+            <span>
+              <i className="sw tokErr" /> ASR error
+            </span>
+            <span>
+              <i className="sw tokOk" /> correct
+            </span>
+            <span className="count">{clips.length} clips</span>
+          </div>
         </div>
 
         <section className="clips">
@@ -488,10 +492,21 @@ export default function Home() {
           font-weight: 700;
           color: var(--accent-strong);
         }
+        .filterCard {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          padding: 16px 20px 14px;
+        }
         .filters {
           display: flex;
           flex-direction: column;
           gap: 10px;
+        }
+        .filterDivider {
+          height: 1px;
+          background: rgba(0, 0, 0, 0.07);
+          margin: 14px 0 12px;
         }
         .filterGroup {
           display: flex;
@@ -510,18 +525,10 @@ export default function Home() {
           display: flex;
           gap: 18px;
           align-items: center;
-          padding: 10px 20px;
           font-size: 0.82rem;
           font-weight: 500;
           color: var(--text);
           flex-wrap: wrap;
-          background: rgba(255, 255, 255, 0.45);
-          backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
-          -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          border-bottom-color: rgba(255, 255, 255, 0.45);
-          border-right-color: rgba(255, 255, 255, 0.45);
-          box-shadow: none;
         }
         .legend .count {
           margin-left: auto;
