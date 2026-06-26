@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
+import SegmentedFilter from "../components/SegmentedFilter";
 
 const SWITCH_TYPES = ["HIL", "HIL+EN", "HIL+TL", "HIL+TL+EN"];
 
@@ -38,16 +39,25 @@ function Token({ t }) {
   );
 }
 
+function werColor(v) {
+  if (v < 40) return "werLow";
+  if (v < 70) return "werMid";
+  return "werHigh";
+}
+
 function ClipRow({ clip, open, onToggle }) {
   return (
     <div className={`glass clip ${open ? "clipOpen" : ""}`}>
       <button className="clipHead" onClick={onToggle}>
         <span className="clipId">{clip.clip_id}</span>
-        <span className="chip chipDomain">{clip.domain}</span>
-        <span className="chip chipSwitch">{clip.switch_type}</span>
-        <span className="clipWer">
-          WER {clip.wer.overall}%
-          <em> · sw {clip.wer.switch}% · mono {clip.wer.mono}%</em>
+        <span className="chipCol">
+          <span className="chip chipDomain">{clip.domain}</span>
+          <span className="chip chipSwitch">{clip.switch_type}</span>
+        </span>
+        <span className="clipStats">
+          <span className={`werVal ${werColor(clip.wer.overall)}`}>{clip.wer.overall}%</span>
+          <span className="werSub">sw {clip.wer.switch}%</span>
+          <span className="werSub">mono {clip.wer.mono}%</span>
         </span>
         <span className="caret">{open ? "▾" : "▸"}</span>
       </button>
@@ -263,39 +273,19 @@ export default function Home() {
           <section className="filters">
             <div className="filterGroup">
               <span className="filterLabel">Switch</span>
-              <button
-                className={`glassBtn ${fSwitch === "ALL" ? "active" : ""}`}
-                onClick={() => setFSwitch("ALL")}
-              >
-                All
-              </button>
-              {SWITCH_TYPES.map((s) => (
-                <button
-                  key={s}
-                  className={`glassBtn ${fSwitch === s ? "active" : ""}`}
-                  onClick={() => setFSwitch(s)}
-                >
-                  {s}
-                </button>
-              ))}
+              <SegmentedFilter
+                options={["ALL", ...SWITCH_TYPES].map((s) => ({ id: s, label: s === "ALL" ? "All" : s }))}
+                value={fSwitch}
+                onChange={setFSwitch}
+              />
             </div>
             <div className="filterGroup">
               <span className="filterLabel">Domain</span>
-              <button
-                className={`glassBtn ${fDomain === "ALL" ? "active" : ""}`}
-                onClick={() => setFDomain("ALL")}
-              >
-                All
-              </button>
-              {domains.map((d) => (
-                <button
-                  key={d}
-                  className={`glassBtn ${fDomain === d ? "active" : ""}`}
-                  onClick={() => setFDomain(d)}
-                >
-                  {d}
-                </button>
-              ))}
+              <SegmentedFilter
+                options={["ALL", ...domains].map((d) => ({ id: d, label: d === "ALL" ? "All" : d }))}
+                value={fDomain}
+                onChange={setFDomain}
+              />
             </div>
           </section>
 
@@ -316,6 +306,11 @@ export default function Home() {
         </div>
 
         <section className="clips glass">
+          <div className="clipsHeader">
+            <span>Clip</span>
+            <span>Tags</span>
+            <span style={{textAlign:"right",gridColumn:"3/5"}}>WER · sw · mono</span>
+          </div>
           {clips.map((c) => (
             <ClipRow
               key={c.clip_id}
@@ -498,6 +493,36 @@ export default function Home() {
           gap: 0;
           padding: 16px 20px 14px;
         }
+        .segTrack {
+          display: inline-flex;
+          padding: 4px;
+          border-radius: 999px;
+          background: rgba(0,0,0,0.07);
+          box-shadow: inset 0 2px 5px rgba(0,0,0,0.12), inset 0 -1px 0 rgba(255,255,255,0.55);
+          gap: 2px;
+          flex-wrap: wrap;
+        }
+        .segBtn {
+          padding: 5px 14px;
+          border-radius: 999px;
+          border: none;
+          background: transparent;
+          font-size: 0.78rem;
+          font-weight: 500;
+          color: rgba(0,0,0,0.45);
+          cursor: pointer;
+          transition: color 0.15s;
+          white-space: nowrap;
+        }
+        .segBtn:hover {
+          color: rgba(0,0,0,0.7);
+        }
+        .segActive {
+          background: linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(235,238,244,0.95));
+          box-shadow: inset 0 2px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.12);
+          color: rgba(0,0,0,0.85) !important;
+          font-weight: 700;
+        }
         .filters {
           display: flex;
           flex-direction: column;
@@ -578,7 +603,8 @@ export default function Home() {
         }
         :global(.clipHead) {
           width: 100%;
-          display: flex;
+          display: grid;
+          grid-template-columns: 120px 1fr auto auto;
           align-items: center;
           gap: 12px;
           padding: 11px 18px;
@@ -589,6 +615,33 @@ export default function Home() {
         }
         :global(.clipHead:hover) {
           background: rgba(0, 0, 0, 0.03);
+        }
+        :global(.chipCol) {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        :global(.clipStats) {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          font-size: 0.82rem;
+          font-variant-numeric: tabular-nums;
+          white-space: nowrap;
+        }
+        :global(.werVal) {
+          font-weight: 700;
+          min-width: 48px;
+          text-align: right;
+        }
+        :global(.werLow)  { color: #16a34a; }
+        :global(.werMid)  { color: #d97706; }
+        :global(.werHigh) { color: #dc2626; }
+        :global(.werSub) {
+          color: var(--muted);
+          font-weight: 400;
+          min-width: 68px;
+          text-align: right;
         }
         :global(.clipId) {
           font-weight: 700;
@@ -609,17 +662,16 @@ export default function Home() {
           background: rgba(245, 158, 11, 0.2);
           color: #92580a;
         }
-        :global(.clipWer) {
-          margin-left: auto;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--accent-strong);
-          white-space: nowrap;
-        }
-        :global(.clipWer em) {
-          font-style: normal;
-          font-weight: 400;
+        .clipsHeader {
+          display: grid;
+          grid-template-columns: 120px 1fr auto auto;
+          gap: 12px;
+          padding: 7px 18px;
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           color: var(--muted);
+          border-bottom: 1px solid rgba(0,0,0,0.08);
         }
         :global(.caret) {
           color: var(--muted);
