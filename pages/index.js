@@ -38,16 +38,25 @@ function Token({ t }) {
   );
 }
 
+function werColor(v) {
+  if (v < 40) return "werLow";
+  if (v < 70) return "werMid";
+  return "werHigh";
+}
+
 function ClipRow({ clip, open, onToggle }) {
   return (
     <div className={`glass clip ${open ? "clipOpen" : ""}`}>
       <button className="clipHead" onClick={onToggle}>
         <span className="clipId">{clip.clip_id}</span>
-        <span className="chip chipDomain">{clip.domain}</span>
-        <span className="chip chipSwitch">{clip.switch_type}</span>
-        <span className="clipWer">
-          WER {clip.wer.overall}%
-          <em> · sw {clip.wer.switch}% · mono {clip.wer.mono}%</em>
+        <span className="chipCol">
+          <span className="chip chipDomain">{clip.domain}</span>
+          <span className="chip chipSwitch">{clip.switch_type}</span>
+        </span>
+        <span className="clipStats">
+          <span className={`werVal ${werColor(clip.wer.overall)}`}>{clip.wer.overall}%</span>
+          <span className="werSub">sw {clip.wer.switch}%</span>
+          <span className="werSub">mono {clip.wer.mono}%</span>
         </span>
         <span className="caret">{open ? "▾" : "▸"}</span>
       </button>
@@ -316,6 +325,11 @@ export default function Home() {
         </div>
 
         <section className="clips glass">
+          <div className="clipsHeader">
+            <span>Clip</span>
+            <span>Tags</span>
+            <span style={{textAlign:"right",gridColumn:"3/5"}}>WER · sw · mono</span>
+          </div>
           {clips.map((c) => (
             <ClipRow
               key={c.clip_id}
@@ -497,6 +511,9 @@ export default function Home() {
           flex-direction: column;
           gap: 0;
           padding: 16px 20px 14px;
+          position: sticky;
+          top: 16px;
+          z-index: 10;
         }
         .filters {
           display: flex;
@@ -578,7 +595,8 @@ export default function Home() {
         }
         :global(.clipHead) {
           width: 100%;
-          display: flex;
+          display: grid;
+          grid-template-columns: 120px 1fr auto auto;
           align-items: center;
           gap: 12px;
           padding: 11px 18px;
@@ -589,6 +607,33 @@ export default function Home() {
         }
         :global(.clipHead:hover) {
           background: rgba(0, 0, 0, 0.03);
+        }
+        :global(.chipCol) {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        :global(.clipStats) {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          font-size: 0.82rem;
+          font-variant-numeric: tabular-nums;
+          white-space: nowrap;
+        }
+        :global(.werVal) {
+          font-weight: 700;
+          min-width: 48px;
+          text-align: right;
+        }
+        :global(.werLow)  { color: #16a34a; }
+        :global(.werMid)  { color: #d97706; }
+        :global(.werHigh) { color: #dc2626; }
+        :global(.werSub) {
+          color: var(--muted);
+          font-weight: 400;
+          min-width: 68px;
+          text-align: right;
         }
         :global(.clipId) {
           font-weight: 700;
@@ -609,17 +654,16 @@ export default function Home() {
           background: rgba(245, 158, 11, 0.2);
           color: #92580a;
         }
-        :global(.clipWer) {
-          margin-left: auto;
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--accent-strong);
-          white-space: nowrap;
-        }
-        :global(.clipWer em) {
-          font-style: normal;
-          font-weight: 400;
+        .clipsHeader {
+          display: grid;
+          grid-template-columns: 120px 1fr auto auto;
+          gap: 12px;
+          padding: 7px 18px;
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           color: var(--muted);
+          border-bottom: 1px solid rgba(0,0,0,0.08);
         }
         :global(.caret) {
           color: var(--muted);
