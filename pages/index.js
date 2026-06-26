@@ -744,6 +744,8 @@ export default function Home() {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
+          overflow: visible;
+          padding-top: 4px;
         }
         :global(.tok) {
           padding: 3px 8px;
@@ -769,40 +771,42 @@ export default function Home() {
         :global(.tokWrap::before) {
           content: attr(data-tip);
           position: absolute;
-          bottom: calc(100% + 8px);
+          top: calc(100% + 8px);
           left: 50%;
-          transform: translateX(-50%);
-          background: rgba(20, 15, 10, 0.88);
-          backdrop-filter: blur(8px);
-          color: #fff;
+          transform: translateX(clamp(-120px, -50%, 0px)) translateY(-4px);
+          background: rgba(255,255,255,0.35);
+          backdrop-filter: blur(20px) saturate(200%) brightness(1.15);
+          -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.15);
+          border: 1px solid rgba(255,255,255,0.75);
+          color: rgba(0,0,0,0.85);
           font-size: 0.68rem;
-          font-weight: 500;
+          font-weight: 600;
           white-space: nowrap;
-          padding: 4px 9px;
-          border-radius: 6px;
+          padding: 5px 10px;
+          border-radius: 8px;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.15s ease, transform 0.15s ease;
-          transform: translateX(-50%) translateY(4px);
-          z-index: 100;
+          z-index: 200;
           letter-spacing: 0.02em;
         }
         :global(.tokWrap::after) {
           content: "";
           position: absolute;
-          bottom: calc(100% + 2px);
+          top: calc(100% + 2px);
           left: 50%;
           transform: translateX(-50%);
           border: 5px solid transparent;
-          border-top-color: rgba(20, 15, 10, 0.88);
+          border-bottom-color: rgba(255,255,255,0.7);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.15s ease;
-          z-index: 100;
+          z-index: 200;
         }
         :global(.tokWrap:hover::before) {
           opacity: 1;
-          transform: translateX(-50%) translateY(0);
+          transform: translateX(clamp(-120px, -50%, 0px)) translateY(0);
         }
         :global(.tokWrap:hover::after) {
           opacity: 1;
