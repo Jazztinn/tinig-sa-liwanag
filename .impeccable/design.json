@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-26T00:00:00+08:00",
+  "title": "Design System: Sugidanon",
+  "extensions": {
+    "colorMeta": {
+      "festival-paper": {
+        "role": "neutral",
+        "displayName": "Festival Paper",
+        "canonical": "#fff7ed",
+        "tonalRamp": ["oklch(18% 0.02 65)", "oklch(28% 0.025 65)", "oklch(40% 0.03 65)", "oklch(54% 0.035 65)", "oklch(68% 0.035 65)", "oklch(82% 0.03 65)", "oklch(92% 0.025 65)", "oklch(98% 0.02 65)"]
+      },
+      "flame": {
+        "role": "primary",
+        "displayName": "Flame",
+        "canonical": "#f97316",
+        "tonalRamp": ["oklch(18% 0.08 45)", "oklch(28% 0.12 45)", "oklch(40% 0.16 45)", "oklch(54% 0.19 45)", "oklch(66% 0.2 45)", "oklch(78% 0.16 45)", "oklch(88% 0.1 45)", "oklch(96% 0.04 45)"]
+      },
+      "banana-switch": {
+        "role": "secondary",
+        "displayName": "Banana Switch",
+        "canonical": "#f59e0b",
+        "tonalRamp": ["oklch(18% 0.07 70)", "oklch(30% 0.1 70)", "oklch(44% 0.14 70)", "oklch(58% 0.17 70)", "oklch(72% 0.18 70)", "oklch(84% 0.13 70)", "oklch(92% 0.08 70)", "oklch(97% 0.035 70)"]
+      },
+      "ok-green": {
+        "role": "semantic",
+        "displayName": "OK Green",
+        "canonical": "#16a34a",
+        "tonalRamp": ["oklch(18% 0.07 145)", "oklch(30% 0.1 145)", "oklch(42% 0.13 145)", "oklch(54% 0.16 145)", "oklch(66% 0.17 145)", "oklch(78% 0.12 145)", "oklch(90% 0.07 145)", "oklch(97% 0.03 145)"]
+      },
+      "error-red": {
+        "role": "semantic",
+        "displayName": "Error Red",
+        "canonical": "#dc2626",
+        "tonalRamp": ["oklch(18% 0.08 25)", "oklch(30% 0.12 25)", "oklch(42% 0.16 25)", "oklch(54% 0.19 25)", "oklch(66% 0.18 25)", "oklch(78% 0.12 25)", "oklch(90% 0.07 25)", "oklch(97% 0.03 25)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Sugidanon wordmark only."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Benchmark explanation, labels, tables, and clip evidence."
+      }
+    },
+    "shadows": [
+      {
+        "name": "low-ambient",
+        "value": "0 1px 3px rgba(0, 0, 0, 0.12)",
+        "purpose": "Small controls only."
+      },
+      {
+        "name": "raised-clip",
+        "value": "0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06)",
+        "purpose": "Open clip rows or active evidence only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for filter, row, and disclosure transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "single-column",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Filter Pill",
+      "kind": "button",
+      "refersTo": "filter-pill",
+      "description": "Segmented filter button for switch type and domain selection.",
+      "html": "<button class=\"ds-filter-pill\" aria-pressed=\"true\">HIL+EN</button>",
+      "css": ".ds-filter-pill { border: 0; border-radius: 999px; padding: 5px 14px; font: 700 0.78rem system-ui, Segoe UI, Roboto, Arial, sans-serif; color: rgba(0,0,0,0.85); background: linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(230,234,242,0.95)); box-shadow: inset 0 2px 2px rgba(255,255,255,1), inset 0 -2px 3px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.12); transition: background 0.18s cubic-bezier(0.4,0,0.2,1), transform 0.18s cubic-bezier(0.4,0,0.2,1); } .ds-filter-pill:hover { background: #fff; } .ds-filter-pill:focus-visible { outline: 3px solid rgba(249,115,22,0.45); outline-offset: 2px; }"
+    },
+    {
+      "name": "Glass Container",
+      "kind": "card",
+      "refersTo": "glass-container",
+      "description": "Primary panel material for benchmark sections.",
+      "html": "<section class=\"ds-glass\"><h3>Browse every clip</h3><p>Audio, token diff, and ASR output stay inspectable.</p></section>",
+      "css": ".ds-glass { max-width: 360px; padding: 20px 24px; border-radius: 16px; color: #1a1a1a; background: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.4); border-right-color: rgba(255,255,255,0.4); backdrop-filter: blur(20px) saturate(200%) brightness(1.08); } .ds-glass h3 { margin: 0 0 8px; font: 700 0.95rem system-ui, Segoe UI, Roboto, Arial, sans-serif; } .ds-glass p { margin: 0; color: #6b5e54; font: 400 0.9rem/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif; }"
+    },
+    {
+      "name": "Token Error",
+      "kind": "custom",
+      "refersTo": "token-error",
+      "description": "ASR error token in the clip diff.",
+      "html": "<span class=\"ds-token-error\">kahapon</span>",
+      "css": ".ds-token-error { display: inline-block; padding: 3px 8px; border-radius: 7px; background: #fef2f2; color: #dc2626; font: 400 0.95rem system-ui, Segoe UI, Roboto, Arial, sans-serif; text-decoration: line-through; text-decoration-color: rgba(220,38,38,0.5); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Festival Research Table",
+    "overview": "Sugidanon should feel like evidence laid out under warm public light: approachable, human, and inspectable. The current system combines a soft festival-orange surface, glass panels, tactile filter controls, and plain research copy to keep the benchmark legible for judges while preserving technical credibility.",
+    "keyCharacteristics": [
+      "Warm, public, and community-rooted rather than cold lab software.",
+      "Dense enough for metrics, clips, and filters, but still readable in a judged demo setting.",
+      "Evidence-led: every decorative decision should support audio, token diffs, cohort boundaries, or reproduction paths.",
+      "Glass is a material accent, not a license to lower contrast."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Color Rule",
+        "body": "Green, red, and amber are data-state colors first. Never use them as decoration where they could be mistaken for correctness, error, or switch state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Benchmark First Rule",
+        "body": "Orange emphasis belongs on the finding, filters, reproduction paths, and model tags. Do not spend it on generic marketing flourish.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Script Rule",
+        "body": "Borel appears only in the Sugidanon brand mark. All benchmark reading, filtering, and data comparison uses system sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Open Row Rule",
+        "body": "Elevation appears when the user opens or activates evidence. Static sections stay flat glass.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with the benchmark, not the translation scaffold.",
+      "Do keep headline, development, and robustness cohorts visually separate.",
+      "Do pair every large metric with enough plain-language context to prevent misreading WER.",
+      "Do preserve strong contrast for muted prose, filter labels, token text, and chart values.",
+      "Do use audio clips and token diffs as the primary proof pattern."
+    ],
+    "donts": [
+      "Don't present Sugidanon as a finished translation app, consumer voice product, or generic AI demo.",
+      "Don't blend extension cohorts into the headline result.",
+      "Don't overclaim Hiligaynon language authority where labels remain `seed_unverified`.",
+      "Don't use generic SaaS hero cliches, decorative metric cards that bury methodology, or generic \"AI for good\" framing.",
+      "Don't use glass effects that make body text, labels, or token states harder to read."
+    ]
+  }
+}
