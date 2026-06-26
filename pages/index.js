@@ -5,6 +5,7 @@ import SegmentedFilter from "../components/SegmentedFilter";
 
 const SWITCH_TYPES = ["HIL", "HIL+EN", "HIL+TL", "HIL+TL+EN"];
 const FEATURED_CLIP = "hil_cs_038";
+const WAVEFORM_BARS = 36;
 
 function formatPenalty(value) {
   return `${value < 0 ? "\u2212" : ""}${Math.abs(value).toFixed(1)}%`;
@@ -14,12 +15,13 @@ function pct(value) {
   return `${Number(value).toFixed(1)}%`;
 }
 
-function Token({ t }) {
+function Token({ t, reveal = false, revealIndex = 0, reduceMotion = false, showSwitch = true }) {
   const [tip, setTip] = useState(null);
   const ref = useRef(null);
-  const cls = ["tok", t.switch ? "tokSwitch" : "", t.error ? "tokErr" : "tokOk"].join(" ");
+  const resultClass = t.error === true ? "tokErr" : t.error === false ? "tokOk" : "tokPending";
+  const cls = ["tok", showSwitch && t.switch ? "tokSwitch" : "", resultClass].join(" ");
   const label = [
-    t.error ? "ASR error" : "correct",
+    t.error === true ? "ASR error" : t.error === false ? "correct" : "not scored",
     t.switch ? "switch region" : "monolingual",
     `lang: ${t.lang}`,
   ].join(" / ");
@@ -30,6 +32,37 @@ function Token({ t }) {
     setTip(e.clientY < mid ? "above" : "below");
   }
 
+  const content = (
+    <>
+      {t.text}
+      {tip && (
+        <span className={`tip tip${tip === "above" ? "Above" : "Below"}`}>
+          {label}
+        </span>
+      )}
+    </>
+  );
+
+  if (reveal) {
+    return (
+      <motion.span
+        ref={ref}
+        className={cls}
+        onMouseEnter={handleEnter}
+        onMouseLeave={() => setTip(null)}
+        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 10, filter: reduceMotion ? "none" : "blur(4px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{
+          delay: reduceMotion ? 0 : revealIndex * 0.04,
+          duration: reduceMotion ? 0 : 0.24,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        {content}
+      </motion.span>
+    );
+  }
+
   return (
     <span
       ref={ref}
@@ -37,12 +70,7 @@ function Token({ t }) {
       onMouseEnter={handleEnter}
       onMouseLeave={() => setTip(null)}
     >
-      {t.text}
-      {tip && (
-        <span className={`tip tip${tip === "above" ? "Above" : "Below"}`}>
-          {label}
-        </span>
-      )}
+      {content}
     </span>
   );
 }
@@ -171,8 +199,14 @@ function preferredRecorderMimeType() {
 
 function parseRecordingDataUrl(dataUrl, fallbackMimeType, blobSize) {
   const value = String(dataUrl || "");
-  const match = value.match(/^data:([^,]*?);base64,(.+)$/i);
-  if (!match || !match[2]) {
+  const commaIndex = value.indexOf(",");
+  const meta = commaIndex >= 0 ? value.slice(5, commaIndex) : "";
+  const audioBase64 = commaIndex >= 0 ? value.slice(commaIndex + 1).replace(/\s+/g, "") : "";
+  const metaParts = meta.split(";").filter(Boolean);
+  const dataUrlMimeType = metaParts.find((part) => part.includes("/")) || "";
+  const hasBase64Flag = metaParts.some((part) => part.toLowerCase() === "base64");
+
+  if (!value.startsWith("data:") || commaIndex < 0 || !hasBase64Flag || !audioBase64) {
     const prefix = value ? value.slice(0, 32) : "empty";
     throw new Error(
       `Recorder produced invalid audio payload (${fallbackMimeType || "no type"}, ${blobSize || 0} bytes, ${prefix}).`
@@ -180,22 +214,23 @@ function parseRecordingDataUrl(dataUrl, fallbackMimeType, blobSize) {
   }
 
   return {
-    mimeType: fallbackMimeType || match[1]?.split(";")[0] || "audio/webm",
-    audioBase64: match[2],
+    mimeType: fallbackMimeType || dataUrlMimeType || "audio/webm",
+    audioBase64,
   };
 }
 
-function normalizeForWer(text) {
+function normalizeTokenForWer(text) {
   return String(text || "")
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s'-]/gu, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+    .trim()
+    .replace(/[^\p{L}\p{N}_'-]/gu, "");
 }
 
-function wordList(text) {
-  const normalized = normalizeForWer(text);
-  return normalized ? normalized.split(" ") : [];
+function transcriptWordList(text) {
+  return String(text || "")
+    .split(/\s+/)
+    .map(normalizeTokenForWer)
+    .filter(Boolean);
 }
 
 function alignWords(refWords, hypWords) {
@@ -244,14 +279,16 @@ function alignWords(refWords, hypWords) {
 }
 
 function scoreTranscript(clip, transcript) {
-  const refWords = wordList(clip.reference);
-  const hypWords = wordList(transcript);
-  const switchFlags = [];
-
-  for (const token of clip.tokens) {
-    const parts = wordList(token.text);
-    parts.forEach(() => switchFlags.push(Boolean(token.switch)));
-  }
+  const refItems = clip.tokens
+    .map((token, index) => ({
+      index,
+      word: normalizeTokenForWer(token.text),
+      switch: Boolean(token.switch),
+    }))
+    .filter((item) => item.word);
+  const refWords = refItems.map((item) => item.word);
+  const hypWords = transcriptWordList(transcript);
+  const switchFlags = refItems.map((item) => item.switch);
 
   const buckets = {
     overall: { errors: 0, total: refWords.length },
@@ -279,8 +316,38 @@ function scoreTranscript(clip, transcript) {
   };
 }
 
+function assessTranscriptTokens(clip, transcript, shouldScore) {
+  const tokens = clip.tokens.map((token) => ({
+    ...token,
+    error: shouldScore ? false : null,
+  }));
+
+  if (!shouldScore) return tokens;
+
+  const refItems = clip.tokens
+    .map((token, index) => ({
+      index,
+      word: normalizeTokenForWer(token.text),
+    }))
+    .filter((item) => item.word);
+  const refWords = refItems.map((item) => item.word);
+  const hypWords = transcriptWordList(transcript);
+
+  for (const op of alignWords(refWords, hypWords)) {
+    if (op.type === "match" || op.type === "ins") continue;
+    const tokenIndex = refItems[op.refIndex]?.index;
+    if (typeof tokenIndex === "number") tokens[tokenIndex].error = true;
+  }
+
+  return tokens;
+}
+
 function pctOrDash(value) {
   return Number.isFinite(value) ? pct(value) : "--";
+}
+
+function emptyWaveform() {
+  return Array.from({ length: WAVEFORM_BARS }, () => 0.08);
 }
 
 function SpeechDemo({ clip, model }) {
@@ -291,114 +358,145 @@ function SpeechDemo({ clip, model }) {
   const [transcriptionMeta, setTranscriptionMeta] = useState(null);
   const [durationMs, setDurationMs] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const waveformRef = useRef(null);
-  const waveSurferRef = useRef(null);
-  const recordPluginRef = useRef(null);
+  const [voiceLevel, setVoiceLevel] = useState(0);
+  const [waveLevels, setWaveLevels] = useState(emptyWaveform);
+  const mediaRecorderRef = useRef(null);
+  const streamRef = useRef(null);
+  const chunksRef = useRef([]);
+  const audioContextRef = useRef(null);
+  const analyserRef = useRef(null);
+  const animationFrameRef = useRef(0);
+  const recordingStartedAtRef = useRef(0);
+  const playbackAudioRef = useRef(null);
   const stopTimerRef = useRef(null);
   const urlRef = useRef("");
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    let disposed = false;
-    let cleanup = () => {};
-
-    async function setupWaveform() {
-      const [{ default: WaveSurfer }, { default: RecordPlugin }] = await Promise.all([
-        import("wavesurfer.js"),
-        import("wavesurfer.js/dist/plugins/record.js"),
-      ]);
-
-      if (disposed || !waveformRef.current) return;
-
-      const record = RecordPlugin.create({
-        continuousWaveform: true,
-        continuousWaveformDuration: 9,
-        mediaRecorderTimeslice: 120,
-        mimeType: preferredRecorderMimeType(),
-        renderRecordedAudio: true,
-        scrollingWaveform: false,
-      });
-      const waveSurfer = WaveSurfer.create({
-        barGap: 3,
-        barRadius: 2,
-        barWidth: 2,
-        container: waveformRef.current,
-        cursorWidth: 0,
-        height: 62,
-        interact: true,
-        normalize: false,
-        plugins: [record],
-        progressColor: "#843618",
-        waveColor: "#a7471d",
-      });
-
-      waveSurferRef.current = waveSurfer;
-      recordPluginRef.current = record;
-
-      const unsubscribes = [
-        record.on("record-progress", (duration) => setDurationMs(duration)),
-        record.on("record-end", (blob) => {
-          window.clearTimeout(stopTimerRef.current);
-          const nextUrl = URL.createObjectURL(blob);
-          if (urlRef.current) URL.revokeObjectURL(urlRef.current);
-          urlRef.current = nextUrl;
-          setRecordedUrl(nextUrl);
-          transcribeRecording(blob);
-        }),
-        waveSurfer.on("play", () => setIsPlaying(true)),
-        waveSurfer.on("pause", () => setIsPlaying(false)),
-        waveSurfer.on("finish", () => setIsPlaying(false)),
-      ];
-
-      cleanup = () => {
-        unsubscribes.forEach((unsubscribe) => unsubscribe());
-        record.destroy();
-        waveSurfer.destroy();
-      };
-    }
-
-    setupWaveform().catch(() => {
-      if (!disposed) {
-        setStatus("error");
-        setError("Waveform recorder could not load.");
-      }
-    });
-
     return () => {
-      disposed = true;
       window.clearTimeout(stopTimerRef.current);
-      cleanup();
+      window.cancelAnimationFrame(animationFrameRef.current);
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+      audioContextRef.current?.close().catch(() => {});
+      playbackAudioRef.current?.pause();
       if (urlRef.current) URL.revokeObjectURL(urlRef.current);
     };
   }, []);
 
   if (!clip) return null;
 
+  function resetPlayback() {
+    if (playbackAudioRef.current) {
+      playbackAudioRef.current.pause();
+      playbackAudioRef.current = null;
+    }
+    setIsPlaying(false);
+  }
+
+  function stopLiveInput() {
+    window.cancelAnimationFrame(animationFrameRef.current);
+    animationFrameRef.current = 0;
+    analyserRef.current = null;
+    if (audioContextRef.current) {
+      audioContextRef.current.close().catch(() => {});
+      audioContextRef.current = null;
+    }
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    }
+  }
+
+  function drawVoiceLevel() {
+    const analyser = analyserRef.current;
+    if (!analyser) return;
+
+    const samples = new Uint8Array(analyser.fftSize);
+    analyser.getByteTimeDomainData(samples);
+    let sum = 0;
+    for (const sample of samples) {
+      const centered = (sample - 128) / 128;
+      sum += centered * centered;
+    }
+    const rms = Math.sqrt(sum / samples.length);
+    const level = Math.min(1, rms * 5.5);
+
+    setVoiceLevel(level);
+    setWaveLevels((levels) => [...levels.slice(1), Math.max(0.06, level)]);
+    setDurationMs(Date.now() - recordingStartedAtRef.current);
+    animationFrameRef.current = window.requestAnimationFrame(drawVoiceLevel);
+  }
+
   async function startRecording() {
-    const record = recordPluginRef.current;
     setError("");
     setRecordedUrl("");
     setTranscript("");
     setTranscriptionMeta(null);
     setDurationMs(0);
+    setVoiceLevel(0);
+    setWaveLevels(emptyWaveform());
     setIsPlaying(false);
+    resetPlayback();
     if (urlRef.current) {
       URL.revokeObjectURL(urlRef.current);
       urlRef.current = "";
     }
 
-    if (!record || !navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") {
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") {
       setStatus("error");
       setError("Mic recording is not available in this browser.");
       return;
     }
 
     try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true },
+      });
+      streamRef.current = stream;
+      const mimeType = preferredRecorderMimeType();
+      const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextCtor) {
+        throw new Error("Voice meter is not available in this browser.");
+      }
+      const audioContext = new AudioContextCtor();
+      await audioContext.resume();
+      const source = audioContext.createMediaStreamSource(stream);
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      source.connect(analyser);
+
+      mediaRecorderRef.current = recorder;
+      audioContextRef.current = audioContext;
+      analyserRef.current = analyser;
+      chunksRef.current = [];
+
+      recorder.ondataavailable = (event) => {
+        if (event.data?.size) chunksRef.current.push(event.data);
+      };
+      recorder.onstop = () => {
+        window.clearTimeout(stopTimerRef.current);
+        const blob = new Blob(chunksRef.current, { type: recorder.mimeType || mimeType || "audio/webm" });
+        chunksRef.current = [];
+        mediaRecorderRef.current = null;
+        stopLiveInput();
+        setVoiceLevel(0);
+        const nextUrl = URL.createObjectURL(blob);
+        if (urlRef.current) URL.revokeObjectURL(urlRef.current);
+        urlRef.current = nextUrl;
+        setRecordedUrl(nextUrl);
+        transcribeRecording(blob);
+      };
+
       setStatus("recording");
-      await record.startRecording({ echoCancellation: true, noiseSuppression: true });
+      recordingStartedAtRef.current = Date.now();
+      recorder.start(120);
+      drawVoiceLevel();
       stopTimerRef.current = window.setTimeout(() => {
-        if (record.isRecording()) record.stopRecording();
+        if (recorder.state === "recording") recorder.stop();
       }, 9000);
     } catch {
+      stopLiveInput();
       setStatus("error");
       setError("Mic permission was blocked or no input device was found.");
     }
@@ -423,7 +521,6 @@ function SpeechDemo({ clip, model }) {
         body: JSON.stringify({
           audioBase64: payload.audioBase64,
           mimeType: payload.mimeType,
-          reference: clip.reference,
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -444,13 +541,24 @@ function SpeechDemo({ clip, model }) {
   }
 
   function stopRecording() {
-    const record = recordPluginRef.current;
-    if (record?.isRecording()) record.stopRecording();
+    const recorder = mediaRecorderRef.current;
+    if (recorder?.state === "recording") recorder.stop();
   }
 
   function togglePlayback() {
-    if (!waveSurferRef.current || !recordedUrl) return;
-    waveSurferRef.current.playPause();
+    if (!recordedUrl) return;
+    if (!playbackAudioRef.current) {
+      const audio = new Audio(recordedUrl);
+      audio.onended = () => setIsPlaying(false);
+      audio.onpause = () => setIsPlaying(false);
+      audio.onplay = () => setIsPlaying(true);
+      playbackAudioRef.current = audio;
+    }
+    if (isPlaying) {
+      playbackAudioRef.current.pause();
+    } else {
+      playbackAudioRef.current.play().catch(() => setError("Playback could not start."));
+    }
   }
 
   const isRecording = status === "recording";
@@ -458,6 +566,7 @@ function SpeechDemo({ clip, model }) {
   const isComplete = status === "complete";
   const canRecord = !isRecording && !isAnalyzing;
   const demoMetrics = isComplete ? scoreTranscript(clip, transcript) : null;
+  const assessedTokens = assessTranscriptTokens(clip, transcript, isComplete);
   const transcriptAccuracy = demoMetrics ? Math.max(0, 100 - Number(demoMetrics.overall || 0)) : null;
   const outputText = isComplete
     ? transcript || "No speech detected."
@@ -468,9 +577,20 @@ function SpeechDemo({ clip, model }) {
   return (
     <section className="speechDemo" aria-labelledby="speech-demo-title">
       <div className="speechDemoIntro">
-        <span className="railLabel">Say this sentence</span>
-        <h2 id="speech-demo-title">{clip.reference}</h2>
-        <p>Press the mic, read the sentence aloud, then compare the local model transcript against it.</p>
+        <span className="railLabel">Try the local model</span>
+        <h2 id="speech-demo-title">Say anything in Hiligaynon</h2>
+        <p>Press the mic and speak in Hiligaynon or code-switched Hiligaynon; the local model transcribes it with its best capability.</p>
+        <div className="demoPreset" aria-label={`Reference prompt benchmark: ${clip.reference}`}>
+          <span>Reference prompt / benchmark</span>
+          <div>
+            {clip.reference
+              .replace(/[.!?]+$/u, "")
+              .split(/\s+/)
+              .map((word) => (
+                <b key={word}>{word}</b>
+              ))}
+          </div>
+        </div>
       </div>
 
       <div className="demoRecorder" aria-live="polite">
@@ -491,19 +611,27 @@ function SpeechDemo({ clip, model }) {
           </strong>
           <span>
             {isRecording
-              ? "Speak the reference line."
+              ? "Speak in Hiligaynon."
               : isAnalyzing
                 ? "Model pass running."
                 : isComplete
-                  ? `${(durationMs / 1000).toFixed(1)}s captured and scored.`
+                  ? `${(durationMs / 1000).toFixed(1)}s captured and processed.`
                   : "Press mic to begin."}
           </span>
         </div>
-        <div
-          ref={waveformRef}
-          className={`recorderWaveform ${isRecording ? "waveRecording" : ""}`}
-          aria-label="Recording waveform"
-        />
+        <div className={`recorderWaveform ${isRecording ? "waveRecording" : ""}`} aria-label="Recording voice level">
+          <div className="waveBars" aria-hidden="true">
+            {waveLevels.map((level, i) => (
+              <span
+                key={i}
+                style={{
+                  transform: `scaleY(${Math.max(0.08, level)})`,
+                  opacity: isRecording ? 0.42 + Math.min(0.58, level) : 0.34,
+                }}
+              />
+            ))}
+          </div>
+        </div>
         <div className="playbackRow">
           <button type="button" onClick={togglePlayback} disabled={!recordedUrl}>
             {isPlaying ? "Stop playback" : "Play recording"}
@@ -512,14 +640,31 @@ function SpeechDemo({ clip, model }) {
         </div>
       </div>
 
-      <div className="demoPrompt">
-        <span className="rowLabel">Reference prompt</span>
-        <div className="tokens">
-          {clip.tokens.map((t, i) => (
-            <Token key={i} t={t} />
-          ))}
-        </div>
-      </div>
+      <AnimatePresence initial={false}>
+        {isComplete && (
+          <motion.div
+            className="demoPrompt"
+            initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : -6 }}
+            transition={{ duration: reduceMotion ? 0 : 0.26, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="rowLabel">Reference prompt</span>
+            <div className="tokens">
+              {assessedTokens.map((t, i) => (
+                <Token
+                  key={i}
+                  t={t}
+                  reveal
+                  revealIndex={i}
+                  reduceMotion={reduceMotion}
+                  showSwitch={false}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="demoResult">
         <div>
@@ -530,11 +675,13 @@ function SpeechDemo({ clip, model }) {
               {transcriptionMeta.backend} / {transcriptionMeta.model}
             </p>
           )}
-          <div className="accuracyStamp">
-            <span>Transcript accuracy</span>
-            <strong>{pctOrDash(transcriptAccuracy)}</strong>
-            <small>scored against sentence above</small>
-          </div>
+          {isComplete && (
+            <div className="accuracyStamp">
+              <span>Transcript accuracy</span>
+              <strong>{pctOrDash(transcriptAccuracy)}</strong>
+              <small>scored against reference prompt</small>
+            </div>
+          )}
           {error && <p className="demoError">{error}</p>}
         </div>
         <div className="clipWer">

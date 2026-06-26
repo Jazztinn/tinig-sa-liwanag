@@ -29,6 +29,36 @@ function extensionForMime(mimeType) {
   return "webm";
 }
 
+function bufferFromBase64(audioBase64) {
+  const value = String(audioBase64 || "").replace(/\s+/g, "");
+  if (!value || !/^[A-Za-z0-9+/]+={0,2}$/.test(value)) {
+    throw new Error("Recorded audio is not valid base64.");
+  }
+  return Buffer.from(value, "base64");
+}
+
+function parseBase64DataUrl(audio) {
+  const value = String(audio || "");
+  const commaIndex = value.indexOf(",");
+  const meta = commaIndex >= 0 ? value.slice(5, commaIndex) : "";
+  const audioBase64 = commaIndex >= 0 ? value.slice(commaIndex + 1) : "";
+  const metaParts = meta.split(";").filter(Boolean);
+  const mimeType = metaParts.find((part) => part.includes("/")) || "audio/webm";
+  const hasBase64Flag = metaParts.some((part) => part.toLowerCase() === "base64");
+
+  if (!value.startsWith("data:") || commaIndex < 0 || !hasBase64Flag) {
+    const preview = value ? value.slice(0, 48) : "missing";
+    throw new Error(
+      `Expected audioBase64 or a base64 media data URL. Received audio=${preview}.`
+    );
+  }
+
+  return {
+    mimeType,
+    audioBase64,
+  };
+}
+
 function parseAudioPayload(payload) {
   const mimeType =
     typeof payload?.mimeType === "string" && payload.mimeType.trim()
@@ -38,22 +68,15 @@ function parseAudioPayload(payload) {
   if (typeof payload?.audioBase64 === "string" && payload.audioBase64.trim()) {
     return {
       mimeType,
-      buffer: Buffer.from(payload.audioBase64, "base64"),
+      buffer: bufferFromBase64(payload.audioBase64),
     };
   }
 
-  const audio = String(payload?.audio || "");
-  const match = audio.match(/^data:([^,]*?);base64,(.+)$/i);
-  if (!match) {
-    const preview = audio ? audio.slice(0, 48) : "missing";
-    throw new Error(
-      `Expected audioBase64 or a base64 media data URL. Received audio=${preview}.`
-    );
-  }
+  const audio = parseBase64DataUrl(payload?.audio);
 
   return {
-    mimeType: mimeType || match[1]?.split(";")[0] || "audio/webm",
-    buffer: Buffer.from(match[2], "base64"),
+    mimeType: payload?.mimeType ? mimeType : audio.mimeType,
+    buffer: bufferFromBase64(audio.audioBase64),
   };
 }
 
