@@ -66,8 +66,8 @@ Meta MMS:        https://huggingface.co/facebook/mms-1b-all
 
 | Member | Primary role |
 |--------|--------------|
-| Legaspi, Jazztinn Kyle | Lead / pipeline, evaluation scripts, demo app |
-| Michael C. Baterna | Benchmark data, schema, domain examples |
+| Legaspi, Jazztinn Kyle | Lead / pipeline, Benchmark data evaluation scripts, demo app |
+| Michael C. Baterna | Schema, domain examples, HuggingFace |
 | Arwin Jeremy Bumpus | Frontend / demo UI, documentation |
 | De Guzman, Nimeesha | Lexicon, Tagalog/Hiligaynon bridge, review coordination |
 
