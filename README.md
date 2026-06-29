@@ -19,6 +19,7 @@
 [![Benchmark integrity](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml/badge.svg)](https://github.com/Jazztinn/tinig-sa-liwanag/actions/workflows/benchmark.yml)
 
 **ACM TechSprint Asteria Submission**  (TOP 10 FINALIST | HONORABLE MENTION)
+
 **Event dates:** June 25-27, 2026
 
 > *Measuring what gets erased. Sugidanon is an open code-switch ASR benchmark for Hiligaynon, the language of 9M+ Filipinos that speech AI has never learned to hear.*
